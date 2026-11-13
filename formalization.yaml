@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: "v0.4"
 
-# SKELETON (2026-11-13). Lines marked TODO are not settled: each is either the
-# author's decision or a fact that the checked inventory of sources and prior
-# formalizations does not contain. No TODO line may remain at submission.
+# Not submitted. The lines marked "TODO (author)" are the author's alone to
+# settle (the title, the review status and her own review of the statements,
+# the acknowledgements); none may remain at submission.
 
 project:
-  # TODO (author): the title. This is the statement stage's working title.
-  name: "Bracket-commuting maps of the orthogonal Lie algebra of a quaternary form: the quadratic algebra F[X]/(X^2 - det B), the square class of the determinant, and the trace form of a number field of degree four"
+  # TODO (author): the title. PROPOSED title below; the author decides.
+  name: "Bracket-commuting maps (the centroid) of the orthogonal Lie algebra of a quaternary form: the quadratic algebra F[X]/(X^2 - det B) and the square class of the determinant"
   description: >-
     Kernel-checked proofs, in Lean 4 + Mathlib, of eleven statements about
     the bracket-commuting maps (the centroid) of the Lie algebra so(B) of
@@ -101,21 +101,24 @@ classification:
   # nonassociative structures), 11R16 (cubic and quartic extensions), 11R29
   # (class numbers, class groups, discriminants). The field takes at most
   # eight; 15A63 (quadratic and bilinear forms, inner products) was dropped as
-  # the least specific of nine candidates.
-  # TODO (author): the categories. math.RT is defensible alongside math.RA and
-  # math.NT; whether any other category is added is the author's call.
+  # the least specific of nine candidates. arXiv: math.RA (Lie algebras as
+  # nonassociative algebras; quadratic forms and algebras with involution) and
+  # math.NT (the trace form and the discriminant of a number field). Both are
+  # in the registry's arXiv snapshot at the same commit.
   arxiv: ["math.RA", "math.NT"]
   msc2020: ["17B05", "17B40", "17B20", "11E04", "11E88", "16W10", "11R16", "11R29"]
 
 sources:
   - title: "The Book of Involutions"
     authors:
-      - "M.-A. Knus"
-      - "A. Merkurjev"
-      - "M. Rost"
-      - "J.-P. Tignol"
+      - "Max-Albert Knus"
+      - "Alexander Merkurjev"
+      - "Markus Rost"
+      - "Jean-Pierre Tignol"
     id: "American Mathematical Society Colloquium Publications 44, 1998"
-    # READ 2026-11-13 in the 588-page PDF at
+    # Bibliographic record Crossref-verified 2026-11-13: DOI 10.1090/coll/044
+    # (title, the four authors, Colloquium Publications, American Mathematical
+    # Society, 1998). READ 2026-11-13 in the 588-page PDF at
     # https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf, a
     # pre-publication typesetting (internal cross-references print as "(??)").
     # The numbers and pages quoted are that file's. The numbering and pages of
@@ -123,18 +126,22 @@ sources:
     # only ((2.1), (2.6), (2.14), (20.6) and (15.12) of the file carry the
     # content that two later papers cite under those numbers from the 1998
     # book), not at the items cited here. The printed book was not opened.
-    # TODO: a stable location for the printed book (publisher's record); the
-    # location below is the file that was read.
     type: "book"
-    location: "https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf"
-    # TODO (author): "adapts" or "independently-proves". "adapts" is used here
-    # because the statements of the source are about the Clifford algebra and
-    # algebras with involution, and the compared statements are the
-    # corresponding statements for the Lie algebra, proved by another route.
-    relationship: "adapts"
+    location: "https://doi.org/10.1090/coll/044"
+    # Relationship. The proofs here do not follow this text, so "adapts" is not
+    # used. The registry's rule is that a proof, by another route, of a result
+    # that is already known is recorded as "independently-proves" and is not an
+    # original proof. The note says exactly which form of the result this
+    # source states (the Clifford-algebra side) and which it does not.
+    relationship: "independently-proves"
     note: >-
-      Scoped to statements 1, 2(c), 3 and 4. In the numbering of the file
-      read: section 7, p. 80, the discriminant of a symmetric bilinear form
+      Scoped to statements 1, 2(c), 3 and 4. The source states the result
+      on the side of the Clifford algebra and of algebras with involution;
+      the compared statements are the corresponding statements for the Lie
+      algebra, proved here by computation with matrices and not by the
+      route of the source. In the numbering of the file read (a
+      pre-publication PDF, https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf):
+      section 7, p. 80, the discriminant of a symmetric bilinear form
       b is the signed determinant disc b = (-1)^{n(n-1)/2} det b in
       F^x/F^{x2}, and it is an invariant of the equivalence class of b
       modulo scalar factors if and only if the dimension is even; (7.3)(3),
@@ -169,17 +176,20 @@ sources:
     author_endorsement: "not-contacted"
   - title: "Varieties admitting a holomorphic symplectic form: LLV algebras and derived equivalences"
     authors:
-      - "D. Leijnse"
+      - "Dion Leijnse"
     id: "arXiv:2605.26398v1"
-    # READ 2026-11-13 as arXiv:2605.26398v1 [math.AG], 26 May 2026 (a
-    # thesis): Definition 2.4 (p. 11), Lemmas 2.6 and 2.7 (p. 12), Lemma 2.33
+    # Title and author as in the arXiv record (read through the arXiv API,
+    # 2026-11-13). READ 2026-11-13 as arXiv:2605.26398v1 [math.AG], 26 May
+    # 2026 (a thesis): Definition 2.4 (p. 11), Lemmas 2.6 and 2.7 (p. 12), Lemma 2.33
     # (p. 20), Theorem 2.34 (pp. 20-21), Theorem 2.36 (pp. 22-23), Remark 2.37
     # (pp. 23-24), Lemma 3.72 (pp. 64-65).
     type: "paper"
     location: "https://arxiv.org/abs/2605.26398"
     relationship: "formalizes"
     note: >-
-      Scoped to statement 5, with the context of statement 3. Theorem 2.34
+      Scoped to statement 5, with the context of statement 3. Statement 5
+      is the result this source states; the proof here is a computation
+      with matrices and was not written from this text. Theorem 2.34
       (pp. 20-21) is given there as "a summary of some results that can be
       found in [Jac62, Chapter X]", for fields of characteristic not 2: the
       derived algebra s(A, sigma) of Skew(A, sigma) (equal to so(B) for
@@ -212,12 +222,16 @@ sources:
     author_endorsement: "not-contacted"
   - title: "The centroid of extended affine and root graded Lie algebras"
     authors:
-      - "G. Benkart"
-      - "E. Neher"
+      - "Georgia Benkart"
+      - "Erhard Neher"
     id: "arXiv:math/0502561v1"
-    # READ 2026-11-13 as arXiv:math/0502561v1 [math.RT], 26 Feb 2005
-    # (sections 1, 2.1, Lemma 2.1, Corollary 2.23, section 3.3). The journal
-    # reference is UNCONFIRMED (the arXiv record has none) and is not given.
+    # Title and authors as in the arXiv record (arXiv API, 2026-11-13). READ
+    # 2026-11-13 as arXiv:math/0502561v1 [math.RT], 26 Feb 2005 (sections 1,
+    # 2.1, Lemma 2.1, Corollary 2.23, section 3.3). The arXiv record carries
+    # no journal reference. Crossref (2026-11-13) has an article of the same
+    # title and authors: Journal of Pure and Applied Algebra 205 (2006), no. 1,
+    # 117-145, DOI 10.1016/j.jpaa.2005.06.007. The journal version was not
+    # opened; sections and pages quoted are those of the arXiv version.
     type: "paper"
     location: "https://arxiv.org/abs/math/0502561"
     relationship: "background"
@@ -239,11 +253,12 @@ sources:
     author_endorsement: "not-contacted"
   - title: "Planes in quadratic 4-space and associated shapes of lattices"
     authors:
-      - "M. Aka"
-      - "K. Andritsch"
-      - "A. Wieser"
+      - "Menny Aka"
+      - "Konstantin Andritsch"
+      - "Andreas Wieser"
     id: "arXiv:2606.03472v2"
-    # READ 2026-11-13 as arXiv:2606.03472v2 [math.NT], 17 Aug 2026 (v1 June
+    # Title and authors as in the arXiv record (arXiv API, 2026-11-13). READ
+    # 2026-11-13 as arXiv:2606.03472v2 [math.NT], 17 Aug 2026 (v1 June
     # 2026): sections 2.1-2.2, pp. 8-9, Proposition 2.6.
     type: "paper"
     location: "https://arxiv.org/abs/2606.03472"
@@ -266,6 +281,8 @@ sources:
     authors:
       - "J. S. Milne"
     id: "Course notes, version 3.08 (19 July 2020)"
+    # Author's name and the current version (3.08) as on the author's page
+    # https://www.jmilne.org/math/CourseNotes/ant.html (opened 2026-11-13).
     # READ 2026-11-13 in https://www.jmilne.org/math/CourseNotes/ANT.pdf
     # (v3.08): "Discriminants", p. 33; Proposition 2.40(a), p. 39.
     type: "other"
@@ -283,11 +300,13 @@ sources:
       NumberField.sign_discr.
     license: "unknown"
     author_endorsement: "not-contacted"
-  - title: "Number field 4.2.283.1"
+  - title: "The L-functions and modular forms database, home page of the number field 4.2.283.1"
     authors:
       - "The LMFDB Collaboration"
-    id: "LMFDB, number field 4.2.283.1"
-    # READ 2026-11-13: the page https://www.lmfdb.org/NumberField/4.2.283.1.
+    id: "LMFDB, number field 4.2.283.1, 2026 (accessed 13 November 2026)"
+    # The author line and the form of the title are those the database asks
+    # for (https://www.lmfdb.org/citation, opened 2026-11-13). READ
+    # 2026-11-13: the page https://www.lmfdb.org/NumberField/4.2.283.1.
     type: "other"
     location: "https://www.lmfdb.org/NumberField/4.2.283.1"
     relationship: "background"
@@ -301,16 +320,18 @@ sources:
     author_endorsement: "n/a"
   - title: "Lie Algebras"
     authors:
-      - "N. Jacobson"
-    id: "Interscience, New York, 1962, Chapter X"
+      - "Nathan Jacobson"
+    id: "1962, Chapter X"
     # NOT READ. Named because Leijnse gives Theorem 2.34 as a summary of
     # results of its Chapter X, Theorem 2.36 as its Chapter X, Theorems 11 and
     # 12, and Lemma 2.7 as a variant of its Chapter X, Theorem 3, and because
     # Benkart and Neher cite it for the centroid. Whether Chapter X treats type
-    # D_2 is not known to this entry.
-    # TODO: the bibliographic id above (publisher, city) is not in the checked
-    # inventory, which has "Jacobson, Lie Algebras (1962), Chapter X"; confirm
-    # or cut to that.
+    # D_2 is not known to this entry. Bibliographic record: the year and the
+    # chapter are as Leijnse cites the book ("[Jac62, Chapter X]"). The
+    # publisher and place were not confirmed from a bibliographic record and
+    # are not given: Crossref has no record of the 1962 book itself, only one
+    # for a 1964 review of a book of this title by this author (American
+    # Mathematical Monthly, DOI 10.2307/2312632).
     type: "book"
     relationship: "background"
     note: >-
@@ -322,13 +343,77 @@ sources:
       corrected.
     license: "unknown"
     author_endorsement: "n/a"
+  - title: "Quaternion Algebras"
+    authors:
+      - "John Voight"
+    id: "Graduate Texts in Mathematics, Springer, 2021"
+    # Bibliographic record Crossref-verified 2026-11-13: DOI
+    # 10.1007/978-3-030-56694-4 (Graduate Texts in Mathematics, Springer
+    # International Publishing, 2021). READ 2026-11-13 in the author's PDF
+    # v.1.0.7u of 5 August 2026 (883 pages; its front matter says that pages
+    # and numbering differ slightly from the printed edition): 38.3.1,
+    # Definition 38.3.4 (p. 707) and 38.3.10 (p. 708); section 36.3, p. 658.
+    # The printed edition was not opened.
+    type: "book"
+    location: "https://doi.org/10.1007/978-3-030-56694-4"
+    relationship: "background"
+    note: >-
+      Cited for one sentence of README.md ("Who this is for") and for no
+      compared statement. In the numbering of the file read: for a
+      quaternion algebra B over a number field F and an order O of B,
+      Gamma^1(O) is the image of the units of O of reduced norm 1
+      (38.3.1); a group is arithmetic when it is commensurable with such a
+      group (Definition 38.3.4, p. 707); and Gamma^1(O) is a Kleinian group
+      if and only if "F has exactly one complex place and B is ramified at
+      all real places" (38.3.10, p. 708). Section 36.3, p. 658, names the
+      isomorphism of the Lie algebras so_{3,1} and sl_{2,C}. The word
+      "centroid" does not occur in the file. No statement of this entry is
+      about a group, and nothing here is proved from this source.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "Weakly Noetherian Lie Algebra and the Sierra-Walton Conjecture"
+    authors:
+      - "Olivier Mathieu"
+    id: "arXiv:2605.18116v1"
+    # Title and author as in the arXiv record (arXiv API, 2026-11-13). READ
+    # 2026-11-13 as arXiv:2605.18116v1 [math.RA], 18 May 2026: section 5,
+    # Proposition 20.
+    type: "paper"
+    location: "https://arxiv.org/abs/2605.18116"
+    relationship: "background"
+    note: >-
+      A current paper in which centroids of Lie algebras are in use:
+      section 5 is headed "Centroids of weakly Noetherian Lie algebras"
+      (Proposition 20). Cited for the reader in README.md; not used in any
+      proof here, and no compared statement is taken from it.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "The trace form over cyclic number fields"
+    authors:
+      - "Wilmar Bolaños"
+      - "Guillermo Mantilla-Soler"
+    id: "Canadian Journal of Mathematics 73 (2021), no. 4, 947-969; arXiv:1904.10080"
+    # Bibliographic record Crossref-verified 2026-11-13 (DOI
+    # 10.4153/S0008414X20000255) and as in the arXiv record. Opened
+    # 2026-11-13 in its arXiv version to confirm that it studies the integral
+    # trace form; no statement of it is quoted.
+    type: "paper"
+    location: "https://doi.org/10.4153/S0008414X20000255"
+    relationship: "background"
+    note: >-
+      Current work on the integral trace form of a number field, a finer
+      invariant than the class of the discriminant modulo rational squares
+      that statement 8 uses. The integral trace form is not formalized
+      here. Cited for the reader in README.md.
+    license: "unknown"
+    author_endorsement: "not-contacted"
 
 related_formalizations:
   - id: "https://github.com/TauCetiProject/TauCeti/tree/3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9"
-    # TODO (author): "other" or "independent". "other" follows the entry
-    # PALOMAR-2026-11-12-000002, which recorded libraries found by a dated
-    # search as "other" because the search report was in hand when the
-    # Challenge was assembled; the same is true here.
+    # "other", not "independent": the report of the search that names these
+    # files was in hand when the compared statements were written. The
+    # author's registered entry PALOMAR-2026-11-12-000002 recorded libraries
+    # found by a dated search in the same way.
     relationship: "other"
     note: >-
       THE CLIFFORD-ALGEBRA SIDE OF THIS MATERIAL IS FORMALIZED THERE; THE
@@ -407,11 +492,16 @@ related_formalizations:
       product, or a statement about the orthogonal Lie algebra of the
       trace form of a number field. Nothing of TauCeti is imported or
       reproduced; the library of this entry imports Mathlib only among
-      external projects. Contact: TODO (the author's account of when her
-      project first read these files; the report of the search that names
-      them was in hand when the compared statements were written).
+      external projects. Contact: the library modules of this entry were
+      written on 2026-11-12 without reference to these files; the files
+      were read for this entry on 2026-11-13, and the report of the search
+      that names them was in hand when the compared statements and the
+      helper module were written. Recorded as "other", not "independent",
+      for that reason. The search has to be repeated at the commit current
+      on the day of submission (the head of 2026-11-13 was searched by file
+      name only).
   - id: "https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Geometry/EinsteinFour"
-    # TODO (author): "other" or "independent", as for TauCeti.
+    # "other", not "independent", for the same reason as for TauCeti.
     relationship: "other"
     note: >-
       THE REAL DEFINITE INSTANCE, IN MATRIX COORDINATES. Read on 2026-11-13
@@ -441,20 +531,22 @@ related_formalizations:
       search: 1,036 files of the repository were fetched and searched by
       content and three more were fetched by name; the other files
       (162,060) were searched by file name only. Nothing of it is imported
-      or reproduced. Contact: TODO (the author's account, as for TauCeti).
+      or reproduced. Contact: as for TauCeti; the files were read for this
+      entry on 2026-11-13, after the library modules were written.
   - id: "https://github.com/stalex444/pdt-hermite-signature-compositum/tree/5aa870e98236ba240561b798265c629df8c2d031"
     relationship: "builds-on"
     note: >-
       BY THE SAME AUTHOR; ITS LIBRARY IS A SOLUTION-SIDE DEPENDENCY.
       Registry record PALOMAR-2026-10-21-000012 (Hermite's signature
-      theorem and the coprime compositum). Its compared statement
+      theorem and the coprime compositum; this commit is the commit of the
+      registry's public record, version 1, and the head of the public
+      repository, both read 2026-11-13). Its compared statement
       integral_structure proves discr S_4 = -283 for the field S_4
       generated by a root of x^4 - x - 1, and places_and_type proves that
-      this field has two real places and one complex place. Nine modules
-      of its library HermiteCompositum (Assembly, Defs, Extras, Hermite,
-      Instance, Places, Port014, TraceProjection, TraceSignature) are
+      this field has two real places and one complex place. Three modules
+      of its library HermiteCompositum (Defs, Port014, Instance) are
       copied here byte for byte from that commit (hashes in BUILD.txt);
-      the library's root module and its module Squarefree are not copied.
+      the other modules of that library are not copied.
       Used in the proofs of statements 9, 10 and 11(a) only, through
       minpoly_gen_4, finrank_S_4 and discr_S_4: a number field of degree
       four containing a root of x^4 - x - 1 is isomorphic to S_4 and so
@@ -485,24 +577,24 @@ related_formalizations:
       field of degree four containing a root). Read against this entry's
       compared set on 2026-11-13: the two statements named, in its
       Challenge.lean, and its comparator.json, in a local clone at commit
-      9528df064df58318213b541048e05ff4c0d9cb67. TODO: confirm that this is
-      the registered commit of PALOMAR-2026-09-02-000014.
-  - id: "https://github.com/stalex444/pdt-em-source-selection/tree/7517011658ec52fc57669e8ce9daeb4150fdb3eb"
+      9528df064df58318213b541048e05ff4c0d9cb67, which is the commit of the
+      registry's public record of PALOMAR-2026-09-02-000014 (version 1)
+      and the head of the public repository (both read 2026-11-13).
+  - id: "https://github.com/stalex444/pdt-em-source-selection/tree/1c9ba637b5e664a88b6487d463515587616476e1"
     relationship: "builds-on"
     note: >-
       BY THE SAME AUTHOR; ONE MODULE IS SHARED. Registry record
-      PALOMAR-2026-10-14-000009. The module
-      GravityScreening/SignedLieGeneration.lean of this repository is
-      byte-identical to the file of the same path at that commit (git blob
-      299cf8db239823bc63a63103fc6c22b8741469fa). One definition of it is
-      used here: skew q i j = single i j (q j) - single j i (q i), the
+      PALOMAR-2026-10-14-000009 (version 2 at this commit, the head of the
+      public repository; version 1 at
+      7517011658ec52fc57669e8ce9daeb4150fdb3eb; both read 2026-11-13). The
+      module GravityScreening/SignedLieGeneration.lean of this repository
+      is byte-identical to the file of the same path at both commits (git
+      blob 299cf8db239823bc63a63103fc6c22b8741469fa). One definition of it
+      is used here: skew q i j = single i j (q j) - single j i (q i), the
       generators of the skew matrices of a diagonal form
-      (LorentzLie/Defs.lean, gen). No compared statement of that entry is
-      related to the compared statements here. TODO (author): the name of
-      the module and of its namespace is that of the development it comes
-      from; whether to keep the file under this name or to restate the one
-      definition in LorentzLie/Defs.lean (which would change that module's
-      text) is the author's decision.
+      (LorentzLie/Defs.lean, gen). The module keeps the name it has in
+      that entry. No compared statement of that entry is related to the
+      compared statements here.
   - id: "https://github.com/leanprover-community/mathlib4/tree/065356127b1dc0016f66b7283ce0ce2c4055aa55"
     relationship: "builds-on"
     note: >-
@@ -517,22 +609,53 @@ related_formalizations:
       no centre of the even Clifford algebra, and
       exteriorPower.hodgeStar with its square identity as a TODO of that
       file.
-  # TODO (author): four further items that the checked inventory lists as
-  # the author's own related work, with the relation word to be set by the
-  # author. (a) PALOMAR-2026-09-30-000024 (a Hodge operator on bivector
-  # coordinates in a 15 x 15 matrix setting; its one compared statement,
-  # geometricHodgeGeneration, is a Lie-generation theorem and shares no
-  # statement with this entry; read 2026-11-13 in a local copy of its
-  # Challenge.lean and comparator.json, which is not a git checkout, so the
-  # commit could not be confirmed). (b) The public repository
-  # stalex444/one-complex-place-lorentz-group-galois-boost at ec70bded (not
-  # registered; not read for this skeleton). (c) The sibling entry prepared
-  # with this one (the Lie algebra of the form (1, 1, 1, -1) over R: its
-  # statement on invariant bilinear forms is the dual form of statement 1
-  # here at that form, and its statements on the same real Lie algebras
-  # overlap statement 7); it has no public repository yet, so no id can be
-  # given. (d) Whether PALOMAR-2026-11-12-000002 or other registered entries
-  # of the author are to be listed.
+  - id: "https://github.com/stalex444/pdt-hodge-lie-generation/tree/e2d8dde6f076b730b9a718c95ff1664c6aa88b51"
+    relationship: "other"
+    note: >-
+      BY THE SAME AUTHOR; THE OPERATOR AT ONE FORM, IN COORDINATES; NO
+      SHARED STATEMENT. Registry record PALOMAR-2026-09-30-000024 (version
+      1 at this commit, the head of the public repository; both read
+      2026-11-13). Its Challenge.lean defines, on the fifteen coordinates
+      of the skew matrices of the diagonal form (1, 1, 1, -1, 1, -1), an
+      operator that on the six coordinates of the four-plane with form
+      (1, 1, 1, -1) exchanges complementary pairs with signs and is zero
+      on the other nine (integralHodge, line 72; geometricHodge, line 84).
+      On those six coordinates it is the operator H of this entry at the
+      form (1, 1, 1, -1), in other coordinates. Its one compared statement
+      (geometricHodgeGeneration, line 165) says that this operator and
+      fifteen adjoint actions generate the Lie algebra sl(15, K), and that
+      a linear map of sl(15, K) commuting with the commutator actions of
+      these sixteen matrices is c . id, with determinant c^224. That is a
+      statement about another Lie algebra and another commuting condition
+      than the bracket-commuting maps of so(B); no statement is shared,
+      and nothing of that entry is imported. Read against this entry's
+      compared set on 2026-11-13: its Challenge.lean at that commit.
+  - id: "https://github.com/stalex444/one-complex-place-lorentz-group-galois-boost/tree/ec70bded79e51b31f907b085f71756a79df0fe33"
+    relationship: "other"
+    note: >-
+      BY THE SAME AUTHOR; A PUBLIC REPOSITORY THAT IS NOT A REGISTERED
+      ENTRY; THE OPERATOR AT ONE FORM, IN COORDINATES. Read on 2026-11-13
+      at this commit, the head of the public repository: comparator.json
+      (sixteen names) and Challenge.lean. Its Challenge.lean defines, for
+      the real diagonal form (1, 1, 1, -1), an operator hodgeOp on 4 x 4
+      matrices through six coordinates, and its statement hodge_exchange
+      (line 466) computes the value of that operator on one family of
+      matrices. The library from which the present entry is taken has a
+      theorem that hodgeOp is the operator of this entry at that form; the
+      theorem is not in this repository (the section containing it was
+      removed, see BUILD.txt), and no module of that repository is
+      imported here. No statement there is about the bracket-commuting
+      maps of a Lie algebra. The other compared statements of that
+      repository are about other objects and are not related to the
+      compared statements here.
+  # A separate entry in preparation, by the same author, has no public
+  # repository yet and therefore no id here: the Lorentz Lie algebra of
+  # Minkowski space, stated on copies carried from the public statement of
+  # the Yang-Mills release. Its statement on invariant bilinear forms is
+  # proved from the description of the bracket-commuting maps at the form
+  # (1, 1, 1, -1), and it cites this entry for that description. README.md
+  # ("Relation to the author's other entries") gives the overlap. Its id is
+  # to be added here when it exists.
 
 status:
   scope: >-
@@ -567,8 +690,7 @@ status:
 automation:
   methods:
     - method: "agent"
-      # TODO (author): confirm the model description and the account below.
-      models: ["Anthropic Claude (2026)"]
+      models: ["Anthropic Claude (Fable-class, 2026)"]
       framework: "Claude Code"
       tool_setup: >-
         AI-assisted proof drafting and error-loop iteration against lake
@@ -576,25 +698,33 @@ automation:
         adversarial review with compiled probe files; an AI-assisted
         search for prior formalizations and sources, followed by a second
         AI-assisted pass that re-opened every cited file, line and
-        quotation; an AI-assisted statement stage that wrote the eleven
-        compared statements and their bridging proofs, followed by an
+        quotation; an AI-assisted session that wrote the eleven compared
+        statements and the proofs that bridge them to the library,
+        followed by an
         AI-assisted hypothesis-deleting review with an independent exact
         computation; AI-assisted assembly of the Challenge, the Solution
-        and this metadata.
+        and this metadata; an AI-assisted finishing pass that removed
+        unused definitions and working labels from the copied modules,
+        confirmed the bibliographic records, and re-ran the build, the
+        Comparator and the hash checks (BUILD.txt). Each stage ran in a
+        separate session; the builds ran on the author's machine.
       cost:
-        wall_time: "TODO"
+        wall_time: "two days, 2026-11-12 and 2026-11-13"
         spend_usd: "subscription-based"
         hardware: "local machine, Apple silicon"
       prompting_notes: >-
         The library modules LorentzLie/Defs.lean, Centroid.lean,
         FormDefs.lean, FormCentroid.lean and QuarticField.lean were written
         for a larger unpublished development of the author's and are
-        copied from it; the first of them is copied without one section
-        (see BUILD.txt). The compared statements restate the library's
+        copied from it; the first of them is copied without two sections,
+        and docstrings of three others had working labels removed (see
+        BUILD.txt). The compared statements restate the library's
         theorems in other forms; three of them (statement 4, statement 2(c)-(d)
         and statement 7(b)) have proofs for a general form that were
-        written at the statement stage (QuaternaryCentroid/Bridge.lean).
-        The sources were read after the library was written.
+        written with the compared statements, on 2026-11-13
+        (QuaternaryCentroid/Bridge.lean), when the report of the search
+        for sources was in hand; they are computations with matrices. The
+        sources were read after the library was written.
     - method: "manual"
       models: []
       framework: "n/a"
@@ -602,7 +732,7 @@ automation:
         Author-directed scope: which statements are compared in this
         entry, which library is a dependency, and what is cited.
       cost:
-        wall_time: "TODO"
+        wall_time: "included in the two days above"
         spend_usd: "not tracked"
         hardware: "local machine"
       prompting_notes: "n/a"
@@ -673,12 +803,12 @@ fidelity:
     Jacobson's Lie Algebras was not read.
 
 review:
-  # TODO (author): the status and the account are for the author to settle
-  # after her own review of the eleven statements; no such review is
-  # recorded here.
+  # TODO (author): the status is for the author to settle after her own
+  # review of the eleven statements; no such review is recorded here, and her
+  # name is to be added to the reviewers when it is.
   status: "agent-reviewed"
   reviewers:
-    - "TODO"
+    - "AI-assisted review sessions (Anthropic Claude, in Claude Code), separate from the sessions that wrote the Lean, under the author's direction"
   notes: >-
     The axioms of every compared declaration were printed, the Challenge
     and Solution statements and the definition were checked identical by
@@ -690,11 +820,20 @@ review:
     quadratic fields and finite fields, found all eleven true, none
     vacuous, and each matching its docstring; its prose corrections were
     applied, and one deletable hypothesis of statement 7 was kept (see
-    fidelity, (j)). The reports of that review, of the search for prior
-    formalizations and sources and of the sessions that wrote the Lean
-    are working records of the author's project and are not part of this
-    repository. TODO: the author's review of the statements. Not
-    peer-reviewed.
+    fidelity, (j)). After the assembly, a further AI-assisted pass removed
+    two unused sections and working labels from copied modules, shortened
+    the opening docstring of the Challenge and completed this metadata;
+    it changed no compared statement, definition or proof, which was
+    checked by the same structural hash, by a hash of the type and the
+    value of every declaration of the copied libraries before and after,
+    and by a second run of the Comparator (BUILD.txt). The reports of
+    these reviews, of the search for prior formalizations and sources and
+    of the sessions that wrote the Lean are working records of the
+    author's project and are not part of this repository; where this file
+    or README.md gives an account of the search or of contact with
+    another development, it is the author's account from those records.
+    TODO (author): the author's review of the eleven statements against
+    their informal descriptions. Not peer-reviewed.
 
 alignment:
   namespace: "QuaternaryCentroid"
@@ -755,6 +894,8 @@ alignment:
       status: "proved"
       note: "(a) A number field of degree four with an element theta, theta^4 = theta + 1, exists. (b) For diag(1, 1, 1, 0) over Q every bracket-commuting map is c . id. (c) On the rational matrices skew for diag(1, 1, 1, -1) the identity is bracket-commuting with square 1, and 1 is not t^2 (-1) for a rational t != 0."
 
+# TODO (author): the acknowledgements are the author's to settle; the text
+# below is that of her registered entry PALOMAR-2026-11-12-000002.
 acknowledgements: >-
   Built on Mathlib and the Lean 4 toolchain; thanks to the leanprover
   community. Developed with AI assistance (Anthropic Claude, in Claude

@@ -30,9 +30,9 @@ attribute [local instance] LieRing.ofAssociativeRing
 
 namespace LorentzLie
 
-/-! ### D0: transport along a Lie equivalence -/
+/-! ### Transport along a Lie equivalence -/
 
-/-- **D0 (transport of a description of the bracket-commuting maps).** Let `F` be a field, `L` and
+/-- **Transport of a description of the bracket-commuting maps.** Let `F` be a field, `L` and
 `L'` Lie algebras over `F`, and `φ` a Lie algebra equivalence from `L` to `L'`. Let `H'` be an
 `F`-linear endomorphism of `L'` and `d` an element of `F` such that: `H'` is bracket-commuting;
 `H' (H' X) = d • X` for all `X`; and for every bracket-commuting `F`-linear endomorphism `R` of `L'`
@@ -236,9 +236,9 @@ theorem description_smul {F L : Type*} [Field F] [LieRing L] [LieAlgebra F L] (H
 
 end FormCentroid
 
-/-! ### D1M: the matrix form in dimension four -/
+/-! ### The matrix form in dimension four -/
 
-/-- **D1M (matrix form).** Let `F` be a field with `2 ≠ 0`, `ι` a finite index type with exactly
+/-- **Matrix form.** Let `F` be a field with `2 ≠ 0`, `ι` a finite index type with exactly
 four elements, and `G` a symmetric `ι × ι` matrix over `F` with `det G ≠ 0`. Then, on the Lie
 algebra of `G`-skew matrices, there is an `F`-linear endomorphism `H` such that: `H` is
 bracket-commuting; `H (H X) = det G • X` for all `X`; and for every bracket-commuting `F`-linear
@@ -312,9 +312,9 @@ theorem toMatrix_isSymm {F V n : Type*} [Field F] [AddCommGroup V] [Module F V] 
 
 end FormCentroid
 
-/-! ### D1: a form on a vector space, in any basis -/
+/-! ### A form on a vector space, in any basis -/
 
-/-- **D1 (form on a vector space, for every basis).** Let `F` be a field with `2 ≠ 0`, `V` a
+/-- **Form on a vector space, for every basis.** Let `F` be a field with `2 ≠ 0`, `V` a
 vector space over `F` with a basis `b` indexed by a finite type `ι` with exactly four elements, and
 `B` a symmetric nondegenerate bilinear form on `V`. Write `d` for the determinant of the Gram matrix
 of `B` in the basis `b`. Then, on the Lie algebra of the `B`-skew-adjoint endomorphisms of `V`,
@@ -501,10 +501,11 @@ theorem exists_sq_neg_one_iff_of_description {F L : Type*} [Field F] [LieRing L]
 
 end FormCentroid
 
-/-! ### D1 (sign) and D1′: squares, and the square class of the Gram determinant -/
+/-! ### Uniqueness up to sign, squares, and the square class of the Gram determinant -/
 
-/-- **D1 (uniqueness up to sign).** With `F`, `V`, `b`, `ι`, `B` as in D1 and `d` the determinant
-of the Gram matrix of `B` in the basis `b`: if `H` and `H'` are `F`-linear endomorphisms of the Lie
+/-- **Uniqueness up to sign.** With `F`, `V`, `b`, `ι`, `B` as in `exists_hodge_of_basis` and `d`
+the determinant of the Gram matrix of `B` in the basis `b`: if `H` and `H'` are `F`-linear
+endomorphisms of the Lie
 algebra of the `B`-skew-adjoint endomorphisms, each bracket-commuting, each not of the form
 `a • id`, and each with `H (H X) = d • X`, `H' (H' X) = d • X` for all `X`, then `H' = H` or
 `H' = -H`. -/
@@ -534,8 +535,9 @@ theorem hodge_of_basis_eq_or_eq_neg {F V ι : Type*} [Field F] [AddCommGroup V] 
   · left
     rw [h, h']
 
-/-- **D1′ (the squares of the non-scalar bracket-commuting maps).** With `F`, `V`, `b`, `ι`, `B`
-as in D1, `d` the determinant of the Gram matrix of `B` in the basis `b`, and `c` in `F`: there is
+/-- **The squares of the non-scalar bracket-commuting maps.** With `F`, `V`, `b`, `ι`, `B`
+as in `exists_hodge_of_basis`, `d` the determinant of the Gram matrix of `B` in the basis `b`, and
+`c` in `F`: there is
 a bracket-commuting `F`-linear endomorphism `R` of the Lie algebra of the `B`-skew-adjoint
 endomorphisms that is not of the form `a • id` and satisfies `R (R X) = c • X` for all `X`, if and
 only if there is `t ≠ 0` in `F` with `c = t ^ 2 * d`. -/
@@ -549,8 +551,9 @@ theorem exists_nonscalar_sq_iff {F V ι : Type*} [Field F] [AddCommGroup V] [Mod
   obtain ⟨H₀, hc, hsq, hu⟩ := exists_hodge_of_basis h2 hι b B hB hnd
   exact FormCentroid.exists_nonscalar_sq_iff_of_description h2 H₀ _ hc hsq hu c
 
-/-- **D1′ (square `-1`).** With `F`, `V`, `b`, `ι`, `B` as in D1 and `d` the determinant of the
-Gram matrix of `B` in the basis `b`: there is a bracket-commuting `F`-linear endomorphism `R` of the
+/-- **Square `-1`.** With `F`, `V`, `b`, `ι`, `B` as in `exists_hodge_of_basis` and `d` the
+determinant of the Gram matrix of `B` in the basis `b`: there is a bracket-commuting `F`-linear
+endomorphism `R` of the
 Lie algebra of the `B`-skew-adjoint endomorphisms with `R (R X) = -X` for all `X`, if and only if
 `-d` is a square in `F` or `-1` is a square in `F`. (The second alternative is the scalar case
 `R = a • id` with `a ^ 2 = -1`.) -/
@@ -566,7 +569,7 @@ theorem exists_sq_neg_one_iff {F V ι : Type*} [Field F] [AddCommGroup V] [Modul
   obtain ⟨H₀, hc, hsq, hu⟩ := exists_hodge_of_basis h2 hι b B hB hnd
   exact FormCentroid.exists_sq_neg_one_iff_of_description h2 H₀ _ hdet hc hsq hu
 
-/-- **D1′ (the square class of the Gram determinant is determined by the Lie algebra).** Let `F` be
+/-- **The square class of the Gram determinant is determined by the Lie algebra.** Let `F` be
 a field with `2 ≠ 0`. Let `V` and `V'` be vector spaces over `F` with bases `b` and `b'` indexed by
 finite types `ι` and `ι'` with exactly four elements each, and let `B` on `V` and `B'` on `V'` be
 symmetric nondegenerate bilinear forms. If there is a Lie algebra equivalence from the Lie algebra
@@ -600,9 +603,9 @@ theorem det_toMatrix_eq_sq_mul_of_lieEquiv {F V ι : Type*} [Field F] [AddCommGr
     change e.symm (H' (e (e.symm (H' (e X))))) = _ • X
     rw [LieEquiv.apply_symm_apply, hsq', map_smul, LieEquiv.symm_apply_apply]
 
-/-! ### D5(a): every other finite dimension -/
+/-! ### Every other finite dimension -/
 
-/-- **D5(a) (control: the number four).** Let `F` be a field with `2 ≠ 0`, `V` a vector space over
+/-- **Control: the number four.** Let `F` be a field with `2 ≠ 0`, `V` a vector space over
 `F` with a basis `b` indexed by a finite type `ι` whose number of elements is not four, and `B` a
 symmetric nondegenerate bilinear form on `V`. Then every bracket-commuting `F`-linear endomorphism
 `R` of the Lie algebra of the `B`-skew-adjoint endomorphisms of `V` is of the form `c • id` with `c`

@@ -1,4 +1,5 @@
-quaternary-form-centroid -- kernel build record, 2026-11-13 (written as the package was assembled)
+quaternary-form-centroid -- kernel build record, 2026-11-13 (written as the package was assembled; brought
+  to the state after the finishing pass of the same day, which is described in its own section)
 STATUS: a local package. Nothing has been pushed, published, registered or submitted; there is no public
   repository, and the registry's own workflow has not been run.
 
@@ -11,49 +12,48 @@ Mathlib rev: 065356127b1dc0016f66b7283ce0ce2c4055aa55
     the repository
 
 Layout (decided at assembly)
-  Libraries: GravityScreening (1 module), HermiteCompositum (9 modules), LorentzLie (5 modules),
+  Libraries: GravityScreening (1 module), HermiteCompositum (3 modules), LorentzLie (5 modules),
     QuaternaryCentroid (1 module: Bridge); root modules Challenge, Solution, Checks; Axioms.lean is not a
     build target. The proof library keeps the namespace and module names of the author's unpublished
     development it is taken from (LorentzLie, GravityScreening, HermiteCompositum); nothing was renamed, so
     every declaration has the name under which it was reviewed. The library of the development that this
     entry does not use (ArithmeticLorentz) is not in the repository and is not imported.
   Import closure of Solution: QuaternaryCentroid.Bridge -> LorentzLie.{Centroid, FormDefs, FormCentroid,
-    QuarticField} -> LorentzLie.Defs -> GravityScreening.SignedLieGeneration; and HermiteCompositum.Assembly
-    -> HermiteCompositum.{Hermite, TraceSignature, Places, TraceProjection, Port014, Instance, Extras, Defs}.
-    Not copied from HermiteCompositum: its root module and its module Squarefree (neither is in that closure).
+    QuarticField} -> LorentzLie.Defs -> GravityScreening.SignedLieGeneration; and HermiteCompositum.Instance
+    -> HermiteCompositum.{Port014, Defs}. Every module of the repository is in that closure.
+    Not copied from HermiteCompositum: its root module and its modules Assembly, Extras, Hermite, Places,
+    Squarefree, TraceProjection and TraceSignature (none is in that closure; six of them were in the
+    assembled package and were removed in the finishing pass).
 
-Copied modules (sha256), 2026-11-13
-  14d194b45449e2293da7a911344e06b3a0dca9c776c0eded807c7aac33dde400  LorentzLie/Centroid.lean  == development commit 864b13a9
+Copied modules (sha256), after the finishing pass
   823ba4690fd1ca5a3966c2194a9c42f9b62de93e70b0a363425be77dd63e91e7  LorentzLie/FormDefs.lean  == development commit 864b13a9
-  397717c73b3bc2d7ec52e654ac6df31fc8994cb5c4a8ca9d5624340457119364  LorentzLie/FormCentroid.lean  == development commit 864b13a9
-  2a3676ea340d5f4c321aff82548248fb91f0a0e806987716fd3a3d8f5fad252c  LorentzLie/QuarticField.lean  == development commit 864b13a9
   bf259b4790432f657386a6981bc3086dc344a430c8c243eedc47deca79c82c20  GravityScreening/SignedLieGeneration.lean  == development commit 864b13a9
-  20799461816486a413ede3760cc747364d21bf6eabdc82b0b04d736fb0c105fa  LorentzLie/Defs.lean  (cut copy; the development's file at 864b13a9 is c82fb497f3c005118d8039a5def4f8e1add293a786b6e295715fec62d24e01b6)
-  876ef772605e4f2f5c743201de8d8725b4c9ea8390f53b030c45458f5a15b884  HermiteCompositum/Assembly.lean  == 5aa870e9 of the registered entry, == 864b13a9
   aa33e4559de077d59e10420f7ae51d376db4c40a877283ded1674937bbc1190e  HermiteCompositum/Defs.lean  == 5aa870e9 of the registered entry, == 864b13a9
-  a14842954f606abe7f07235f137fa6af32241d165a83934a14eace6be73c069b  HermiteCompositum/Extras.lean  == 5aa870e9 of the registered entry, == 864b13a9
-  a7eebfefdb5c3c76046886d6b2882660dafd7c842d55a8b1a48502cfda80372b  HermiteCompositum/Hermite.lean  == 5aa870e9 of the registered entry, == 864b13a9
   57c674f57bc6c9550908fd81a8efe3fe904aaaaa0a6e2ce2987e9748c93f18e6  HermiteCompositum/Instance.lean  == 5aa870e9 of the registered entry, == 864b13a9
-  0c3ed4f56e4f2dc16b1c7b37cdee869bad32ca58c8a986a05c5fab273d41fa34  HermiteCompositum/Places.lean  == 5aa870e9 of the registered entry, == 864b13a9
   e2c5abd86e25a21c32178d022dc65645af58593d765b19943c79f454858781ac  HermiteCompositum/Port014.lean  == 5aa870e9 of the registered entry, == 864b13a9
-  ece9d59750c32fb84568dc0a50c9fe32d5c94282f2d58bd46d540a0e19c59670  HermiteCompositum/TraceProjection.lean  == 5aa870e9 of the registered entry, == 864b13a9
-  b6c1b7279788ce3fde0dca7090f2a70e92ca9d659e600e13acdc591774730466  HermiteCompositum/TraceSignature.lean  == 5aa870e9 of the registered entry, == 864b13a9
-  LorentzLie/Centroid.lean, FormDefs.lean, FormCentroid.lean, QuarticField.lean and
-    GravityScreening/SignedLieGeneration.lean are byte-identical to the files of the development at its commit
-    864b13a9c1272e0791019c831403368e946486b2 (taken with git archive, not from a working tree).
-  The nine HermiteCompositum modules are byte-identical to the files of the registered entry
-    PALOMAR-2026-10-21-000012 at commit 5aa870e98236ba240561b798265c629df8c2d031 of its repository.
+  804c005a70e1c3975b82b1da3536a5b9d6a86f2cb9ae4264b8697eb3a52680cb  LorentzLie/Defs.lean  (two sections cut, opening docstring edited; the development's file at 864b13a9 is c82fb497f3c005118d8039a5def4f8e1add293a786b6e295715fec62d24e01b6)
+  261f8c6e6117567a264dddaa5ed3d4d11fb6bd18db040afd6374322980f43b69  LorentzLie/Centroid.lean  (docstrings edited; at 864b13a9: 14d194b45449e2293da7a911344e06b3a0dca9c776c0eded807c7aac33dde400)
+  314bf76e61395b749ec332bf9dfcbe66147e32ef7e56df9b81e47d378a4f53c7  LorentzLie/FormCentroid.lean  (docstrings and section headings edited; at 864b13a9: 397717c73b3bc2d7ec52e654ac6df31fc8994cb5c4a8ca9d5624340457119364)
+  08688c42c5989e65f771e52d98c57ade13faf5125680252bcd9ea04883c9f58b  LorentzLie/QuarticField.lean  (docstrings edited, one import line changed; at 864b13a9: 2a3676ea340d5f4c321aff82548248fb91f0a0e806987716fd3a3d8f5fad252c)
+  LorentzLie/FormDefs.lean and GravityScreening/SignedLieGeneration.lean are byte-identical to the files of the
+    development at its commit 864b13a9c1272e0791019c831403368e946486b2 (taken with git archive, not from a
+    working tree). The other four LorentzLie modules depart from the development's files as recorded in the
+    next two sections; no declaration in them changed.
+  The three HermiteCompositum modules are byte-identical to the files of the registered entry
+    PALOMAR-2026-10-21-000012 at commit 5aa870e98236ba240561b798265c629df8c2d031 of its repository, which is
+    the commit of the registry's public record and the head of the public repository (read 2026-11-13).
   GravityScreening/SignedLieGeneration.lean is also byte-identical to the file of the same path in the author's
-    repository pdt-em-source-selection at commit 7517011658ec52fc57669e8ce9daeb4150fdb3eb (git blob
+    repository pdt-em-source-selection at the commits of both registered versions of PALOMAR-2026-10-14-000009,
+    7517011658ec52fc57669e8ce9daeb4150fdb3eb and 1c9ba637b5e664a88b6487d463515587616476e1 (git blob
     299cf8db239823bc63a63103fc6c22b8741469fa).
   QuaternaryCentroid/Bridge.lean: its helper section (from "section Helpers" to "end Helpers", 738 lines, sha256
     b900257df2802474f99f60e302d23786ff2ccbc0e1a3c3343ec47f4bc582803e) is byte-identical to the helper section of
-    the bridging file that the statement review compiled; the header docstring was written at assembly. It
-    imports the five LorentzLie modules' closure and HermiteCompositum.Assembly only: the proofs it took over
-    from later modules of the development (the sign of a conjugated operator; one matrix entry of a conjugated
-    complement) are written out in it, and it builds here without those modules.
+    the bridging file that the statement review compiled; the header was written at assembly, and its last
+    import line was changed in the finishing pass (HermiteCompositum.Instance for HermiteCompositum.Assembly).
+    The proofs it took over from later modules of the development (the sign of a conjugated operator; one
+    matrix entry of a conjugated complement) are written out in it, and it builds here without those modules.
 
-The cut in LorentzLie/Defs.lean
+The cut in LorentzLie/Defs.lean (at assembly)
   One section of the development's file ("Agreement": five theorems comparing the operator of this library with
   an operator of the library ArithmeticLorentz) and the two imports of that library were removed. Nothing else
   was changed. The diff:
@@ -119,8 +119,8 @@ The cut in LorentzLie/Defs.lean
      /-! ### Explicit matrices for the isomorphism statements -/
      
      section Explicit
-  Left in place and now stale: the sentence of the file's opening docstring that names hodgeMat_eq_hodgeOp
-    (lines 16-17). The instruction for this assembly was to change nothing else; see the scan list at the end.
+  The sentence of the file's opening docstring that named hodgeMat_eq_hodgeOp was left in place at assembly
+    and was removed in the finishing pass (next section).
   Fidelity of the cut. A tool that is not a `module` file (so that it reads the proof terms the imported
     .olean files expose) printed, for every constant declared in a module of LorentzLie, GravityScreening
     or HermiteCompositum: name, kind, universe parameters, Expr.hash of the type, length and string hash of
@@ -156,16 +156,82 @@ The cut in LorentzLie/Defs.lean
       type; the comparison is of elaborated terms, not a kernel re-check of the development. The build below
       is the kernel check of the cut library.
 
+Finishing pass, 2026-11-13: departures from byte-identity with the development's files
+  Three steps, each followed by a build of all targets and by the constant-hash tool of the previous section
+  (name, kind, universe parameters, Expr.hash of the type, length and string hash of the printed type,
+  Expr.hash of the value, for every constant declared in a module of LorentzLie, GravityScreening or
+  HermiteCompositum). No declaration's type or value changed in any step.
+  Step (i), LorentzLie/Defs.lean. The title of the opening docstring was shortened; the docstring bullet on
+    hodgeMat_eq_hodgeOp (a theorem removed at assembly) was ended at the closed form; the section "Explicit
+    matrices for the isomorphism statements" (108 lines, from its heading to "end Explicit") and its docstring
+    bullet were removed. No module of this repository used any of its declarations (word search over the other
+    modules, and the build after the removal). The diff of the docstring:
+    --- a/LorentzLie/Defs.lean
+    +++ b/LorentzLie/Defs.lean
+    @@ -8 +8 @@ public import GravityScreening.SignedLieGeneration
+    -# Shared definitions of the Lorentz Lie-algebra library
+    +# Shared definitions
+    @@ -16,7 +16 @@ public import GravityScreening.SignedLieGeneration
+    -  closed form `X ↦ star0 (diagonal η * X) * diagonal η`; `hodgeMat_eq_hodgeOp`, its agreement with
+    -  `HermitianExclusion.hodgeOp` on the `η4`-skew matrices.
+    -* The explicit matrices the isomorphism statements use: `quat`, `quatBar`, `lam`, `spinPlus`,
+    -  `spinMinus` (signature with product `-1`, and the complex case); `so3Plus`, `so3Minus`
+    -  (definite signature); `splitFrame`, `splitPlus`, `splitMinus` (signature with sum `0`);
+    -  `etaC`, `lamProd`, `hodgeProjPlus`, `hodgeProjMinus` (the two projectors of the Hodge operator
+    -  over `ℂ`); `indefEta` (the diagonal of Mathlib's `so' p q ℝ` read along a bijection).
+    +  closed form `X ↦ star0 (diagonal η * X) * diagonal η`.
+      @@ -204,109 +197,0 @@  (the section "Explicit", removed whole)
+    Hash rows: 1175 before, 1144 after. The two lists differ in exactly 31 rows, all present before and absent
+      after:
+        LorentzLie.etaC, hodgeProjMinus, hodgeProjPlus, indefEta, lam, lamProd, quat, quatBar, sl2C, sl2CReal,
+        sl2CRealMat, sl2R, so3, so3Minus, so3Plus, spinMinus, spinPlus, splitFrame, splitMinus, splitPlus (the 20
+        definitions and abbreviations); LorentzLie.lam_one, lam_neg_one, lam_sq (the 3 lemmas); and 8 constants
+        that Lean generated from them: hodgeProjPlus._proof_1 to _proof_5, lam._proof_1, lam.eq_1,
+        sl2CRealMat._proof_1.
+      The other 1144 rows are identical.
+  Step (ii), working labels of the development removed from docstrings and section headings of
+    LorentzLie/Centroid.lean, FormCentroid.lean and QuarticField.lean; where a label was used as a reference,
+    the name of the theorem is given instead. Hash rows: 1144 before, 1144 after, the two lists identical.
+  Step (iii), LorentzLie/QuarticField.lean and QuaternaryCentroid/Bridge.lean import HermiteCompositum.Instance
+    in place of HermiteCompositum.Assembly, and the six modules that then fall outside the import closure
+    (Assembly, Extras, Hermite, Places, TraceProjection, TraceSignature) were removed from the repository. The
+    lakefile glob "HermiteCompositum.+" needed no change. Hash rows: 1144 before; 634 after. The 510 rows that
+    are gone are exactly the rows of the six removed modules (Assembly 72, Extras 192, Hermite 90, Places 36,
+    TraceProjection 55, TraceSignature 65); the 634 rows of the remaining modules (GravityScreening 17,
+    HermiteCompositum.Defs 96, Instance 189, Port014 123, LorentzLie 209) are identical before and after.
+  Diff summary of steps (ii) and (iii), against the development's files at 864b13a9 (git diff --numstat):
+    LorentzLie/Centroid.lean       6 places, 7 lines replaced by 11 (docstrings only)
+    LorentzLie/FormCentroid.lean  13 places, 16 lines replaced by 19 (docstrings and five section headings)
+    LorentzLie/QuarticField.lean  13 places, 14 lines replaced by 18 (docstrings, and the import line below)
+      -public import HermiteCompositum.Assembly
+      +public import HermiteCompositum.Instance
+    In each place a working label (a letter and a number at the head of a docstring or of a section
+    heading, twice with the word OPTIONAL) was removed and the descriptive title kept; some lines were
+    re-broken. With every docstring and heading comment replaced by a placeholder, the three files are
+    equal to the development's files except for that one import line.
+    QuaternaryCentroid/Bridge.lean (written at assembly): the same change of one import line.
+    LorentzLie/Defs.lean, both cuts together, against 864b13a9: 2 lines added, 163 removed.
+  What the compared theorems use, after the three steps: the second tool of the previous section, run again,
+    wrote the same 283 rows as before the finishing pass, byte for byte (242 constants of the copied
+    libraries, each with the same type hash and value hash; axioms reached: Quot.sound, Classical.choice,
+    propext).
+  Challenge.lean: the opening docstring was shortened (the paragraph on prior formalizations is now a summary
+    that points to README.md; two items listed under both "Scope" and "Not formalized here" are listed once;
+    the last paragraph on the proofs is one sentence). From `set_option autoImplicit false` to the end, the
+    file is byte-identical to the assembled one; Solution.lean, Checks.lean and Axioms.lean are unchanged.
+
 Build
   First build of the copied libraries after the cut: lake build LorentzLie -> Build completed successfully
     (8946 jobs), exit 0, 40.6 s wall clock (163 s user) for this package's own modules, Mathlib being prebuilt.
-  Full build, after the last edit to Challenge.lean: lake build (defaultTargets GravityScreening,
-    HermiteCompositum, LorentzLie, QuaternaryCentroid, Challenge, Solution, Checks) -> Build completed
-    successfully (8956 jobs), exit 0, 2026-11-13. Warnings: the 11 'declaration uses sorry' warnings of
-    Challenge.lean (the compared placeholders, lines 202, 233, 260, 289, 315, 328, 350, 384, 427, 457, 482);
-    one deprecation warning in GravityScreening/SignedLieGeneration.lean (line 118); 13 linter warnings in
-    HermiteCompositum/Port014.lean (unused simp arguments, unreachable tactic). No warning in LorentzLie, in
-    QuaternaryCentroid/Bridge.lean, in Solution or in Checks.
+  Finishing pass: lake build of all targets after step (i) -> Build completed successfully (8956 jobs),
+    exit 0; after step (ii) -> the same; after step (iii) -> Build completed successfully (8950 jobs), exit 0.
+  Full build, after the last edit to Challenge.lean: lake build GravityScreening HermiteCompositum LorentzLie
+    QuaternaryCentroid Challenge Solution Checks -> Build completed successfully (8950 jobs), exit 0,
+    2026-11-13. Warnings: the 11 'declaration uses sorry' warnings of Challenge.lean (the compared
+    placeholders, lines 176, 207, 234, 263, 289, 302, 324, 358, 401, 431, 456); one deprecation warning in
+    GravityScreening/SignedLieGeneration.lean (line 118); 13 linter warnings in HermiteCompositum/Port014.lean
+    (unused simp arguments, unreachable tactic). No warning in LorentzLie, in QuaternaryCentroid/Bridge.lean,
+    in Solution or in Checks.
   Token counts (whole-word grep, per file):
     Challenge.lean                                 sorry=11 admit=0 native_decide=0 axiom=0
     Solution.lean                                  sorry=0 admit=0 native_decide=0 axiom=0
@@ -177,23 +243,17 @@ Build
     LorentzLie/FormDefs.lean                       sorry=0 admit=0 native_decide=0 axiom=0
     LorentzLie/QuarticField.lean                   sorry=0 admit=0 native_decide=0 axiom=0
     GravityScreening/SignedLieGeneration.lean      sorry=0 admit=0 native_decide=0 axiom=0
-    HermiteCompositum/Assembly.lean                sorry=0 admit=0 native_decide=0 axiom=0
     HermiteCompositum/Defs.lean                    sorry=0 admit=0 native_decide=0 axiom=0
-    HermiteCompositum/Extras.lean                  sorry=0 admit=0 native_decide=0 axiom=0
-    HermiteCompositum/Hermite.lean                 sorry=0 admit=0 native_decide=0 axiom=0
     HermiteCompositum/Instance.lean                sorry=0 admit=0 native_decide=0 axiom=0
-    HermiteCompositum/Places.lean                  sorry=0 admit=0 native_decide=0 axiom=0
     HermiteCompositum/Port014.lean                 sorry=0 admit=0 native_decide=0 axiom=0
-    HermiteCompositum/TraceProjection.lean         sorry=0 admit=0 native_decide=0 axiom=0
-    HermiteCompositum/TraceSignature.lean          sorry=0 admit=0 native_decide=0 axiom=0
   Every module uses the module system (module / public import / @[expose] public section). Challenge.lean
     imports Mathlib only; Solution.lean imports Mathlib and QuaternaryCentroid.Bridge; Checks.lean imports
     Mathlib and Solution.
-  Challenge.lean is 498 lines and 35,015 bytes: under the registry's hard limits (1,000 lines, 100 KiB) and
-    over both thresholds of its mechanical warning (300 lines, 32 KiB). The opening docstring is 168 lines
-    (the statement list, the sources by statement, the conventions, the scope and the account of prior
-    formalizations); the paragraph on prior formalizations is 40 lines and could be shortened to a pointer to
-    README.md, which would bring the file under 32 KiB.
+  Challenge.lean is 472 lines and 32,715 bytes (498 lines and 35,015 bytes as assembled). The registry's
+    verifier (PalomarSubmission 14aa8d6b, scripts/verify_submission.py) raises an error above 1,000 lines or
+    100 KiB, and appends one warning when the file is over 32 KiB or over 300 lines. The file is under the hard
+    limits and under 32 KiB; it is over 300 lines, so the warning still applies (the statements and their
+    docstrings, from `set_option` on, are 325 lines).
 
 #print axioms (lake env lean Axioms.lean; Axioms.lean imports Checks), after the last edit, 44 declarations:
   'QuaternaryCentroid.centroid_of_dim_four' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -260,6 +320,9 @@ Statement identity, Challenge vs Solution (11 theorems, 1 definition)
     The two digest files are byte-identical to each other and to the two digest files of the statement
     review's patched pair (sha256 04a622bb876a91981a59f3111f0cdb3c24e89c492a933a00f9672039599986e3 for all
     four): the eleven statement types and the carried definition are those that were reviewed.
+    Run again after the finishing pass, on the final Challenge.lean and Solution.lean (lean --root on a copy
+    named Dump.lean, so that both copies have the same module name): (1), (2) and (3) IDENTICAL as above, and
+    each digest file byte-identical to the one taken before the finishing pass (sha256 04a622bb... again).
   Count gate (a script kept outside the repository):
     PASS comparator.json theorem_names -- 11
     PASS Challenge.lean theorem declarations == comparator -- 11
@@ -282,31 +345,34 @@ Statement identity, Challenge vs Solution (11 theorems, 1 definition)
 
 Comparator
   lake comparator --inadvisably-no-sandbox (toolchain bin with nanoda_bin on PATH), from the package root,
-    2026-11-13, after the last edit to Challenge.lean (inputs: Challenge.lean sha256 766c1f6d..., Solution.lean
-    c873bf03..., comparator.json 4c5d928d...). Result: "nanoda kernel accepts the solution / Lean default kernel
-    accepts the solution / Your solution is okay!", exit 0, 110 s. An earlier run on the first assembled
-    version (before prose edits to the opening docstring) gave the same result; no change to a statement or a
-    proof was needed for the Comparator to accept. The full output of the final run is at the end of this
-    file.
-  Negative control: with `-283` changed to `-284` in statement 9 of Challenge.lean only, the same command
+    2026-11-13, after the finishing pass and the last edit to Challenge.lean (inputs: Challenge.lean sha256
+    76e42c47..., Solution.lean c873bf03..., comparator.json 4c5d928d...). Result: "nanoda kernel accepts the
+    solution / Lean default kernel accepts the solution / Your solution is okay!", exit 0, 110 s. The run at
+    assembly (Challenge.lean 766c1f6d..., before the opening docstring was shortened and before the six
+    modules were removed) gave the same result; no change to a statement or a proof was needed for the
+    Comparator to accept. The full output of the final run is at the end of this file.
+  Negative control (at assembly): with `-283` changed to `-284` in statement 9 of Challenge.lean only, the same command
     gave "error: Challenge and solution theorem statement do not match: 'QuaternaryCentroid.centroid_traceForm_of_root'", exit 1; Challenge.lean was then restored (same sha256 as above) and rebuilt.
   Not run: the registry's own submission workflow (there is no public commit); the Comparator inside its
     bubblewrap sandbox (not available on macOS, hence --inadvisably-no-sandbox); a build from a fresh clone
     with lake exe cache get (the build above uses the shared prebuilt packages); the registry's licence
     detection and rendering steps.
 
-Metadata
-  formalization.yaml validates against the v0.4 schema (0 errors; a copy with two fields broken gave 3
+Metadata (after the finishing pass)
+  formalization.yaml validates against the v0.4 schema (0 errors; a copy with three fields broken gave 3
     errors, as a control of the validator).
   Provenance: the registry contract (scripts.submission_contract at PalomarSubmission 14aa8d6b) loads the
-    metadata and derives result_origin source-based (7 sources, 6 related formalizations). The pipeline's
-    non-executing Lean source check (scripts.source_requirements, same commit) on a copy of the files to be
-    committed: 20 Lean files checked, 0 issues.
+    metadata, accepts the classification codes, and derives result_origin source-based (10 sources, 8 related
+    formalizations). The pipeline's non-executing Lean source check (scripts.source_requirements, same
+    commit) on a copy of the tracked files: 14 Lean files checked, 0 issues.
   A script of the author's, kept outside this repository, derives the same origin from the sources list and
     finds the comparator names, the alignment table, the Challenge theorem count and the docstring's count in
     agreement.
-  formalization.yaml and README.md are SKELETONS: every sentence is taken from the statement stage's checked
-    text or from the checked inventory of sources and prior formalizations, or is marked TODO.
+  Bibliographic records were checked on 2026-11-13 against Crossref and the arXiv records (formalization.yaml
+    says which, per source). The commits cited for the author's registered entries are those of the
+    registry's public records and exist in the public repositories.
+  Lines marked "TODO (author)" in README.md and formalization.yaml are the author's alone to settle: the
+    title, the review status with her own review of the eleven statements, the acknowledgements.
 
 Review history
   2026-11-12: the library modules were written with AI assistance in the author's unpublished development,
@@ -323,160 +389,146 @@ Review history
   2026-11-13: assembly of this package (AI-assisted): the cut of LorentzLie/Defs.lean and its fidelity check;
     the helper module; Challenge.lean with an opening docstring written at assembly from the checked inventory;
     Solution.lean, Checks.lean, Axioms.lean, comparator.json; the metadata skeletons.
+  2026-11-13: finishing pass (AI-assisted): the three steps recorded above on the copied modules; the
+    opening docstring of Challenge.lean shortened; README.md and formalization.yaml completed from the
+    checked inventory of sources and prior formalizations, with the bibliographic records and the commits of
+    the author's registered entries confirmed; build, axioms, Comparator, count gate and hash checks run again.
   Not done: the author's review of the eleven statements; a review of the assembled package on the
     registry's published review prompts; a reader's pass on the prose.
 
-Scan of the tracked files (2026-11-13)
+Scan of the tracked files (2026-11-13, after the finishing pass)
   Files written for this entry: no machine path, no reference to a private record, no priority wording, no
     name of the object the sources call the discriminant algebra used for the quadratic algebra of this
     entry. The author's name is in LICENSE, README.md and formalization.yaml (required). The names LorentzLie,
     GravityScreening and HermiteCompositum occur as library names. Repository names of the author's
-    registered entries occur in README.md and formalization.yaml.
-  Copied modules: listed, not changed.
-    - LorentzLie/Defs.lean:16-17 (opening docstring): "`hodgeMat_eq_hodgeOp`, its agreement with
-      `HermitianExclusion.hodgeOp` on the `η4`-skew matrices" names a theorem and a library that are not in
-      this repository (the removed section).
-    - LorentzLie/Defs.lean:8, :18-23 and the section "Explicit matrices for the isomorphism statements"
-      (lines 204-311): the title "Shared definitions of the Lorentz Lie-algebra library" and twenty
-      definitions and abbreviations (sl2C, sl2R, so3, sl2CReal, sl2CRealMat, quat, quatBar, lam, spinPlus,
-      spinMinus, so3Plus, so3Minus, splitFrame, splitPlus, splitMinus, etaC, indefEta, lamProd,
-      hodgeProjPlus, hodgeProjMinus) with three lemmas on lam. They serve statements of the development
-      that are not in this repository; no other module here uses any of them (word search over the four
-      other LorentzLie modules and QuaternaryCentroid/Bridge.lean; none is among the constants the compared
-      theorems reach).
-    - Working labels of the development in docstrings and section headings: "L5", "L1", "L1K"
-      (LorentzLie/Centroid.lean:295, 307, 491-492, 502, 532, 624); "D0", "D1M", "D1", "D1′", "D5(a)"
-      (LorentzLie/FormCentroid.lean:33, 35, 239, 241, 315, 317, 504, 506, 537-538, 552, 569, 603, 605);
-      "D2", "D3", "D4", "D5(a)", "D1M", "(OPTIONAL)" (LorentzLie/QuarticField.lean:101, 122, 139, 156, 168,
-      181, 200, 216, 337, 370, 582, 585).
-    - LorentzLie/FormDefs.lean and QuarticField.lean name the field `S₄ = ℚ⟮Q⟯`, `Q` a root of `x⁴ - x - 1`,
-      of HermiteCompositum.Instance; the letter is that library's.
+    entries occur in README.md and formalization.yaml.
+  Copied modules, after the finishing pass:
+    - LorentzLie: the working labels, the stale docstring sentence and the unused section are gone (previous
+      sections). LorentzLie/FormDefs.lean and QuarticField.lean name the field `S₄ = ℚ⟮Q⟯`, `Q` a root of
+      `x⁴ - x - 1`, of HermiteCompositum.Instance; the notation is that library's and is kept.
     - GravityScreening/SignedLieGeneration.lean: the module and namespace name; its docstrings are neutral.
-    - HermiteCompositum (byte-identical to the public registered entry): its docstrings speak of that
-      entry's compared statements by number and of its Challenge.lean and Solution.lean; they use that
-      entry's letters ρ, Q, fρ, fQ and the name "ruler polynomial" (Defs.lean, Assembly.lean, Extras.lean,
-      Instance.lean, Port014.lean), and Extras.lean:11-12 and Port014.lean:23-34 name modules of an earlier
-      development of the author's (`PdtRulerMinpoly.lean`, `PdtSignature`, namespace `PDT`).
-    Six of the nine HermiteCompositum modules (Assembly, Extras, Hermite, Places, TraceProjection,
-      TraceSignature) are in the import closure only through the line `public import
-      HermiteCompositum.Assembly` of LorentzLie/QuarticField.lean; no constant of them is reached by the
-      compared theorems, and QuarticField.lean compiles with `HermiteCompositum.Instance` in its place
-      (probed in a scratch copy; not applied, since it would change a copied module).
+    - HermiteCompositum (three modules, byte-identical to the public registered entry, not edited): their
+      docstrings speak of that entry's compared statements by number, of its Challenge.lean and
+      Solution.lean and of modules of that entry that are not copied here; they use that entry's letters
+      ρ, Q, fρ, fQ and the name "ruler polynomial" (Defs.lean, Instance.lean, Port014.lean), and
+      Port014.lean:23-34 names modules of an earlier development of the author's.
 
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.
 
-Full output of the final Comparator run (lake comparator --inadvisably-no-sandbox, 2026-11-13)
+Full output of the final Comparator run (lake comparator --inadvisably-no-sandbox, 2026-11-13, after the
+  finishing pass)
   WARNING: Sandbox disabled, this run is not trustworthy.
   Resolving dependencies
   Building Challenge
   ⚠ [8931/8932] Replayed Challenge
-  warning: Challenge.lean:202:8: declaration uses `sorry`
-  warning: Challenge.lean:233:8: declaration uses `sorry`
-  warning: Challenge.lean:260:8: declaration uses `sorry`
+  warning: Challenge.lean:176:8: declaration uses `sorry`
+  warning: Challenge.lean:207:8: declaration uses `sorry`
+  warning: Challenge.lean:234:8: declaration uses `sorry`
+  warning: Challenge.lean:263:8: declaration uses `sorry`
   warning: Challenge.lean:289:8: declaration uses `sorry`
-  warning: Challenge.lean:315:8: declaration uses `sorry`
-  warning: Challenge.lean:328:8: declaration uses `sorry`
-  warning: Challenge.lean:350:8: declaration uses `sorry`
-  warning: Challenge.lean:384:8: declaration uses `sorry`
-  warning: Challenge.lean:427:8: declaration uses `sorry`
-  warning: Challenge.lean:457:8: declaration uses `sorry`
-  warning: Challenge.lean:482:8: declaration uses `sorry`
+  warning: Challenge.lean:302:8: declaration uses `sorry`
+  warning: Challenge.lean:324:8: declaration uses `sorry`
+  warning: Challenge.lean:358:8: declaration uses `sorry`
+  warning: Challenge.lean:401:8: declaration uses `sorry`
+  warning: Challenge.lean:431:8: declaration uses `sorry`
+  warning: Challenge.lean:456:8: declaration uses `sorry`
   Build completed successfully (8932 jobs).
   Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, QuaternaryCentroid.centroid_of_dim_four, QuaternaryCentroid.sq_and_idempotent_iff, QuaternaryCentroid.det_eq_sq_mul_of_lieEquiv, QuaternaryCentroid.isometry_conj_eq_det_smul, QuaternaryCentroid.centroid_scalar_of_dim_ne_four, QuaternaryCentroid.centroid_scalar_so', QuaternaryCentroid.centroid_real_diagonal, QuaternaryCentroid.centroid_traceForm, QuaternaryCentroid.centroid_traceForm_of_root, QuaternaryCentroid.not_lieEquiv_diagonal_of_root, QuaternaryCentroid.controls, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
   Building Solution
-  ⚠ [8931/8948] Replayed GravityScreening.SignedLieGeneration
+  ⚠ [8930/8942] Replayed GravityScreening.SignedLieGeneration
   warning: GravityScreening/SignedLieGeneration.lean:118:6: `if_true` has been deprecated: Use `ite_true` instead
-
+  
   Hint: Replace the deprecated name:
     i̵f̵_̵t̵r̵u̵e̵i̲t̲e̲_̲t̲r̲u̲e̲
   info: GravityScreening/SignedLieGeneration.lean:149:0: 'GravityScreening.SignedLieGeneration.tracefree_le' depends on axioms: [propext, Classical.choice, Quot.sound]
   info: GravityScreening/SignedLieGeneration.lean:150:0: 'GravityScreening.SignedLieGeneration.finrank_sl_add_one' depends on axioms: [propext, Classical.choice, Quot.sound]
-  ⚠ [8935/8948] Replayed HermiteCompositum.Port014
+  ⚠ [8935/8942] Replayed HermiteCompositum.Port014
   warning: HermiteCompositum/Port014.lean:73:43: This simp argument is unused:
     Matrix.IsSymm
-
+  
   Hint: Omit it from the simp argument list.
     [apply] simp [M, Matrix.transpose_apply]
-
+  
   Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
   warning: HermiteCompositum/Port014.lean:80:32: This simp argument is unused:
     Matrix.cons_val_zero
-
+  
   Hint: Omit it from the simp argument list.
     [apply] simp only [M, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.det_fin_zero,
       Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero, Fin.val_zero, Fin.val_succ, Matrix.cons_val_one,
       Matrix.head_cons]
-
+  
   Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
   warning: HermiteCompositum/Port014.lean:80:54: This simp argument is unused:
     Matrix.cons_val_one
-
+  
   Hint: Omit it from the simp argument list.
     [apply] simp only [M, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.det_fin_zero,
       Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero, Fin.val_zero, Fin.val_succ, Matrix.cons_val_zero,
       Matrix.head_cons]
-
+  
   Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
   warning: HermiteCompositum/Port014.lean:80:75: This simp argument is unused:
     Matrix.head_cons
-
+  
   Hint: Omit it from the simp argument list.
     [apply] simp only [M, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.det_fin_zero,
       Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero, Fin.val_zero, Fin.val_succ, Matrix.cons_val_zero,
       Matrix.cons_val_one]
-
+  
   Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
   warning: HermiteCompositum/Port014.lean:97:32: This simp argument is unused:
     Matrix.cons_val_zero
-
+  
   Hint: Omit it from the simp argument list.
     [apply] simp only [P, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.det_fin_zero,
       Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero, Fin.val_zero, Fin.val_succ, Matrix.cons_val_one,
       Matrix.head_cons]
-
+  
   Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
   warning: HermiteCompositum/Port014.lean:97:54: This simp argument is unused:
     Matrix.cons_val_one
-
+  
   Hint: Omit it from the simp argument list.
     [apply] simp only [P, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.det_fin_zero,
       Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero, Fin.val_zero, Fin.val_succ, Matrix.cons_val_zero,
       Matrix.head_cons]
-
+  
   Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
   warning: HermiteCompositum/Port014.lean:97:75: This simp argument is unused:
     Matrix.head_cons
-
+  
   Hint: Omit it from the simp argument list.
     [apply] simp only [P, Matrix.det_succ_row_zero, Fin.sum_univ_succ, Fin.sum_univ_zero, Matrix.det_fin_zero,
       Matrix.submatrix_apply, Fin.succAbove, Fin.castSucc_zero, Fin.val_zero, Fin.val_succ, Matrix.cons_val_zero,
       Matrix.cons_val_one]
-
+  
   Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
   warning: HermiteCompositum/Port014.lean:600:35: this tactic is never executed
-
+  
   Note: This linter can be disabled with `set_option linter.unreachableTactic false`
   warning: HermiteCompositum/Port014.lean:600:35: Unused tactic linter: `decide` does nothing
-
+  
   Note: This linter can be disabled with `set_option linter.unusedTactic false`
   warning: HermiteCompositum/Port014.lean:607:35: this tactic is never executed
-
+  
   Note: This linter can be disabled with `set_option linter.unreachableTactic false`
   warning: HermiteCompositum/Port014.lean:607:35: Unused tactic linter: `decide` does nothing
-
+  
   Note: This linter can be disabled with `set_option linter.unusedTactic false`
   warning: HermiteCompositum/Port014.lean:697:36: this tactic is never executed
-
+  
   Note: This linter can be disabled with `set_option linter.unreachableTactic false`
   warning: HermiteCompositum/Port014.lean:697:36: Unused tactic linter: `decide` does nothing
-
+  
   Note: This linter can be disabled with `set_option linter.unusedTactic false`
-  Build completed successfully (8948 jobs).
+  Build completed successfully (8942 jobs).
   Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, QuaternaryCentroid.centroid_of_dim_four, QuaternaryCentroid.sq_and_idempotent_iff, QuaternaryCentroid.det_eq_sq_mul_of_lieEquiv, QuaternaryCentroid.isometry_conj_eq_det_smul, QuaternaryCentroid.centroid_scalar_of_dim_ne_four, QuaternaryCentroid.centroid_scalar_so', QuaternaryCentroid.centroid_real_diagonal, QuaternaryCentroid.centroid_traceForm, QuaternaryCentroid.centroid_traceForm_of_root, QuaternaryCentroid.not_lieEquiv_diagonal_of_root, QuaternaryCentroid.controls, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Solution
   Running nanoda kernel on solution
   nanoda kernel accepts the solution
   Running Lean default kernel on solution
   Lean default kernel accepts the solution
   Your solution is okay!
-  exit 0; seconds 110
+  exit 0
+  seconds 110

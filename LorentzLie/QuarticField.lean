@@ -3,7 +3,7 @@ public import Mathlib
 public import LorentzLie.Defs
 public import LorentzLie.FormDefs
 public import LorentzLie.FormCentroid
-public import HermiteCompositum.Assembly
+public import HermiteCompositum.Instance
 
 @[expose] public section
 
@@ -98,7 +98,7 @@ theorem card_integralBasis_index (K : Type*) [Field K] [NumberField K] :
 
 end QuarticField
 
-/-- **D2 (number fields of degree four).** Let `K` be a number field of degree four over `ℚ`. On
+/-- **Number fields of degree four.** Let `K` be a number field of degree four over `ℚ`. On
 the Lie algebra over `ℚ` of the `ℚ`-linear endomorphisms of `K` that are skew-adjoint for the trace
 form `(x, y) ↦ Tr_{K/ℚ}(x * y)`, there is a `ℚ`-linear endomorphism `H` such that: `H` is
 bracket-commuting; `H (H X) = d_K • X` for all `X`, where `d_K` is the discriminant of `K`
@@ -119,7 +119,7 @@ theorem exists_hodge_traceForm (K : Type*) [Field K] [NumberField K]
   rw [QuarticField.det_toMatrix_integralBasis] at h
   exact h
 
-/-- **D2 (the squares of the non-scalar bracket-commuting maps).** Let `K` be a number field of
+/-- **The squares of the non-scalar bracket-commuting maps.** Let `K` be a number field of
 degree four over `ℚ`, with discriminant `d_K`, and let `c` be a rational number. There is a
 bracket-commuting `ℚ`-linear endomorphism `R` of the Lie algebra of the trace-form-skew-adjoint
 endomorphisms of `K` that is not of the form `a • id` and satisfies `R (R X) = c • X` for all `X`,
@@ -136,7 +136,7 @@ theorem exists_nonscalar_sq_iff_traceForm (K : Type*) [Field K] [NumberField K]
   rw [QuarticField.det_toMatrix_integralBasis] at h
   exact h
 
-/-- **D2 (square `-1`).** Let `K` be a number field of degree four over `ℚ`, with discriminant
+/-- **Square `-1`.** Let `K` be a number field of degree four over `ℚ`, with discriminant
 `d_K`. There is a bracket-commuting `ℚ`-linear endomorphism `R` of the Lie algebra of the
 trace-form-skew-adjoint endomorphisms of `K` with `R (R X) = -X` for all `X`, if and only if
 `-d_K` is the square of a rational number. -/
@@ -153,7 +153,7 @@ theorem exists_sq_neg_one_iff_traceForm (K : Type*) [Field K] [NumberField K]
   rw [h]
   exact or_iff_left QuarticField.not_isSquare_neg_one_rat
 
-/-- **D5(a) for a number field (control: degree four).** Let `K` be a number field whose degree
+/-- **Control for a number field: degree four.** Let `K` be a number field whose degree
 over `ℚ` is not four. Then every bracket-commuting `ℚ`-linear endomorphism `R` of the Lie algebra of
 the trace-form-skew-adjoint endomorphisms of `K` is of the form `c • id` with `c` rational. -/
 theorem centroid_scalar_traceForm (K : Type*) [Field K] [NumberField K]
@@ -165,7 +165,8 @@ theorem centroid_scalar_traceForm (K : Type*) [Field K] [NumberField K]
     (by rw [QuarticField.card_integralBasis_index K]; exact hK) (NumberField.integralBasis K)
     (Algebra.traceForm ℚ K) (Algebra.traceForm_isSymm ℚ) (traceForm_nondegenerate ℚ K) R hR
 
-/-- **D3 (hypothesis form).** Let `K` be a number field of degree four over `ℚ` with discriminant
+/-- **Discriminant `-283` (hypothesis form).**
+Let `K` be a number field of degree four over `ℚ` with discriminant
 `-283`. Then no bracket-commuting `ℚ`-linear endomorphism `R` of the Lie algebra of the
 trace-form-skew-adjoint endomorphisms of `K` satisfies `R (R X) = -X` for all `X`. -/
 theorem not_exists_sq_neg_one_of_discr_eq (K : Type*) [Field K] [NumberField K]
@@ -178,7 +179,8 @@ theorem not_exists_sq_neg_one_of_discr_eq (K : Type*) [Field K] [NumberField K]
   rw [hc]
   exact QuarticField.not_isSquare_283_rat
 
-/-- **D3 (matrix form, over `ℚ`).** Let `G = traceGram ℚ` be the rational symmetric matrix with rows
+/-- **Discriminant `-283` (matrix form, over `ℚ`).**
+Let `G = traceGram ℚ` be the rational symmetric matrix with rows
 `(4, 0, 0, 3)`, `(0, 0, 3, 4)`, `(0, 3, 4, 0)`, `(3, 4, 0, 3)` (determinant `-283`; it is the Gram
 matrix of the trace form of `ℚ⟮Q⟯`, `Q ^ 4 = Q + 1`, on `1, Q, Q², Q³`, by
 `traceGram_eq_traceForm`). On the Lie algebra over `ℚ` of the `G`-skew matrices there is a
@@ -197,7 +199,8 @@ theorem traceGram_hodge_rat :
   rw [traceGram_det] at h
   exact h
 
-/-- **D3 (matrix form, over `ℚ`: no square `-1`).** On the Lie algebra over `ℚ` of the
+/-- **Discriminant `-283` (matrix form, over `ℚ`: no square `-1`).**
+On the Lie algebra over `ℚ` of the
 `traceGram ℚ`-skew matrices, no bracket-commuting `ℚ`-linear endomorphism `R` satisfies
 `R (R X) = -X` for all `X`. -/
 theorem traceGram_not_exists_sq_neg_one_rat :
@@ -213,7 +216,8 @@ theorem traceGram_not_exists_sq_neg_one_rat :
   · exact QuarticField.not_isSquare_283_rat h3
   · exact QuarticField.not_isSquare_neg_one_rat h3
 
-/-- **D3 (matrix form, over `ℝ`: a square `-1`).** On the Lie algebra over `ℝ` of the
+/-- **Discriminant `-283` (matrix form, over `ℝ`: a square `-1`).**
+On the Lie algebra over `ℝ` of the
 `traceGram ℝ`-skew matrices (the same matrix, with real entries: `traceGram_rat_map_real`), there is
 a bracket-commuting `ℝ`-linear endomorphism `R` with `R (R X) = -X` for all `X`. -/
 theorem traceGram_exists_sq_neg_one_real :
@@ -334,7 +338,7 @@ theorem inv_sqrt_abs_discr_sq_mul_discr (K : Type*) [Field K] [NumberField K] :
 
 end QuarticField
 
-/-- **D4 (the real matrix of the trace form, all signatures).** Let `K` be a number field of degree
+/-- **The real matrix of the trace form, all signatures.** Let `K` be a number field of degree
 four over `ℚ`, and let `G` be the real matrix obtained from the trace matrix
 `(Tr_{K/ℚ}(ω i * ω j))` of Mathlib's integral basis `ω = NumberField.integralBasis K` by reading
 its rational entries in `ℝ`. On the Lie algebra over `ℝ` of the `G`-skew matrices there is an
@@ -367,7 +371,7 @@ theorem exists_hodge_traceMatrix_real (K : Type*) [Field K] [NumberField K]
   rw [QuarticField.inv_sqrt_abs_discr_sq_mul_discr] at hsq'
   exact ⟨_, hc', hsq', hu'⟩
 
-/-- **Control of the clause "not of the form `a • id`" (OPTIONAL).** On the Lie algebra of the
+/-- **Control of the clause "not of the form `a • id`".** On the Lie algebra of the
 trace-form-skew-adjoint endomorphisms of `S₄` there is a bracket-commuting `ℚ`-linear endomorphism
 `R` with `R (R X) = 1 • X` for all `X` (the identity), and there is no rational `t ≠ 0` with
 `1 = t ^ 2 * (-283)`. So `exists_nonscalar_sq_iff_S₄` fails at `c = 1` when that clause is
@@ -579,10 +583,10 @@ end Degenerate
 
 end QuarticField
 
-/-- **Control of D1M, hypothesis `det G ≠ 0` deleted (OPTIONAL).** For the rational diagonal matrix
-with diagonal `(1, 1, 1, 0)` (symmetric, determinant `0`), every bracket-commuting `ℚ`-linear
+/-- **Control of `exists_hodge_matrix`, hypothesis `det G ≠ 0` deleted.** For the rational diagonal
+matrix with diagonal `(1, 1, 1, 0)` (symmetric, determinant `0`), every bracket-commuting `ℚ`-linear
 endomorphism `R` of the Lie algebra of the skew matrices is of the form `c • id` with `c` rational.
-So no `H` satisfies the conclusion of D1M for this matrix. -/
+So no `H` satisfies the conclusion of `exists_hodge_matrix` for this matrix. -/
 theorem diag_degenerate_centroid_scalar
     (R : skewAdjointMatricesLieSubalgebra
           (Matrix.diagonal ![1, 1, 1, 0] : Matrix (Fin 4) (Fin 4) ℚ) →ₗ[ℚ]

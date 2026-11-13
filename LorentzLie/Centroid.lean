@@ -292,7 +292,8 @@ theorem centroid_scalar_of_two_ne_zero (h2 : (2 : K) ≠ 0) (hι : Fintype.card 
 
 end General
 
-/-- **L5.** Let `ι` be a finite index type whose cardinality is not `4`, let `η : ι → ℝ` have all
+/-- **Outside dimension four the bracket-commuting maps are scalars.**
+Let `ι` be a finite index type whose cardinality is not `4`, let `η : ι → ℝ` have all
 entries nonzero, and let `R` be a real-linear endomorphism of the Lie algebra of
 `diagonal η`-skew matrices with `R ⁅X, Y⁆ = ⁅X, R Y⁆` for all `X`, `Y`. Then there is a real `c`
 with `R = c • id`. -/
@@ -304,7 +305,7 @@ theorem centroid_scalar {ι : Type*} [Fintype ι] [DecidableEq ι]
     ∃ c : ℝ, R = c • LinearMap.id := by
   exact centroid_scalar_of_two_ne_zero two_ne_zero hι η hη R hR
 
-/-- **L5, on Mathlib's `so' p q ℝ`.** Let `p`, `q` be finite types with
+/-- **The same on Mathlib's `so' p q ℝ`.** Let `p`, `q` be finite types with
 `card p + card q ≠ 4`, and let `R` be a real-linear endomorphism of `so' p q ℝ` with
 `R ⁅X, Y⁆ = ⁅X, R Y⁆` for all `X`, `Y`. Then there is a real `c` with `R = c • id`. -/
 theorem centroid_scalar_so' {p q : Type*} [Fintype p] [Fintype q] [DecidableEq p] [DecidableEq q]
@@ -488,8 +489,9 @@ theorem eq_smul_id_add_smul_hodge (h2 : (2 : K) ≠ 0) (η : Fin 4 → K) (hη :
 
 end Four
 
-/-- **Control of L5, hypothesis `card ι ≠ 4` deleted.** For a field `K` and `η : Fin 4 → K` with
-all entries nonzero, there is no `c` in `K` with `hodge η = c • id`. (With part (i) of L1K,
+/-- **Control of `centroid_scalar`, hypothesis `card ι ≠ 4` deleted.**
+For a field `K` and `η : Fin 4 → K` with all entries nonzero, there is no `c` in `K` with
+`hodge η = c • id`. (With part (i) of `hodge_centroid_field`,
 `hodge η` is a bracket-commuting map that is not a scalar.) -/
 theorem centroid_control_card_four {K : Type*} [Field K] (η : Fin 4 → K)
     (hη : ∀ i, η i ≠ 0) : ¬ ∃ c : K, hodge η = c • LinearMap.id := by
@@ -499,7 +501,8 @@ theorem centroid_control_card_four {K : Type*} [Field K] (η : Fin 4 → K)
     module
   exact one_ne_zero (smul_id_add_smul_hodge_eq_zero η hη _ _ hz).2
 
-/-- **L1K.** Let `K` be a field of characteristic zero and `η : Fin 4 → K` with all entries
+/-- **The bracket-commuting maps in dimension four, in characteristic zero.**
+Let `K` be a field of characteristic zero and `η : Fin 4 → K` with all entries
 nonzero. Then, on the Lie algebra `etaSkew η` of `η`-skew `4 × 4` matrices, with
 `hodge η X = star0 (diagonal η * X) * diagonal η`:
 (i) `hodge η ⁅X, Y⁆ = ⁅X, hodge η Y⁆` for all `X`, `Y`;
@@ -529,7 +532,8 @@ theorem hodge_centroid_field {K : Type*} [Field K] [CharZero K] (η : Fin 4 → 
   obtain ⟨ha, hb⟩ := smul_id_add_smul_hodge_eq_zero η hη _ _ hz
   exact Prod.ext (sub_eq_zero.mp ha) (sub_eq_zero.mp hb)
 
-/-- **L1.** Let `η : Fin 4 → ℝ` have every entry equal to `1` or `-1`. Then, on the Lie algebra
+/-- **The bracket-commuting maps in dimension four, over `ℝ`.**
+Let `η : Fin 4 → ℝ` have every entry equal to `1` or `-1`. Then, on the Lie algebra
 `etaSkew η` of `η`-skew real `4 × 4` matrices, with
 `hodge η X = star0 (diagonal η * X) * diagonal η`:
 (i) `hodge η ⁅X, Y⁆ = ⁅X, hodge η Y⁆` for all `X`, `Y`;
@@ -621,7 +625,7 @@ theorem finrank_so'_four_two :
 
 end Finrank
 
-/-- **L5, at `so' (Fin 4) (Fin 2) ℝ`, with the determinant.** Let `R` be a real-linear
+/-- **Scalars at `so' (Fin 4) (Fin 2) ℝ`, with the determinant.** Let `R` be a real-linear
 endomorphism of `so' (Fin 4) (Fin 2) ℝ` with `R ⁅X, Y⁆ = ⁅X, R Y⁆` for all `X`, `Y`. Then there is
 a real `c` with `R = c • id` and `LinearMap.det R = c ^ 15`. -/
 theorem centroid_scalar_so'_four_two

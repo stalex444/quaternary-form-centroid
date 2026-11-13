@@ -4,7 +4,7 @@ public import LorentzLie.Centroid
 public import LorentzLie.FormDefs
 public import LorentzLie.FormCentroid
 public import LorentzLie.QuarticField
-public import HermiteCompositum.Assembly
+public import HermiteCompositum.Instance
 
 @[expose] public section
 /-!

@@ -5,7 +5,7 @@ public import GravityScreening.SignedLieGeneration
 @[expose] public section
 
 /-!
-# Shared definitions of the Lorentz Lie-algebra library
+# Shared definitions
 
 * `IsBracketCommuting R` — the convention `∀ X Y, R ⁅X, Y⁆ = ⁅X, R Y⁆` for a linear endomorphism of
   a Lie algebra, with its transport along a Lie equivalence.
@@ -13,13 +13,7 @@ public import GravityScreening.SignedLieGeneration
   over a field and any finite index type; `gen η i j`, its generators
   `η j • E i j - η i • E j i`.
 * `star0`, `hodgeMat η`, `hodge η` — the Hodge operator on the `η`-skew `4 × 4` matrices, in the
-  closed form `X ↦ star0 (diagonal η * X) * diagonal η`; `hodgeMat_eq_hodgeOp`, its agreement with
-  `HermitianExclusion.hodgeOp` on the `η4`-skew matrices.
-* The explicit matrices the isomorphism statements use: `quat`, `quatBar`, `lam`, `spinPlus`,
-  `spinMinus` (signature with product `-1`, and the complex case); `so3Plus`, `so3Minus`
-  (definite signature); `splitFrame`, `splitPlus`, `splitMinus` (signature with sum `0`);
-  `etaC`, `lamProd`, `hodgeProjPlus`, `hodgeProjMinus` (the two projectors of the Hodge operator
-  over `ℂ`); `indefEta` (the diagonal of Mathlib's `so' p q ℝ` read along a bijection).
+  closed form `X ↦ star0 (diagonal η * X) * diagonal η`.
 
 Every file of this library declares `attribute [local instance] LieRing.ofAssociativeRing`, the
 commutator Lie ring structure that `skewAdjointMatricesLieSubalgebra` is stated with.
@@ -200,114 +194,5 @@ def hodge (η : Fin 4 → K) : etaSkew η →ₗ[K] etaSkew η where
   rfl
 
 end Hodge
-
-/-! ### Explicit matrices for the isomorphism statements -/
-
-section Explicit
-
-/-- `sl(2, ℂ)`. -/
-abbrev sl2C := LieAlgebra.SpecialLinear.sl (Fin 2) ℂ
-
-/-- `sl(2, ℝ)`. -/
-abbrev sl2R := LieAlgebra.SpecialLinear.sl (Fin 2) ℝ
-
-/-- `so(3)`: the skew-symmetric real `3 × 3` matrices. -/
-abbrev so3 := LieAlgebra.Orthogonal.so (Fin 3) ℝ
-
-/-- `sl(2, ℂ)` as a real Lie algebra. -/
-abbrev sl2CReal := RestrictScalars ℝ ℂ sl2C
-
-/-- The underlying complex `2 × 2` matrix of an element of `sl2CReal`. -/
-def sl2CRealMat (x : sl2CReal) : Matrix (Fin 2) (Fin 2) ℂ :=
-  (RestrictScalars.addEquiv ℝ ℂ sl2C x).1
-
-/-- The quaternion units as complex `2 × 2` matrices: `(1, i σ₁, i σ₂, i σ₃)`. -/
-def quat : Fin 4 → Matrix (Fin 2) (Fin 2) ℂ :=
-  ![!![1, 0; 0, 1], !![0, Complex.I; Complex.I, 0], !![0, 1; -1, 0],
-    !![Complex.I, 0; 0, -Complex.I]]
-
-/-- The conjugate quaternion units: `(1, -i σ₁, -i σ₂, -i σ₃)`. -/
-def quatBar : Fin 4 → Matrix (Fin 2) (Fin 2) ℂ :=
-  ![!![1, 0; 0, 1], !![0, -Complex.I; -Complex.I, 0], !![0, -1; 1, 0],
-    !![-Complex.I, 0; 0, Complex.I]]
-
-/-- A square root of a sign: `lam 1 = 1`, `lam (-1) = i`. -/
-noncomputable def lam (s : ℝ) : ℂ := ((1 + s) / 2 : ℝ) + ((1 - s) / 2 : ℝ) * Complex.I
-
-/-- `spinPlus η i j = ½ · lam (η i) · lam (η j) · quat i · quatBar j`. -/
-noncomputable def spinPlus (η : Fin 4 → ℝ) (i j : Fin 4) : Matrix (Fin 2) (Fin 2) ℂ :=
-  ((1 / 2 : ℂ) * lam (η i) * lam (η j)) • (quat i * quatBar j)
-
-/-- `spinMinus η i j = ½ · lam (η i) · lam (η j) · quatBar i · quat j`. -/
-noncomputable def spinMinus (η : Fin 4 → ℝ) (i j : Fin 4) : Matrix (Fin 2) (Fin 2) ℂ :=
-  ((1 / 2 : ℂ) * lam (η i) * lam (η j)) • (quatBar i * quat j)
-
-/-- The skew-symmetric `3 × 3` matrix with entries `(c₁, c₂, c₃) = (X 0 1 - X 2 3, X 0 2 + X 1 3,
-X 0 3 - X 1 2)`. -/
-def so3Plus (X : Matrix (Fin 4) (Fin 4) ℝ) : Matrix (Fin 3) (Fin 3) ℝ :=
-  !![0, -(X 0 3 - X 1 2), X 0 2 + X 1 3;
-     X 0 3 - X 1 2, 0, -(X 0 1 - X 2 3);
-     -(X 0 2 + X 1 3), X 0 1 - X 2 3, 0]
-
-/-- The skew-symmetric `3 × 3` matrix with entries `(c₁, c₂, c₃) = (-X 0 1 - X 2 3,
--X 0 2 + X 1 3, -X 0 3 - X 1 2)`. -/
-def so3Minus (X : Matrix (Fin 4) (Fin 4) ℝ) : Matrix (Fin 3) (Fin 3) ℝ :=
-  !![0, -(-X 0 3 - X 1 2), -X 0 2 + X 1 3;
-     -X 0 3 - X 1 2, 0, -(-X 0 1 - X 2 3);
-     -(-X 0 2 + X 1 3), -X 0 1 - X 2 3, 0]
-
-open Classical in
-/-- A frame of real `2 × 2` matrices with `det (splitFrame η i) = η i` for a signature with two
-entries `1` and two entries `-1`: the first index with `η i = 1` gets the identity, the second
-gets `!![0, -1; 1, 0]`; the first index with `η i ≠ 1` gets `!![0, 1; 1, 0]`, the second gets
-`!![1, 0; 0, -1]`. -/
-noncomputable def splitFrame (η : Fin 4 → ℝ) (i : Fin 4) : Matrix (Fin 2) (Fin 2) ℝ :=
-  if η i = 1 then
-    (if ∃ j, j < i ∧ η j = 1 then !![0, -1; 1, 0] else !![1, 0; 0, 1])
-  else
-    (if ∃ j, j < i ∧ η j ≠ 1 then !![1, 0; 0, -1] else !![0, 1; 1, 0])
-
-/-- `splitPlus η i j = ½ · splitFrame η i · adjugate (splitFrame η j)`. -/
-noncomputable def splitPlus (η : Fin 4 → ℝ) (i j : Fin 4) : Matrix (Fin 2) (Fin 2) ℝ :=
-  (1 / 2 : ℝ) • (splitFrame η i * (splitFrame η j).adjugate)
-
-/-- `splitMinus η i j = ½ · adjugate (splitFrame η i) · splitFrame η j`. -/
-noncomputable def splitMinus (η : Fin 4 → ℝ) (i j : Fin 4) : Matrix (Fin 2) (Fin 2) ℝ :=
-  (1 / 2 : ℝ) • ((splitFrame η i).adjugate * splitFrame η j)
-
-/-- A real diagonal form read over `ℂ`: `etaC η = fun i => (η i : ℂ)` (reducible). -/
-abbrev etaC (η : Fin 4 → ℝ) : Fin 4 → ℂ := fun i => (η i : ℂ)
-
-/-- The diagonal of Mathlib's `LieAlgebra.Orthogonal.indefiniteDiagonal p q ℝ` (entries `1` on
-`p`, `-1` on `q`), read along a bijection `e : p ⊕ q ≃ ι`. -/
-def indefEta {p q ι : Type*} (e : p ⊕ q ≃ ι) : ι → ℝ :=
-  fun i => Sum.elim (fun _ => (1 : ℝ)) (fun _ => (-1 : ℝ)) (e.symm i)
-
-/-- `lamProd η = ∏ i, lam (η i)`; for entries `±1` its square is `∏ i, η i`. -/
-noncomputable def lamProd (η : Fin 4 → ℝ) : ℂ := ∏ i, lam (η i)
-
-/-- The projector `½ (1 + (lamProd η)⁻¹ • hodge)` of the Hodge operator over `ℂ`. Under
-`etaSkewCEquiv` its image is the second factor. -/
-noncomputable def hodgeProjPlus (η : Fin 4 → ℝ) : etaSkew (etaC η) →ₗ[ℂ] etaSkew (etaC η) :=
-  (1 / 2 : ℂ) • (LinearMap.id + (lamProd η)⁻¹ • hodge (etaC η))
-
-/-- The projector `½ (1 - (lamProd η)⁻¹ • hodge)` of the Hodge operator over `ℂ`. -/
-noncomputable def hodgeProjMinus (η : Fin 4 → ℝ) : etaSkew (etaC η) →ₗ[ℂ] etaSkew (etaC η) :=
-  (1 / 2 : ℂ) • (LinearMap.id - (lamProd η)⁻¹ • hodge (etaC η))
-
-/-- Sanity: `lam 1 = 1`. -/
-theorem lam_one : lam 1 = 1 := by simp [lam]
-
-/-- Sanity: `lam (-1) = i`. -/
-theorem lam_neg_one : lam (-1) = Complex.I := by
-  simp [lam]
-
-/-- Sanity: `lam s ^ 2 = s` for `s = ±1`. -/
-theorem lam_sq (s : ℝ) (hs : s = 1 ∨ s = -1) : lam s ^ 2 = (s : ℂ) := by
-  rcases hs with rfl | rfl
-  · simp [lam_one]
-  · simp [lam_neg_one]
-
-end Explicit
 
 end LorentzLie
