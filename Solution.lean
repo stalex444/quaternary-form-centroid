@@ -21,7 +21,7 @@ the identical definition `IsBracketCommuting`, which is repeated verbatim. Each 
   (`LorentzLie.FormCentroid.exists_lieEquiv_etaSkew`); the description is carried along that
   equivalence (`LorentzLie.centroid_transport_field`), the operator is divided by `t`, and the
   result is carried to the endomorphisms by the matrix of an endomorphism in the basis.
-* Statement 2: `QuaternaryCentroid.Bridge.squares`: arithmetic with `a • id + b • H` and
+* Statement 2: `QuaternaryCentroid.Bridge.squares`: arithmetic with `a • id + c • H` and
   `H ∘ H = det B`, from statement 1's description.
 * Statement 3: `LorentzLie.det_toMatrix_eq_sq_mul_of_lieEquiv`: the Lie algebra equivalence
   carries the operator of `B'` to a bracket-commuting map of `so(B)`, not of the form `a • id`,
@@ -80,8 +80,8 @@ there is an `F`-linear endomorphism `H` such that:
 `F × F` with `R = a • id + c • H`;
 (d) every bracket-commuting `F`-linear endomorphism `H'` that is not of the form `a • id` and
 satisfies `H' (H' X) = d • X` for all `X` is `H` or `-H`.
-So the bracket-commuting maps are a copy of the quadratic algebra `F[X]/(X² - d)`. The square
-class: for `t ≠ 0`, the operator `t • H` has (a) and (c), and (b) with `t ^ 2 * d` in place of `d`;
+So the bracket-commuting maps form an algebra under composition, isomorphic to `F[X]/(X² - d)`
+by `X ↦ H`. The square class: for `t ≠ 0`, the operator `t • H` has (a) and (c), and (b) with `t ^ 2 * d` in place of `d`;
 what is determined is the class of `d` modulo nonzero squares (statements 2 and 3). -/
 theorem centroid_of_dim_four {F V ι : Type*} [Field F] [AddCommGroup V] [Module F V]
     [Fintype ι] [DecidableEq ι] (h2 : (2 : F) ≠ 0) (hι : Fintype.card ι = 4)
@@ -266,8 +266,8 @@ Mathlib's integral basis `ω = NumberField.integralBasis K` by reading its ratio
 On the Lie algebra over `ℝ` of the `G`-skew matrices there is a bracket-commuting `ℝ`-linear
 endomorphism `H` with `H (H X) = (-1) ^ r₂ • X` for all `X`, where `r₂` is the number of complex
 places of `K`, such that every bracket-commuting `R` is `a • id + c • H` for exactly one pair
-`(a, c)` of real numbers. (Over `ℝ` the class modulo nonzero squares is the sign: `t • H` has
-square `t ^ 2 * (-1) ^ r₂`, and what is determined is the sign `(-1) ^ r₂`, the sign of `d_K`.) -/
+`(a, c)` of real numbers. (Over `ℝ` the class of `d_K` modulo nonzero squares is its sign,
+`(-1) ^ r₂`.) -/
 theorem centroid_traceForm (K : Type*) [Field K] [NumberField K]
     (hK : Module.finrank ℚ K = 4) :
     (∃ H : skewAdjointLieSubalgebra (Algebra.traceForm ℚ K) →ₗ[ℚ]
@@ -300,8 +300,7 @@ theorem centroid_traceForm (K : Type*) [Field K] [NumberField K]
 the trace form of `K` over `ℚ`.
 (a) There is a bracket-commuting `ℚ`-linear endomorphism `H` of `L` with `H (H X) = (-283) • X`
 for all `X`, such that every bracket-commuting `R` is `a • id + c • H` for exactly one pair
-`(a, c)` of rational numbers. (As in statement 1, what is determined is the class of `-283`
-modulo nonzero rational squares.)
+`(a, c)` of rational numbers.
 (b) No bracket-commuting `ℚ`-linear endomorphism `R` of `L` satisfies `R (R X) = -X` for all `X`
 (`283` is not the square of a rational number).
 (c) Over `ℝ`, on the Lie algebra of the real matrices that are skew for the trace matrix of

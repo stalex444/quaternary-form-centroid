@@ -30,8 +30,8 @@ definition `QuaternaryCentroid.IsBracketCommuting` carried by `Challenge.lean` a
 
 The line `attribute [local instance] LieRing.ofAssociativeRing` below is local to the section
 `Helpers`: the libraries state their theorems with it. `Challenge.lean` and `Solution.lean` do not
-declare it, and each compared statement is closed there by a theorem of this file, whose statement
-is definitionally equal.
+declare it, and each compared statement is closed there by theorems of this file or of
+`LorentzLie`, whose statements are definitionally equal.
 -/
 
 set_option autoImplicit false

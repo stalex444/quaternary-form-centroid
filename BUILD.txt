@@ -1,5 +1,6 @@
 quaternary-form-centroid -- kernel build record, 2026-11-13 (written as the package was assembled; brought
-  to the state after the finishing pass of the same day, which is described in its own section)
+  to the state after the finishing pass and the review-fix pass of the same day, each described in its own
+  section)
 STATUS: a local package. Nothing has been pushed, published, registered or submitted; there is no public
   repository, and the registry's own workflow has not been run.
 
@@ -225,10 +226,11 @@ Build
     (8946 jobs), exit 0, 40.6 s wall clock (163 s user) for this package's own modules, Mathlib being prebuilt.
   Finishing pass: lake build of all targets after step (i) -> Build completed successfully (8956 jobs),
     exit 0; after step (ii) -> the same; after step (iii) -> Build completed successfully (8950 jobs), exit 0.
-  Full build, after the last edit to Challenge.lean: lake build GravityScreening HermiteCompositum LorentzLie
-    QuaternaryCentroid Challenge Solution Checks -> Build completed successfully (8950 jobs), exit 0,
-    2026-11-13. Warnings: the 11 'declaration uses sorry' warnings of Challenge.lean (the compared
-    placeholders, lines 176, 207, 234, 263, 289, 302, 324, 358, 401, 431, 456); one deprecation warning in
+  Full build, after the review-fix pass (the last edit to any Lean file): lake build GravityScreening
+    HermiteCompositum LorentzLie QuaternaryCentroid Challenge Solution Checks -> Build completed successfully
+    (8950 jobs), exit 0, started 2026-11-13 17:29:36 UTC. Warnings: the 11 'declaration uses sorry' warnings
+    of Challenge.lean (the compared placeholders, lines 174, 205, 232, 261, 287, 300, 322, 356, 398, 428,
+    453); one deprecation warning in
     GravityScreening/SignedLieGeneration.lean (line 118); 13 linter warnings in HermiteCompositum/Port014.lean
     (unused simp arguments, unreachable tactic). No warning in LorentzLie, in QuaternaryCentroid/Bridge.lean,
     in Solution or in Checks.
@@ -249,13 +251,15 @@ Build
   Every module uses the module system (module / public import / @[expose] public section). Challenge.lean
     imports Mathlib only; Solution.lean imports Mathlib and QuaternaryCentroid.Bridge; Checks.lean imports
     Mathlib and Solution.
-  Challenge.lean is 472 lines and 32,715 bytes (498 lines and 35,015 bytes as assembled). The registry's
+  Challenge.lean is 469 lines and 32,535 bytes after the review-fix pass (472 lines and 32,715 bytes after the
+    finishing pass; 498 lines and 35,015 bytes as assembled). The registry's
     verifier (PalomarSubmission 14aa8d6b, scripts/verify_submission.py) raises an error above 1,000 lines or
     100 KiB, and appends one warning when the file is over 32 KiB or over 300 lines. The file is under the hard
     limits and under 32 KiB; it is over 300 lines, so the warning still applies (the statements and their
-    docstrings, from `set_option` on, are 325 lines).
+    docstrings, from `set_option` on, are 324 lines).
 
-#print axioms (lake env lean Axioms.lean; Axioms.lean imports Checks), after the last edit, 44 declarations:
+#print axioms (lake env lean Axioms.lean; Axioms.lean imports Checks), after the review-fix pass, exit 0,
+  44 declarations:
   'QuaternaryCentroid.centroid_of_dim_four' depends on axioms: [propext, Classical.choice, Quot.sound]
   'QuaternaryCentroid.sq_and_idempotent_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
   'QuaternaryCentroid.det_eq_sq_mul_of_lieEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -305,15 +309,19 @@ Statement identity, Challenge vs Solution (11 theorems, 1 definition)
   Solution.lean is generated from Challenge.lean by a script kept outside the repository: it copies the
     file from `set_option autoImplicit false` on and replaces each placeholder by one `exact`. The script
     asserts that restoring the placeholders gives the Challenge text back, and that the block equals the
-    restated block of the bridging file that the statement review compiled.
+    restated block of the bridging file that the statement review compiled. After the review-fix pass the
+    docstrings of statements 1, 8 and 9 differ from that block (prose only), so the second assertion no
+    longer holds as text; run with that assertion reported instead of enforced, the script reproduces
+    Solution.lean, Checks.lean and QuaternaryCentroid/Bridge.lean byte for byte, and the structural hash
+    below shows that the elaborated statements are those that were reviewed.
   Neither file has an `open`, an `attribute`, a `variable` or an instance line. The library declares
     `attribute [local instance] LieRing.ofAssociativeRing`; the Challenge does not (with that line, 8 of the 11
     statements elaborate to other, definitionally equal, terms), so the Solution does not either.
   Structural hash of the elaborated terms (the statement review's tool, run on the final files, each under
     the same module name): Expr.hash, raw length and raw string hash of the type of each of the eleven
     compared declarations and of the carried definition, and the raw value of the definition.
-    (1) Challenge digest == reviewer's ChallengePatched digest: IDENTICAL
-    (2) Solution digest == reviewer's BridgePatched digest: IDENTICAL
+    (1) Challenge digest == digest of the Challenge file that the statement review compiled: IDENTICAL
+    (2) Solution digest == digest of the bridging file that the statement review compiled: IDENTICAL
     (3) Challenge digest == Solution digest: IDENTICAL
     04a622bb876a91981a59f3111f0cdb3c24e89c492a933a00f9672039599986e3  (digest of Challenge.lean)
     04a622bb876a91981a59f3111f0cdb3c24e89c492a933a00f9672039599986e3  (digest of Solution.lean)
@@ -323,7 +331,11 @@ Statement identity, Challenge vs Solution (11 theorems, 1 definition)
     Run again after the finishing pass, on the final Challenge.lean and Solution.lean (lean --root on a copy
     named Dump.lean, so that both copies have the same module name): (1), (2) and (3) IDENTICAL as above, and
     each digest file byte-identical to the one taken before the finishing pass (sha256 04a622bb... again).
-  Count gate (a script kept outside the repository):
+    Run again after the review-fix pass, the same way: (1)-(3) IDENTICAL, both digest files byte-identical to
+    those taken before the finishing pass (sha256 04a622bb... again). The second tool (what the compared
+    theorems use) wrote the same 283 rows, byte for byte; axioms reached: Quot.sound, Classical.choice,
+    propext.
+  Count gate (a script kept outside the repository), run after the review-fix pass, exit 0:
     PASS comparator.json theorem_names -- 11
     PASS Challenge.lean theorem declarations == comparator -- 11
     PASS Solution.lean theorem declarations == comparator -- 11
@@ -345,24 +357,27 @@ Statement identity, Challenge vs Solution (11 theorems, 1 definition)
 
 Comparator
   lake comparator --inadvisably-no-sandbox (toolchain bin with nanoda_bin on PATH), from the package root,
-    2026-11-13, after the finishing pass and the last edit to Challenge.lean (inputs: Challenge.lean sha256
-    76e42c47..., Solution.lean c873bf03..., comparator.json 4c5d928d...). Result: "nanoda kernel accepts the
-    solution / Lean default kernel accepts the solution / Your solution is okay!", exit 0, 110 s. The run at
-    assembly (Challenge.lean 766c1f6d..., before the opening docstring was shortened and before the six
-    modules were removed) gave the same result; no change to a statement or a proof was needed for the
+    started 2026-11-13 17:30:10 UTC, after the review-fix pass (the last edit to any Lean file). Inputs:
+      8b8fca7b39c2bdc8348d8b06c2476b8d6c6e5066f8bacd60af18872fdea1193b  Challenge.lean
+      2a496efb985a3ad185fcd3d5e238a03ee43ef5d88bb789fefa00379b643faf7f  Solution.lean
+      4c5d928dcee0401c06e7ecc6d6d538be80b96406dc6a3afd6b05d2f649b4df67  comparator.json
+    Result: "nanoda kernel accepts the solution / Lean default kernel accepts the solution / Your solution is
+    okay!", exit 0, 107 s. The run after the finishing pass (Challenge.lean 76e42c47..., Solution.lean
+    c873bf03..., same comparator.json) and the run at assembly (Challenge.lean 766c1f6d..., before the opening
+    docstring was shortened and before the six modules were removed) gave the same result; no change to a statement or a proof was needed for the
     Comparator to accept. The full output of the final run is at the end of this file.
   Negative control (at assembly): with `-283` changed to `-284` in statement 9 of Challenge.lean only, the same command
-    gave "error: Challenge and solution theorem statement do not match: 'QuaternaryCentroid.centroid_traceForm_of_root'", exit 1; Challenge.lean was then restored (same sha256 as above) and rebuilt.
+    gave "error: Challenge and solution theorem statement do not match: 'QuaternaryCentroid.centroid_traceForm_of_root'", exit 1; Challenge.lean was then restored (same sha256 as before the control) and rebuilt.
   Not run: the registry's own submission workflow (there is no public commit); the Comparator inside its
     bubblewrap sandbox (not available on macOS, hence --inadvisably-no-sandbox); a build from a fresh clone
     with lake exe cache get (the build above uses the shared prebuilt packages); the registry's licence
     detection and rendering steps.
 
-Metadata (after the finishing pass)
+Metadata (after the review-fix pass)
   formalization.yaml validates against the v0.4 schema (0 errors; a copy with three fields broken gave 3
     errors, as a control of the validator).
   Provenance: the registry contract (scripts.submission_contract at PalomarSubmission 14aa8d6b) loads the
-    metadata, accepts the classification codes, and derives result_origin source-based (10 sources, 8 related
+    metadata, accepts the classification codes, and derives result_origin source-based (12 sources, 8 related
     formalizations). The pipeline's non-executing Lean source check (scripts.source_requirements, same
     commit) on a copy of the tracked files: 14 Lean files checked, 0 issues.
   A script of the author's, kept outside this repository, derives the same origin from the sources list and
@@ -387,14 +402,20 @@ Review history
     its docstring; no blocking finding; its prose corrections to the docstrings were applied in the copy from
     which this Challenge was assembled. One hypothesis of statement 7 is deletable and was kept.
   2026-11-13: assembly of this package (AI-assisted): the cut of LorentzLie/Defs.lean and its fidelity check;
-    the helper module; Challenge.lean with an opening docstring written at assembly from the checked inventory;
+    the helper module; Challenge.lean with an opening docstring written at assembly from the author's checked list of sources and prior formalizations (a working
+    record, not in this repository);
     Solution.lean, Checks.lean, Axioms.lean, comparator.json; the metadata skeletons.
   2026-11-13: finishing pass (AI-assisted): the three steps recorded above on the copied modules; the
     opening docstring of Challenge.lean shortened; README.md and formalization.yaml completed from the
-    checked inventory of sources and prior formalizations, with the bibliographic records and the commits of
+    same checked list of sources and prior formalizations, with the bibliographic records and the commits of
     the author's registered entries confirmed; build, axioms, Comparator, count gate and hash checks run again.
+  2026-11-13: three AI-assisted reviews of the finished package (registry checks; a cold reader; a check of
+    claims against their support), their corrections applied to the prose (README.md, formalization.yaml, the
+    docstrings of Challenge.lean, Solution.lean and QuaternaryCentroid/Bridge.lean; no statement or proof
+    changed), and an AI-assisted second reader's pass on the resulting diff, whose minor corrections were
+    applied; build, axioms, Comparator, count gate and hash checks run again (review-fix pass).
   Not done: the author's review of the eleven statements; a review of the assembled package on the
-    registry's published review prompts; a reader's pass on the prose.
+    registry's published review prompts.
 
 Scan of the tracked files (2026-11-13, after the finishing pass)
   Files written for this entry: no machine path, no reference to a private record, no priority wording, no
@@ -411,32 +432,34 @@ Scan of the tracked files (2026-11-13, after the finishing pass)
       docstrings speak of that entry's compared statements by number, of its Challenge.lean and
       Solution.lean and of modules of that entry that are not copied here; they use that entry's letters
       ρ, Q, fρ, fQ and the name "ruler polynomial" (Defs.lean, Instance.lean, Port014.lean), and
-      Port014.lean:23-34 names modules of an earlier development of the author's. One docstring names a
-      file that does not exist in this repository: HermiteCompositum/Defs.lean, line 33, cites the theorem
-      ofReal_powerSum in the module Hermite.lean of that library, a module of the registered entry that
-      was removed here in step (iii). README.md ("Layout") says so. Every other path that a tracked file
-      cites inside this repository exists in it (236 citations checked).
+      Port014.lean:23-34 names modules of an earlier development of the author's. Two docstrings name files
+      that do not exist in this repository: HermiteCompositum/Defs.lean, line 33, cites the theorem
+      ofReal_powerSum in the module Hermite.lean of that library (removed here in step (iii)), and
+      HermiteCompositum/Instance.lean, line 180, says that a theorem is duplicated from Squarefree.lean (a
+      module of the registered entry that was not copied); Instance.lean, lines 363 and 370, also name the
+      module Places of that library (removed here in step (iii)). README.md ("Layout") says so. Every other
+      path that a tracked file cites inside this repository exists in it.
 
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.
 
-Full output of the final Comparator run (lake comparator --inadvisably-no-sandbox, 2026-11-13, after the
-  finishing pass)
+Full output of the final Comparator run (lake comparator --inadvisably-no-sandbox, started 2026-11-13
+  17:30:10 UTC, after the review-fix pass)
   WARNING: Sandbox disabled, this run is not trustworthy.
   Resolving dependencies
   Building Challenge
   ⚠ [8931/8932] Replayed Challenge
-  warning: Challenge.lean:176:8: declaration uses `sorry`
-  warning: Challenge.lean:207:8: declaration uses `sorry`
-  warning: Challenge.lean:234:8: declaration uses `sorry`
-  warning: Challenge.lean:263:8: declaration uses `sorry`
-  warning: Challenge.lean:289:8: declaration uses `sorry`
-  warning: Challenge.lean:302:8: declaration uses `sorry`
-  warning: Challenge.lean:324:8: declaration uses `sorry`
-  warning: Challenge.lean:358:8: declaration uses `sorry`
-  warning: Challenge.lean:401:8: declaration uses `sorry`
-  warning: Challenge.lean:431:8: declaration uses `sorry`
-  warning: Challenge.lean:456:8: declaration uses `sorry`
+  warning: Challenge.lean:174:8: declaration uses `sorry`
+  warning: Challenge.lean:205:8: declaration uses `sorry`
+  warning: Challenge.lean:232:8: declaration uses `sorry`
+  warning: Challenge.lean:261:8: declaration uses `sorry`
+  warning: Challenge.lean:287:8: declaration uses `sorry`
+  warning: Challenge.lean:300:8: declaration uses `sorry`
+  warning: Challenge.lean:322:8: declaration uses `sorry`
+  warning: Challenge.lean:356:8: declaration uses `sorry`
+  warning: Challenge.lean:398:8: declaration uses `sorry`
+  warning: Challenge.lean:428:8: declaration uses `sorry`
+  warning: Challenge.lean:453:8: declaration uses `sorry`
   Build completed successfully (8932 jobs).
   Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, QuaternaryCentroid.centroid_of_dim_four, QuaternaryCentroid.sq_and_idempotent_iff, QuaternaryCentroid.det_eq_sq_mul_of_lieEquiv, QuaternaryCentroid.isometry_conj_eq_det_smul, QuaternaryCentroid.centroid_scalar_of_dim_ne_four, QuaternaryCentroid.centroid_scalar_so', QuaternaryCentroid.centroid_real_diagonal, QuaternaryCentroid.centroid_traceForm, QuaternaryCentroid.centroid_traceForm_of_root, QuaternaryCentroid.not_lieEquiv_diagonal_of_root, QuaternaryCentroid.controls, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
   Building Solution
@@ -535,4 +558,4 @@ Full output of the final Comparator run (lake comparator --inadvisably-no-sandbo
   Lean default kernel accepts the solution
   Your solution is okay!
   exit 0
-  seconds 110
+  seconds 107

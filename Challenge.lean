@@ -7,35 +7,17 @@ public import Mathlib
 
 Let `F` be a field with `2 ≠ 0`, `B` a nondegenerate symmetric bilinear form on a four-dimensional
 `F`-vector space, and `so(B)` the Lie algebra of the `B`-skew-adjoint endomorphisms. A linear map
-`R : so(B) → so(B)` is *bracket-commuting* when `R ⁅X, Y⁆ = ⁅X, R Y⁆` for all `X`, `Y`. This entry
-is about the bracket-commuting maps, i.e. the centroid of the Lie algebra, of `so(B)`. Its
-statements say that the bracket-commuting maps of `so(B)` are the maps
-`a • id + b • H` for one operator `H` with `H ∘ H = det B`, a copy of the quadratic algebra
+`R : so(B) → so(B)` is *bracket-commuting* when `R ⁅X, Y⁆ = ⁅X, R Y⁆` for all `X`, `Y`. The
+statements say that the bracket-commuting maps of `so(B)`, i.e. its centroid, are the maps
+`a • id + c • H` for one operator `H` with `H ∘ H = det B`, a copy of the quadratic algebra
 `F[X]/(X² - det B)`; that the class of `det B` modulo nonzero squares is determined by the Lie
 algebra; that a linear map preserving `B` acts on `H` by its determinant; that in every other
 finite dimension the bracket-commuting maps are the maps `c • id`; and what this gives over `ℝ`
-and for the trace form of a number field of degree four.
+and for the trace form of a number field of degree four, with the field of `x⁴ - x - 1`
+(discriminant `-283`) as the instance: over `ℚ`, the Lie algebra of its trace form is not
+isomorphic to the Lie algebra of the diagonal form `(1, 1, 1, -1)`.
 This entry compares exactly these eleven statements. It is a formalization; nothing in it is
 claimed as original mathematics.
-
-Sources, by statement. The ingredients are classical (the theory of quadratic forms and of
-algebras with involution). On the side of the Clifford algebra, the quadratic algebra of
-statement 1 is the centre of the even Clifford algebra, `F[X]/(X² - δ)` with `δ` a representative
-of the discriminant (Knus, Merkurjev, Rost, Tignol, *The Book of Involutions*, 1998, (8.10) and
-(15.7)), and statement 4 corresponds to (13.2) there: a similitude is proper if and only if it
-acts as the identity on that centre. These numbers are those of a pre-publication PDF of the
-book; the numbering of the printed book was not confirmed. Statement 5, in dimension three and
-in dimensions at least five, is stated for fields with `2 ≠ 0` and for the derived algebra, which
-is `so(B)` itself from dimension three on, in J. Leijnse, arXiv:2605.26398, Theorem 2.34, as a
-summary of results of N. Jacobson, *Lie Algebras*, Chapter X (Jacobson's book was not read for
-this entry). In statement 8, the
-discriminant of the trace form is the discriminant of the field, and its sign is `(-1) ^ r₂`
-(J. S. Milne, *Algebraic Number Theory*, v3.08, p. 33 and Proposition 2.40(a)). Statements 1–4
-and 8(a)–(b), which are about the Lie algebra itself, were not located as stated in the sources
-read for this entry; `README.md`, section "Relation to the literature", gives the stated results
-from which statement 1 can be derived and says which step of that derivation was not found
-stated. Statements 2 and 7 are arithmetic in the quadratic algebra of statement 1; statements 6,
-9 and 10 are examples and statement 11 is a set of controls.
 
 The square class. Wherever a statement below says `H (H X) = d • X`, the same statement holds for
 `t • H` with `t ^ 2 * d` in place of `d`, for every `t ≠ 0`, and `det B` itself is the determinant
@@ -45,13 +27,13 @@ Lie algebra determines is the class of `d` modulo nonzero squares (statements 2 
 The general theorem (statements 1–4):
 
 1. `centroid_of_dim_four` — there is a bracket-commuting `H` with `H (H X) = det B • X` such that
-   every bracket-commuting map is `a • id + b • H` for exactly one pair `(a, b)`; and a
+   every bracket-commuting map is `a • id + c • H` for exactly one pair `(a, c)`; and a
    bracket-commuting map that is not of the form `a • id` and has the same square is `H` or `-H`.
 2. `sq_and_idempotent_iff` — (a) a bracket-commuting map, not of the form `a • id`, with
-   `R (R X) = c • X` exists if and only if `c = t ^ 2 * det B` for some `t ≠ 0`; (b) one with
-   `R (R X) = -X` exists if and only if `-det B` or `-1` is a square; (c) a bracket-commuting
-   idempotent other than `0` and `id` exists if and only if `det B` is a square; (d) there are at
-   most two such idempotents, `P` and `id - P`.
+   `R (R X) = c • X` exists if and only if `c = t ^ 2 * det B` for some `t ≠ 0`; (b) a
+   bracket-commuting map, of the form `a • id` or not, with `R (R X) = -X` exists if and only if
+   `-det B` or `-1` is a square; (c) a bracket-commuting idempotent other than `0` and `id` exists
+   if and only if `det B` is a square; (d) when they exist there are exactly two, `P` and `id - P`.
 3. `det_eq_sq_mul_of_lieEquiv` — if `so(B)` and `so(B')` are isomorphic Lie algebras, then
    `det B' = t ^ 2 * det B` for some `t ≠ 0`.
 4. `isometry_conj_eq_det_smul` — if `g` is a linear map preserving `B`, then `det g = ±1`,
@@ -70,7 +52,7 @@ Corollaries and examples (statements 7–10):
 
 7. `centroid_real_diagonal` — over `ℝ`, for a diagonal form with entries `±1` in dimension four:
    if the product of the entries is `-1` (signature `(3, 1)` or `(1, 3)`), the bracket-commuting
-   maps are `a • id + b • J` with `J (J X) = -X`, a copy of `ℂ`; if the product is `1` (signature
+   maps are `a • id + c • J` with `J (J X) = -X`, a copy of `ℂ`; if the product is `1` (signature
    `(4, 0)`, `(0, 4)` or `(2, 2)`), they are `a • P + c • (id - P)` for a bracket-commuting
    idempotent `P` other than `0` and `id`, a copy of `ℝ × ℝ`.
 8. `centroid_traceForm` — for a number field `K` of degree four with its trace form
@@ -102,20 +84,35 @@ Conventions.
 * `LinearMap.BilinForm.toMatrix b B` is the Gram matrix `(B (b i) (b j))` of `B` in the basis `b`;
   "`det B`" above stands for its determinant. A vector space with a basis indexed by a type with
   four elements is a four-dimensional vector space.
-* `∃! ab : F × F, R = ab.1 • LinearMap.id + ab.2 • H` says that `R = a • id + b • H` for exactly
-  one pair `(a, b)`.
+* `∃! ab : F × F, R = ab.1 • LinearMap.id + ab.2 • H` says that `R = a • id + c • H` for exactly
+  one pair `(a, c)`.
 * `NumberField.discr K` is Mathlib's discriminant of the number field `K`, an integer, read in
   `ℚ`; `Algebra.traceForm ℚ K` is the form `(x, y) ↦ Tr_{K/ℚ}(x * y)`.
+
+Sources, by statement. The ingredients are classical (the theory of quadratic forms and of
+algebras with involution). On the side of the Clifford algebra, the quadratic algebra of
+statement 1 is the centre of the even Clifford algebra, `F[X]/(X² - δ)` with `δ` a representative
+of the discriminant (Knus, Merkurjev, Rost, Tignol, *The Book of Involutions*, 1998, (8.10) and
+(15.7)), and statement 4 corresponds to (13.2) there: a similitude is proper if and only if it
+acts as the identity on that centre. These numbers are those of a pre-publication PDF of the
+book; the numbering of the printed book was not confirmed. Statement 5, in dimension three and
+in dimensions at least five, is stated for fields with `2 ≠ 0` and for the derived algebra, which
+is `so(B)` itself from dimension three on, in D. Leijnse, arXiv:2605.26398, Theorem 2.34, as a
+summary of results of N. Jacobson, *Lie Algebras*, Chapter X (Jacobson's book was not read for
+this entry). In statement 8, the
+discriminant of the trace form is the discriminant of the field, and its sign is `(-1) ^ r₂`
+(J. S. Milne, *Algebraic Number Theory*, v3.08, p. 33 and Proposition 2.40(a)). Statements 1–4
+and 8(a)–(b), which are about the Lie algebra itself, were not located as stated in the sources
+read for this entry; `README.md`, section "Relation to the literature", derives statement 1 from
+the stated results. Statements 2 and 7 are arithmetic in the quadratic algebra of statement 1;
+statements 6, 9 and 10 are examples and statement 11 is a set of controls.
 
 Scope.
 * Fields with `2 = 0` are excluded throughout.
 * Statement 4 is about the automorphisms of `so(B)` that are conjugation by a linear map
   preserving `B`. Other automorphisms of `so(B)` are not treated.
-* The real statements 7 and 8 are about bracket-commuting maps only; no isomorphism of `so(B)`
-  with another real Lie algebra is compared here.
 * Statements 9 and 10 are about the trace form of the field and the Lie algebra of the
-  endomorphisms skew-adjoint for it. Nothing is stated about any other algebra or group attached
-  to the field.
+  endomorphisms skew-adjoint for it.
 
 Prior formalization (searches of 2026-11-13; `README.md`, "Prior formalization", gives files,
 lines, commits and the limits of the searches). TauCeti formalizes the Clifford-algebra side: the
@@ -123,19 +120,20 @@ centre of the even Clifford algebra as `K[X]/(X² - d)`, `d` the signed discrimi
 exactly when `d` is not a square (`CliffordAlgebra.adjoinRootEquivCenterEven`); in dimension
 four the even Clifford algebra and the Spin group over that centre; and, for the real definite
 four-space, the Hodge star on two-forms as multiplication by the chirality element
-(`bivectorExterior_hodgeStar`). `openai/math` has the existence clause of statement 1 for the
-real definite form, in matrix coordinates and with no Lie algebra type
-(`twoFormSkewAction_hodge`). Mathlib supplies the objects under "Conventions" and
-`NumberField.sign_discr`; it has no centroid of a Lie algebra and no centre of the even Clifford
-algebra. The author's entries PALOMAR-2026-10-21-000012 (the discriminant `-283` of the field of
-`x⁴ - x - 1`, used in the proofs of statements 9, 10 and 11(a)) and PALOMAR-2026-09-02-000014
+(`bivectorExterior_hodgeStar`). `openai/math` has, for the real definite
+form, in matrix coordinates and with no Lie algebra type, the existence clauses of statements 1
+and 7(b) and the case `det g = 1` of statement 4 (`twoFormSkewAction_hodge`,
+`hodgeStarFour_oriented_frame_change`). Mathlib supplies the objects under "Conventions",
+`NumberField.sign_discr` and the type `so(B) →ₗ⁅F,so(B)⁆ so(B)` of Lie module morphisms, whose underlying maps are the
+bracket-commuting maps; it has no declaration named for the centroid of a Lie algebra and no
+centre of the even Clifford algebra. The author's entries PALOMAR-2026-10-21-000012 (the
+discriminant `-283` of the field of `x⁴ - x - 1`, used in the proofs of statements 9, 10 and 11(a)) and PALOMAR-2026-09-02-000014
 (the trace matrix of `ℚ[x]/(x⁴ - x - 1)`) prove facts that are not compared here. In the places
-searched, no formalization of a centroid of a Lie algebra, or of the bracket-commuting maps of
-an orthogonal Lie algebra, was found: a dated search result, not a statement that none exists.
+searched, no description of the bracket-commuting maps of an orthogonal Lie algebra was found: a
+dated search result, not a statement that none exists.
 
 Not formalized here (see also "Scope"). The Clifford algebra and the relation between `H` and its
-central element; an isomorphism of `so(B)` with another Lie algebra, over any field (in
-particular, statement 10 does not say that the two real Lie algebras are isomorphic); the
+central element; an isomorphism of `so(B)` with another Lie algebra, over any field; the
 integral trace form; any group.
 
 Proofs. Computations with matrices on Mathlib's Lie algebras of skew-adjoint endomorphisms and
@@ -170,8 +168,8 @@ there is an `F`-linear endomorphism `H` such that:
 `F × F` with `R = a • id + c • H`;
 (d) every bracket-commuting `F`-linear endomorphism `H'` that is not of the form `a • id` and
 satisfies `H' (H' X) = d • X` for all `X` is `H` or `-H`.
-So the bracket-commuting maps are a copy of the quadratic algebra `F[X]/(X² - d)`. The square
-class: for `t ≠ 0`, the operator `t • H` has (a) and (c), and (b) with `t ^ 2 * d` in place of `d`;
+So the bracket-commuting maps form an algebra under composition, isomorphic to `F[X]/(X² - d)`
+by `X ↦ H`. The square class: for `t ≠ 0`, the operator `t • H` has (a) and (c), and (b) with `t ^ 2 * d` in place of `d`;
 what is determined is the class of `d` modulo nonzero squares (statements 2 and 3). -/
 theorem centroid_of_dim_four {F V ι : Type*} [Field F] [AddCommGroup V] [Module F V]
     [Fintype ι] [DecidableEq ι] (h2 : (2 : F) ≠ 0) (hι : Fintype.card ι = 4)
@@ -353,8 +351,8 @@ Mathlib's integral basis `ω = NumberField.integralBasis K` by reading its ratio
 On the Lie algebra over `ℝ` of the `G`-skew matrices there is a bracket-commuting `ℝ`-linear
 endomorphism `H` with `H (H X) = (-1) ^ r₂ • X` for all `X`, where `r₂` is the number of complex
 places of `K`, such that every bracket-commuting `R` is `a • id + c • H` for exactly one pair
-`(a, c)` of real numbers. (Over `ℝ` the class modulo nonzero squares is the sign: `t • H` has
-square `t ^ 2 * (-1) ^ r₂`, and what is determined is the sign `(-1) ^ r₂`, the sign of `d_K`.) -/
+`(a, c)` of real numbers. (Over `ℝ` the class of `d_K` modulo nonzero squares is its sign,
+`(-1) ^ r₂`.) -/
 theorem centroid_traceForm (K : Type*) [Field K] [NumberField K]
     (hK : Module.finrank ℚ K = 4) :
     (∃ H : skewAdjointLieSubalgebra (Algebra.traceForm ℚ K) →ₗ[ℚ]
@@ -386,8 +384,7 @@ theorem centroid_traceForm (K : Type*) [Field K] [NumberField K]
 the trace form of `K` over `ℚ`.
 (a) There is a bracket-commuting `ℚ`-linear endomorphism `H` of `L` with `H (H X) = (-283) • X`
 for all `X`, such that every bracket-commuting `R` is `a • id + c • H` for exactly one pair
-`(a, c)` of rational numbers. (As in statement 1, what is determined is the class of `-283`
-modulo nonzero rational squares.)
+`(a, c)` of rational numbers.
 (b) No bracket-commuting `ℚ`-linear endomorphism `R` of `L` satisfies `R (R X) = -X` for all `X`
 (`283` is not the square of a rational number).
 (c) Over `ℝ`, on the Lie algebra of the real matrices that are skew for the trace matrix of

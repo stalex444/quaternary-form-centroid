@@ -11,23 +11,31 @@ symmetric bilinear form on a four-dimensional `F`-vector space, and `so(B)` the 
 `B`-skew-adjoint endomorphisms. A linear map `R : so(B) → so(B)` is **bracket-commuting** when
 `R ⁅X, Y⁆ = ⁅X, R Y⁆` for all `X`, `Y`; the bracket-commuting maps are what is usually called the
 centroid of the Lie algebra. This repository proves that the bracket-commuting maps of `so(B)` are
-the maps `a • id + b • H` for one operator `H` with `H ∘ H = det B`, a copy of the quadratic
+the maps `a • id + c • H` for one operator `H` with `H ∘ H = det B`, a copy of the quadratic
 algebra `F[X]/(X² - det B)`; that the class of `det B` modulo nonzero squares is determined by the
 Lie algebra; that a linear map preserving `B` acts on `H` by its determinant; that in every other
 finite dimension the bracket-commuting maps are the maps `c • id`; and what this gives over `ℝ`
-and for the trace form of a number field of degree four. It compares exactly eleven statements.
+and for the trace form of a number field of degree four, with the field of `x⁴ - x - 1`
+(discriminant `-283`) as the instance: over `ℚ`, the Lie algebra of its trace form is not
+isomorphic to the Lie algebra of the diagonal form `(1, 1, 1, -1)`.
+It compares exactly eleven statements (those of `Challenge.lean`, which the registry's Comparator checks against
+`Solution.lean`).
 
-Here `det B` is the determinant of the Gram matrix of `B` in a chosen basis. It changes by a
-nonzero square with the basis, and for `t ≠ 0` the operator `t • H` has square `t² · det B`. What
-the Lie algebra determines is the class of `det B` modulo nonzero squares.
+Here `det B` is the determinant of the Gram matrix of `B` in a chosen basis; it changes by a
+nonzero square with the basis, and for `t ≠ 0` the operator `t • H` has square `t² · det B`. For a
+diagonal form, `H` is the Hodge star on skew matrices: it exchanges the entries at complementary
+pairs of indices, with signs and with weights from the form ("The proofs").
 
-This entry is a formalization; nothing in it is claimed as original mathematics. The ingredients
-are classical (the theory of quadratic forms and of algebras with involution): on the side of the
-Clifford algebra, the quadratic algebra above is the centre of the even Clifford algebra. The
-statements for the Lie algebra itself (1–4 and the rational clauses of 8) were not located as
-stated in the sources read for this entry; see "Relation to the literature". The Clifford-algebra
-side is already formalized in TauCeti, and the existence clause of statement 1 at the real
-definite form, in coordinates, in `openai/math`; see "Prior formalization".
+This entry is a formalization; nothing in it is claimed as original mathematics. The mathematics
+is the classical `D₂ = A₁ × A₁` in the form it takes for the Lie algebra: `F[X]/(X² - det B)` is
+the centre `Z` of the even Clifford algebra of `B`, and `so(B)` is the Lie algebra of pure
+quaternions of a quaternion algebra over `Z` (*The Book of Involutions*, (8.10), (8.18),
+(15.6)–(15.8)). The statements about the bracket-commuting maps themselves (1–4 and the rational
+clauses of 8) were not located as stated in the sources read; "Relation to the literature"
+derives statement 1 from the stated results. The Clifford-algebra side is formalized in the Lean
+library TauCeti, and the existence clauses of statements 1 and 7(b) and the case `det g = 1` of
+statement 4, for the real definite form, in coordinates, in `openai/math`; see "Prior
+formalization".
 
 ## Who this is for
 
@@ -36,16 +44,14 @@ definite form, in coordinates, in `openai/math`; see "Prior formalization".
   even Clifford algebra and the Spin group over that centre ("Prior formalization" names the
   files). Statements 1–4 are the corresponding statements for the Lie algebra of the form, and
   statement 5 says that for the Lie algebra, unlike for the centre of the even Clifford algebra,
-  dimension four is the only dimension in which this happens. All eleven statements import Mathlib
-  only, so such a development can be checked against them.
+  dimension four is the only dimension in which this happens. `Challenge.lean` imports Mathlib
+  only, so such a development can be checked against its eleven statements.
 - **Readers of the current literature in which these objects are in use.** The centre of the even
   Clifford algebra of a quaternary quadratic space and the quaternion structure over it: M. Aka,
   K. Andritsch, A. Wieser, *Planes in quadratic 4-space and associated shapes of lattices*,
   arXiv:2606.03472 (§2.1–2.2, Proposition 2.6). Centroids of simple Lie algebras, the Lie algebras
   of skew elements of algebras with involution and their centroids, and type `D₂` in degree four:
-  D. Leijnse, arXiv:2605.26398 (§2.1.2, Theorem 2.34, Theorem 2.36, Lemma 3.72). Centroids of Lie
-  algebras in structure theory: O. Mathieu, *Weakly Noetherian Lie Algebra and the Sierra-Walton
-  Conjecture*, arXiv:2605.18116 (§5, Proposition 20).
+  D. Leijnse, arXiv:2605.26398 (§2.1.2, Theorem 2.34, Theorem 2.36, Lemma 3.72).
 - **Trace forms of number fields.** Statement 8 uses only the class of the discriminant modulo
   rational squares. The integral trace form is a finer invariant, studied in W. Bolaños,
   G. Mantilla-Soler, *The trace form over cyclic number fields*, Canad. J. Math. 73 (2021)
@@ -56,11 +62,11 @@ definite form, in coordinates, in `openai/math`; see "Prior formalization".
   Algebras*, author's PDF v.1.0.7u of 5 August 2026, 38.3.10, p. 708: for an order `O` of a
   quaternion algebra over a number field `F`, the group `Γ¹(O)` is a Kleinian group if and only
   if "F has exactly one complex place and B is ramified at all real places", where `B` is the
-  quaternion algebra): for a rational
-  quaternary form of negative determinant, the quadratic algebra `ℚ[X]/(X² - det B)` of statement
+  quaternion algebra): for a rational quaternary form of negative determinant, the quadratic algebra `ℚ[X]/(X² - det B)` of statement
   1 is an imaginary quadratic field, a number field of that kind (`ℚ(√-283)` for the trace form
   of statement 9), and statement 3 says that its isomorphism class is determined by the Lie
-  algebra over `ℚ`; no statement of this entry is about a group, and the entry does not say that
+  algebra over `ℚ`; no group is defined in this entry (statement 4 is about individual linear maps
+  preserving `B`), and the entry does not say that
   its Lie algebra, or a lattice in it, is, gives or equals a Kleinian group.
 
 ## The compared statements (namespace `QuaternaryCentroid`)
@@ -77,16 +83,17 @@ The general theorem (the lead group, statements 1–4), for a field with `2 ≠ 
 nondegenerate form `B` in dimension four:
 
 1. `centroid_of_dim_four` — there is a bracket-commuting `H` with `H (H X) = det B • X` such that
-   every bracket-commuting map is `a • id + b • H` for exactly one pair `(a, b)`; and a
+   every bracket-commuting map is `a • id + c • H` for exactly one pair `(a, c)`; and a
    bracket-commuting map that is not of the form `a • id` and has the same square is `H` or `-H`.
 2. `sq_and_idempotent_iff` — (a) a bracket-commuting map, not of the form `a • id`, with square
-   `c` exists if and only if `c = t² · det B` for some `t ≠ 0`; (b) one with square `-1` exists if
-   and only if `-det B` or `-1` is a square (the second alternative is the case `a • id` with
-   `a² = -1`); (c) a bracket-commuting idempotent other than `0` and `id` exists if and only if
+   `c` exists if and only if `c = t² · det B` for some `t ≠ 0`; (b) a bracket-commuting map with square
+   `-1`, of the form `a • id` or not, exists if and only if `-det B` or `-1` is a square (the second
+   alternative is the case `a • id` with `a² = -1`); (c) a bracket-commuting idempotent other than `0` and `id` exists if and only if
    `det B` is a square; (d) two such idempotents `P`, `Q` satisfy `Q = P` or `Q = id - P`.
 3. `det_eq_sq_mul_of_lieEquiv` — if `so(B)` and `so(B')` are isomorphic Lie algebras over `F`,
    then `det B' = t² · det B` for some `t ≠ 0`.
-4. `isometry_conj_eq_det_smul` — for every linear map `g` preserving `B`: `det g` is `1` or `-1`;
+4. `isometry_conj_eq_det_smul` — for every isometry `g` of `B` (a linear map with
+   `B (g x) (g y) = B x y`): `det g` is `1` or `-1`;
    conjugation by `g` is a Lie algebra equivalence `φ` of `so(B)`; and `φ ∘ H ∘ φ⁻¹ = det g • H`
    for every bracket-commuting `H`, not of the form `a • id`, whose square is a scalar. A map
    preserving `B` with determinant `-1` exists. With statement 1: conjugation by `g` fixes every
@@ -96,7 +103,8 @@ nondegenerate form `B` in dimension four:
 Other dimensions (statements 5–6):
 
 5. `centroid_scalar_of_dim_ne_four` — for a nondegenerate symmetric form in any finite dimension
-   other than four, every bracket-commuting map of `so(B)` is `c • id`.
+   other than four, every bracket-commuting map of `so(B)` is `c • id` (for a simple Lie algebra
+   this is the property called central).
 6. `centroid_scalar_so'` — an example of the same fact on Mathlib's matrix Lie algebras
    `LieAlgebra.Orthogonal.so' p q ℝ`: when `card p + card q ≠ 4`, every bracket-commuting map is
    `c • id`.
@@ -105,7 +113,7 @@ Corollaries and examples (statements 7–10):
 
 7. `centroid_real_diagonal` — over `ℝ`, for a diagonal form with entries `±1` in dimension four:
    if the product of the entries is `-1` (signature `(3, 1)` or `(1, 3)`), the bracket-commuting
-   maps are `a • id + b • J` with `J (J X) = -X`, a copy of `ℂ`; if the product is `1` (signature
+   maps are `a • id + c • J` with `J (J X) = -X`, a copy of `ℂ`; if the product is `1` (signature
    `(4, 0)`, `(0, 4)` or `(2, 2)`), they are `a • P + c • (id - P)` for a bracket-commuting
    idempotent `P` other than `0` and `id`, a copy of `ℝ × ℝ`. This is statements 1 and 2 over `ℝ`,
    where the class of the determinant modulo squares is its sign.
@@ -125,8 +133,7 @@ Corollaries and examples (statements 7–10):
     of the diagonal form `(1, 1, 1, -1)`, which does have a rational bracket-commuting map of
     square `-1`. The invariant is the class of the determinant modulo rational squares: `-283`
     against `-1`. Over `ℝ` the Lie algebras of the two forms both have a bracket-commuting map of
-    square `-1` (statements 9(c) and 7(a)); this entry does not state that they are isomorphic
-    over `ℝ`.
+    square `-1` (statements 9(c) and 7(a)).
 
 Controls (statement 11):
 
@@ -163,7 +170,7 @@ The proofs are computations with matrices; they do not go through the Clifford a
   (`LorentzLie.exists_hodge_matrix`), and the result is carried to the endomorphisms by the matrix
   of an endomorphism in the basis (`LorentzLie.exists_hodge_of_basis`). The clause "`H` or `-H`"
   is `LorentzLie.hodge_of_basis_eq_or_eq_neg`.
-- **Statement 2** is arithmetic with `a • id + b • H` and `H ∘ H = det B`
+- **Statement 2** is arithmetic with `a • id + c • H` and `H ∘ H = det B`
   (`LorentzLie.exists_nonscalar_sq_iff`, `LorentzLie.exists_sq_neg_one_iff`; the idempotent
   clauses in `QuaternaryCentroid/Bridge.lean`: an idempotent other than `0`, `id` is
   `½ • id + β • H` with `4 β² det B = 1`).
@@ -195,28 +202,19 @@ the definition carried by the Challenge, and declare
 `attribute [local instance] LieRing.ofAssociativeRing` (in Mathlib this is a definition, not a
 global instance). `Challenge.lean` and `Solution.lean` declare neither an attribute nor an `open`:
 every compared statement elaborates on Mathlib's default instances, and each is closed in
-`Solution.lean` by one `exact` of a library theorem whose statement is definitionally equal.
-
-The library modules (`LorentzLie/`) were written on 2026-11-12, before the sources were read.
-The proofs in `QuaternaryCentroid/Bridge.lean` (statement 4, statement 2(c)–(d), statement 7(b))
-were written on 2026-11-13, when the report of the search for sources and prior formalizations
-was in hand; they are computations with matrices and follow no source's route (the sources work
-with the Clifford algebra or with algebras with involution, and neither occurs in the Lean).
+`Solution.lean` by one `exact`: of a single library theorem whose statement is definitionally
+equal (statements 1, 2, 3, 5, 6, 7, 9), or of the tuple of the library theorems that prove its
+clauses (statements 4, 8, 10, 11).
 
 ## Scope
 
 - Fields with `2 = 0` are excluded throughout.
 - Statement 4 is about the automorphisms of `so(B)` that are conjugation by a linear map
   preserving `B`. Other automorphisms of `so(B)` are not treated.
-- The real statements 7 and 8 are about bracket-commuting maps only; no isomorphism of `so(B)`
-  with another real Lie algebra is compared here.
 - Statements 9 and 10 are about the trace form of the field and the Lie algebra of the
-  endomorphisms skew-adjoint for it. Nothing is stated about any other algebra or group attached
-  to the field.
-- In statement 7 the hypothesis that every entry is `1` or `-1` is not needed for the truth of
-  the statement (the hypothesis on the product makes every entry nonzero). A form of the statement
-  without it, with the two cases selected by the sign of the product, was compiled as an option
-  and is not used.
+  endomorphisms skew-adjoint for it.
+- In statement 7 the hypothesis that every entry is `1` or `-1` is not needed (the hypothesis on
+  the product makes every entry nonzero); it is kept so that the signatures can be named.
 - Hypotheses that could be weakened without making a statement false, and are kept so that each
   statement stays on the case with content: in statement 3, the nondegeneracy of the two forms and
   one of the two cardinality hypotheses; in statement 4, "exactly four elements" could be "at
@@ -226,10 +224,7 @@ with the Clifford algebra or with algebras with involution, and neither occurs i
 ## Not formalized
 
 - The Clifford algebra of the form, and the relation between `H` and its central element.
-- Automorphisms of `so(B)` other than conjugations by maps preserving `B`.
-- An isomorphism of `so(B)` with another Lie algebra, over any field; in particular the entry does
-  not state that the real Lie algebras of two forms of the same signature are isomorphic.
-- Fields with `2 = 0`.
+- An isomorphism of `so(B)` with another Lie algebra, over any field.
 - The integral trace form of a number field.
 - Any group: no orthogonal group, Spin group or arithmetic group is defined or mentioned in a
   statement.
@@ -249,12 +244,14 @@ printed as "(??)"); the numbering of the printed book was not confirmed.
   acts on `so(B)` and commutes with the bracket. That the centroid is no larger than `Z`:
   commutativity of the centroid of a perfect algebra (Benkart and Neher, §2.1); centrality when
   `Z` is a field (Leijnse, Lemma 2.7, given there as a variant of a theorem of Jacobson's book,
-  which was not read); and, in the split case, that the centroid of a product is the product of
-  the centroids, which was looked for in Benkart and Neher's paper and not found stated. The
+  which was not read); and, in the split case, that the centroid of a product of two perfect
+  algebras is the product of the centroids. This step was not found stated in Benkart and Neher's
+  paper; it is immediate (a bracket-commuting `R` sends the ideal `A₁ = ⁅A₁, A₁⁆` into itself,
+  because `R ⁅x, y⁆ = ⁅x, R y⁆` lies in `A₁` for `x` in `A₁`). The
   proofs here do not use this route. The Clifford-side statement itself is (8.10) and, for a
   quaternary quadratic space over a field of characteristic zero, Aka, Andritsch and Wieser,
   §2.2.
-- **Statement 2** is arithmetic in `F[X]/(X² - det B)` from statement 1; not located as stated.
+- **Statement 2** is arithmetic in `F[X]/(X² - det B)` from statement 1.
   The idempotents are written on the Clifford side by Aka, Andritsch and Wieser (§2.2, p. 9), and
   Benkart and Neher, Lemma 2.1(d), relate idempotents of the centroid to decompositions.
 - **Statement 3** was not located as stated for dimension four. The nearest stated result at the
@@ -264,19 +261,24 @@ printed as "(??)"); the numbering of the printed book was not confirmed.
   conclusion in even dimension 6 and at least 10 (a two-step deduction, not formalized here;
   dimension 8 is not covered by the theorem as stated). In odd dimension the conclusion fails:
   rescaling the form changes the determinant class and not the Lie algebra (*The Book of
-  Involutions*, §7, p. 80). Statement 3 is the case that theorem leaves out, over every field with
-  `2 ≠ 0`, by a route (the bracket-commuting maps) that exists in dimension four only. Whether
+  Involutions*, §7, p. 80). Statement 3 gives the same conclusion in dimension
+  four (type `D₂`, which that theorem as stated does not include), over every field with `2 ≠ 0`,
+  by a route (the bracket-commuting maps) that exists in dimension four only. Whether
   Jacobson's Chapter X treats `D₂` elsewhere is not known to this entry.
-- **Statement 4**: the Clifford-side statement is (13.2), a similitude is proper if and only if it
-  restricts to the identity on the centre. Not located as stated for the Lie algebra.
+- **Statement 4**: the Clifford-side statement is (13.2), a similitude is proper if and only if the
+  automorphism it induces on the Clifford algebra is the identity on the centre.
 - **Statement 5** is stated, for fields of characteristic not 2 and for the derived algebra
   (equal to `so(B)` from dimension three on), in Leijnse, Theorem 2.34, given there as a summary
   of results of Jacobson's Chapter X: types `B_l` (`l ≥ 1`) and `D_l` (`l ≥ 3`). Dimensions 0, 1
   and 2 are immediate. The simplicity claims of that theorem in positive characteristic were not
   checked against a primary source; the proof here does not use them.
+- **Statement 7** is statements 1 and 2 over `ℝ`. For signature `(3, 1)` it is the form taken on
+  bracket-commuting maps by the textbook isomorphism of the real Lie algebras `so(3, 1)` and
+  `sl(2, ℂ)` (named in Voight, §36.3, p. 658); for the other signatures, by the coincidence of types `D₂ = A₁ × A₁`
+  (named in Benkart and Neher, §3.3, p. 18). Neither isomorphism is formalized here.
 - **Statement 8** is statements 1 and 2 on the trace form, whose discriminant is the field
   discriminant (Milne, *Algebraic Number Theory*, v3.08, p. 33), with the sign of the discriminant
-  (Proposition 2.40(a)). Not located as stated.
+  (Proposition 2.40(a)).
 - **Statement 9** is statement 8 at the discriminant `-283` (LMFDB, number field 4.2.283.1).
 - Terminology. "Centroid" is the standard name (Benkart and Neher, §1). *The Book of Involutions*
   calls another object "the discriminant algebra" ((10.28), for involutions of the second kind);
@@ -288,8 +290,7 @@ References, with the form in which each was read (bibliographic records checked 
 against Crossref, the arXiv records, or the page named):
 
 - M.-A. Knus, A. Merkurjev, M. Rost, J.-P. Tignol, *The Book of Involutions*, American
-  Mathematical Society Colloquium Publications 44, 1998, doi:10.1090/coll/044. Read in the
-  pre-publication PDF named above; the printed book was not opened.
+  Mathematical Society Colloquium Publications 44, 1998, doi:10.1090/coll/044.
 - D. Leijnse, *Varieties admitting a holomorphic symplectic form: LLV algebras and derived
   equivalences*, arXiv:2605.26398v1 [math.AG], 26 May 2026.
 - G. Benkart, E. Neher, *The centroid of extended affine and root graded Lie algebras*,
@@ -305,9 +306,7 @@ against Crossref, the arXiv records, or the page named):
 - J. Voight, *Quaternion Algebras*, Graduate Texts in Mathematics, Springer, 2021,
   doi:10.1007/978-3-030-56694-4. Read in the author's PDF v.1.0.7u of 5 August 2026, whose pages
   and numbering differ slightly from the printed edition; cited for one sentence of "Who this is
-  for" only.
-- O. Mathieu, *Weakly Noetherian Lie Algebra and the Sierra-Walton Conjecture*,
-  arXiv:2605.18116v1 [math.RA], 18 May 2026.
+  for" and for the result named in the bullet on statement 7.
 - W. Bolaños, G. Mantilla-Soler, *The trace form over cyclic number fields*, Canad. J. Math. 73
   (2021) 947–969, doi:10.4153/S0008414X20000255, arXiv:1904.10080.
 - G. Mantilla-Soler, C. Rivera, *The integral trace form as a complete invariant for real `S_n`
@@ -319,10 +318,12 @@ against Crossref, the arXiv records, or the page named):
 ## Prior formalization
 
 Searches of 2026-11-13. What follows is the result of a dated search, not a statement that
-nothing else exists. The opening docstring of `Challenge.lean` carries a summary of this section.
+nothing else exists.
 
-**Not found in any place searched:** a centroid of a Lie algebra, or a description of the
-bracket-commuting linear maps of an orthogonal Lie algebra.
+**Not found in any place searched:** a declaration named for the centroid of a Lie algebra, or a
+description of the bracket-commuting linear maps of an orthogonal Lie algebra. The maps themselves
+are those underlying Mathlib's `L →ₗ⁅F,L⁆ L`, and TauCeti has Schur's lemma for irreducible Lie
+modules (table below).
 
 **TauCeti** ([`TauCetiProject/TauCeti`](https://github.com/TauCetiProject/TauCeti/tree/3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9),
 read at commit `3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9`; lines are those of that commit; every
@@ -337,7 +338,7 @@ Lie-equivalent to the quadratic elements of the Clifford algebra (`Quadratic/Rea
 and for the real definite four-space the Hodge star on two-forms is multiplication by the
 chirality element, which is minus the volume element (`Chirality.lean`). The present entry proves
 the corresponding statement for the Lie algebra itself, over any field with `2 ≠ 0`: the linear
-maps of `so(B)` that commute with the bracket are `a • id + b • H` with `H ∘ H = det B`, in
+maps of `so(B)` that commute with the bracket are `a • id + c • H` with `H ∘ H = det B`, in
 dimension four, and are `c • id` in every other finite dimension (the centre of the even Clifford
 algebra has dimension two in every positive even dimension). It was proved by matrix computation
 on Mathlib's `skewAdjointLieSubalgebra` and imports nothing from TauCeti.
@@ -359,9 +360,10 @@ on Mathlib's `skewAdjointLieSubalgebra` and imports nothing from TauCeti.
 | `Algebra/Lie/SkewAdjoint.lean` | `skewAdjointLieEquivOfBasis`, 150 | The same equivalence as this repository's helper `LorentzLie.FormCentroid.skewAdjointEquivMatrices`, in the opposite direction, over a commutative ring. |
 | `Algebra/Lie/AEval.lean` | 75 | The bracket-commuting hypothesis in use; no description of the maps that satisfy it. |
 | `Algebra/Lie/Orthogonal/Killing.lean` | 116, 171 | Irreducibility of the standard module and trivial radical for at least three indices; adjacent to statement 5. |
+| `Algebra/Lie/Weights/Central.lean`; `Algebra/Lie/Schur.lean` | `exists_forall_apply_eq_smul`, 137; `finrank_lieModuleHom_self`, 196 | Schur's lemma for Lie modules: over an algebraically closed field every morphism of a finite-dimensional irreducible Lie module to itself is a scalar. At the adjoint module these morphisms are the bracket-commuting maps, so this is the general tool nearest to statement 5; it was not found applied to an orthogonal Lie algebra, and statement 5 assumes neither an algebraically closed field nor irreducibility. |
 | `NumberTheory/NumberField/InfinitePlace/Basic.lean` | 230 | The sign of the discriminant in parity form; not used here. |
 
-Not found in TauCeti by these searches: a centroid of a Lie algebra; a description of the
+Not found in TauCeti by these searches: a declaration named for the centroid of a Lie algebra; a description of the
 bracket-commuting maps of an orthogonal Lie algebra; a Lie equivalence between an orthogonal Lie
 algebra of rank four and a product; a statement about `so` of the trace form of a number field.
 TauCeti's head on 2026-11-13 (`8b9f13d9936343c962096355455995c9a128af39`) was searched by file
@@ -369,8 +371,8 @@ name only: 1,219 files were added between the commit read and that head. The sea
 repeated at the commit current on the day of submission.
 
 **openai/math** ([`lean/OAI/Geometry/EinsteinFour`](https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Geometry/EinsteinFour),
-commit `4eaee87548250b2682affda7d05d947c05554bae`). The real definite instance, in matrix
-coordinates. `CurvatureTensors02.lean`: `hodgeStarFour` (9810), `twoFormHodge_involutive` (10283),
+commit `4eaee87548250b2682affda7d05d947c05554bae`). The existence clauses at the real definite form,
+in matrix coordinates. `CurvatureTensors02.lean`: `hodgeStarFour` (9810), `twoFormHodge_involutive` (10283),
 `twoFormSkewAction_matrix` (10792), `twoFormSkewAction_hodge` (10808), `hodgeStarFour_quaternion`
 (9835), `hodgeStarFour_opposite` (9840), `twoFormSkewAction_selfDual` (10819),
 `twoFormSkewAction_antiSelfDual` (10823), `hodgeStarFour_oriented_frame_change` (11011);
@@ -383,30 +385,35 @@ statement that the bracket-commuting maps are exhausted; a map of determinant `-
 or field; the discriminant. A second folder, `Geometry/TamingCompatibility`, has an involutive
 Hodge star on two-forms (`DifferentialForms/StarTwoComp.lean`: `starTwo_square`, 120;
 `starTwo_comp`, 31); two files of that folder were read. Limit: 1,036 files were fetched and
-searched by content and three more fetched by name; the other 162,060 files of the repository were
+searched by content and three more fetched by name; the remaining files (about 162,000 of 163,097) were
 searched by file name only.
 
 **Mathlib at the pin** (`065356127b1dc0016f66b7283ce0ce2c4055aa55`) supplies
 `skewAdjointLieSubalgebra`, `skewAdjointMatricesLieSubalgebra`, `LieAlgebra.Orthogonal.so'`,
 `LinearMap.BilinForm.toMatrix`, `NumberField.discr`, `Algebra.traceForm`, and
-`NumberField.sign_discr` (used for statement 8(c)). It has no centroid of a Lie algebra
-(`CentroidHom` is for non-associative rings and is not used here), no centre of the even Clifford
-algebra, and `exteriorPower.hodgeStar` with its square identity as a TODO of that file.
+`NumberField.sign_discr` (used for statement 8(c)). It has no declaration named for the
+centroid of a Lie algebra (`centroid` does not occur under `Mathlib/Algebra/Lie`; `CentroidHom` is
+for non-associative rings and is not used here); the bracket-commuting maps of `L` are the linear
+maps underlying its Lie module morphisms `L →ₗ⁅F,L⁆ L` (`LieModuleHom`, whose field `map_lie'` is
+the equation of `IsBracketCommuting`), and no description of that space for an orthogonal Lie
+algebra was found there. It has no centre of the even Clifford algebra, and
+`exteriorPower.hodgeStar` with its square identity as a TODO of that file.
 
-**Other Lean libraries searched:** physlib (`76e1b4f0171d27a0d35334a633263a40ecf24fd5`),
-atlas-lean (`f83e3b9054234d1c0f6455272c774f4559b44522`), OSreconstruction
+**Other Lean libraries searched:** `leanprover-community/physlib`
+(`76e1b4f0171d27a0d35334a633263a40ecf24fd5`), `facebookresearch/atlas-lean`
+(`f83e3b9054234d1c0f6455272c774f4559b44522`), `xiyin137/OSreconstruction`
 (`cf0904e34a7c146a9f312f601e3707dca4a87697`, 40 files and file names) and the Yang–Mills release
-(`3456e5e75cf8d4cd558955a5c7638fba2d68f464`): nothing related to these statements was found.
+`yang-mills-group/OpenAI-YM-20261028` (`3456e5e75cf8d4cd558955a5c7638fba2d68f464`): nothing
+related to these statements was found.
 physlib's `lorentzAlgebra` is defined on `LieAlgebra.Orthogonal.so' (Fin 1) (Fin 3) ℝ`
 (`Physlib/Relativity/LorentzAlgebra/Basic.lean:30`), the cardinality that statement 6 excludes.
 
-**Outside Lean** (searches described in the working records): Isabelle AFP (entry ids), Coq
-(math-comp), HOL Light (four files) and Metamath (`set.mm`): no centroid of an orthogonal Lie
-algebra, no quadratic algebra of a quaternary form and no centre of the even Clifford algebra was
-found by these searches.
-
-The report of the search is a working record of the author's project and is not part of this
-repository.
+**Outside Lean:** Isabelle AFP (the 1,054 entry ids of the site map, matched against `clifford`,
+`quadratic`, `orthogonal`, `discrimin`, `hodge`, `exterior`, `lie`, `centr`; ids only), Coq (the
+file tree of `math-comp/math-comp` and its `algebra/sesquilinear.v`; no other Coq repository), HOL
+Light (`Multivariate/clifford.ml` and four files under `Geometric_Algebra/` and `Quaternions/`) and
+Metamath (`set.mm`, by term): no centroid of an orthogonal Lie algebra, no quadratic algebra of a
+quaternary form and no centre of the even Clifford algebra was found by these searches.
 
 ## Relation to the author's other entries
 
@@ -447,14 +454,17 @@ commit below was checked against the public repository on 2026-11-13.
   bracket-commuting maps.
 - **A separate entry in preparation** (no identifier yet; described as it stood on 2026-11-13):
   the Lorentz Lie algebra of Minkowski space, stated on copies carried from the public statement
-  of the Yang–Mills release. Its statement on invariant bilinear forms (every invariant bilinear
+  of the Yang–Mills release. Its lead statements are the isomorphism of that Lie algebra with
+  `sl(2, ℂ)` as a real Lie algebra, the exponential criterion and the complexification; the
+  isomorphism is on the Lie algebra of statement 7(a) here at the form `(1, 1, 1, -1)`, and it
+  carries that entry's operator `H` to multiplication by `-i`. Its statement on invariant bilinear forms (every invariant bilinear
   form is `a · tr(XY) + b · tr(H(X) Y)` for exactly one pair `(a, b)`) is proved from the
   description of the bracket-commuting maps at the form `(1, 1, 1, -1)`, and it cites this entry
   for that description. It also compares the existence of a bracket-commuting `H` with
   `H ∘ H = -1` at that form, which is the existence part of statement 7(a) here at one form and
   on endomorphisms instead of matrices, and Lie algebra equivalences for the definite and split
   forms, which are on the Lie algebras of statement 7(b). The statement that every
-  bracket-commuting map is `a • id + b • H` with `H ∘ H = det B` is compared in this entry only.
+  bracket-commuting map is `a • id + c • H` with `H ∘ H = det B` is compared in this entry only.
 
 ## Layout
 
@@ -473,8 +483,10 @@ commit below was checked against the public repository on 2026-11-13.
 **Names.** The proof library keeps the namespace and module names it has in the author's
 unpublished development from which it is taken: `LorentzLie`, `GravityScreening`,
 `HermiteCompositum`. They were not renamed, because renaming would change the names of the
-declarations that were reviewed. `LorentzLie` is a name only; the entry makes no statement about
-physics. The operator `H` is called `hodge` in the library because for a diagonal form it is the
+declarations that were reviewed. `LorentzLie` refers to the Lie algebra of a form of signature `(3, 1)`,
+the Lorentz Lie algebra: it is the case of statement 7(a) and of the diagonal form `(1, 1, 1, -1)`
+of statement 10. Every statement of the entry is a mathematical statement; no physical
+identification is stated. The operator `H` is called `hodge` in the library because for a diagonal form it is the
 Hodge star on skew matrices.
 
 **Departures from the development's files** (`BUILD.txt` has the diffs and the checks).
@@ -490,9 +502,11 @@ and the value of every remaining declaration have the same hash before and after
 
 **The three `HermiteCompositum` modules** are not edited, so their docstrings are those of the
 registered entry and refer to that entry's own files: where they say `Challenge.lean` or
-`Solution.lean` they mean that entry's, they number that entry's compared statements, and line 33
-of `HermiteCompositum/Defs.lean` names a module `Hermite.lean` of that library which is not copied
-here (it is in the repository of PALOMAR-2026-10-21-000012).
+`Solution.lean` they mean that entry's, they number that entry's compared statements, and they name
+three modules of that library which are not copied here: `Hermite.lean` (line 33 of
+`HermiteCompositum/Defs.lean`), `Squarefree.lean` (line 180 of `HermiteCompositum/Instance.lean`)
+and `Places` (lines 363 and 370 of the same file); all three are in the repository of
+PALOMAR-2026-10-21-000012.
 
 ## Build
 
@@ -518,7 +532,10 @@ The Lean was developed with AI assistance (Anthropic Claude, in Claude Code) und
 direction. The statements were reviewed by separate AI sessions, with compiled probe files and an
 independent exact computation; the builds, the checks of `BUILD.txt` and a local run of the
 registry's Comparator were made on the author's machine. `formalization.yaml` (`automation`,
-`review`) gives the account. TODO (author): her own review of the eleven statements is not yet
+`review`) gives the account. The library modules (`LorentzLie/`) were written on 2026-11-12,
+before the sources were read. The proofs in `QuaternaryCentroid/Bridge.lean` (statement 4,
+statement 2(c)–(d), statement 7(b)) were written on 2026-11-13, when the report of the search for
+sources and prior formalizations was in hand. TODO (author): her own review of the eleven statements is not yet
 recorded.
 
 Licence: MIT (`LICENSE`). The repository contains no text of another project: the Challenge
