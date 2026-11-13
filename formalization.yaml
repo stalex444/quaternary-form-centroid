@@ -1,0 +1,761 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+# SKELETON (2026-11-13). Lines marked TODO are not settled: each is either the
+# author's decision or a fact that the checked inventory of sources and prior
+# formalizations does not contain. No TODO line may remain at submission.
+
+project:
+  # TODO (author): the title. This is the statement stage's working title.
+  name: "Bracket-commuting maps of the orthogonal Lie algebra of a quaternary form: the quadratic algebra F[X]/(X^2 - det B), the square class of the determinant, and the trace form of a number field of degree four"
+  description: >-
+    Kernel-checked proofs, in Lean 4 + Mathlib, of eleven statements about
+    the bracket-commuting maps (the centroid) of the Lie algebra so(B) of
+    the B-skew-adjoint endomorphisms, for a nondegenerate symmetric
+    bilinear form B on a finite-dimensional vector space over a field F
+    with 2 != 0. A linear map R : so(B) -> so(B) is bracket-commuting when
+    R[X, Y] = [X, R Y] for all X, Y. The general theorem, in dimension
+    four: (1) there is a bracket-commuting H with H(H X) = det B . X such
+    that every bracket-commuting map is a . id + b . H for exactly one
+    pair (a, b), and a bracket-commuting map that is not of the form
+    a . id and has the same square is H or -H; so the bracket-commuting
+    maps are a copy of the quadratic algebra F[X]/(X^2 - det B). Here
+    det B is the determinant of the Gram matrix in a chosen basis; for
+    t != 0 the operator t . H has square t^2 det B, and what is determined
+    is the class of det B modulo nonzero squares. (2) A bracket-commuting
+    map, not of the form a . id, with square c exists if and only if
+    c = t^2 det B for some t != 0; one with square -1 exists if and only
+    if -det B or -1 is a square; a bracket-commuting idempotent other
+    than 0 and id exists if and only if det B is a square, and there are
+    at most two, P and id - P. (3) If so(B) and so(B') are isomorphic Lie
+    algebras, then det B' = t^2 det B for some t != 0. (4) If g is a
+    linear map preserving B, then det g = +1 or -1, conjugation by g is a
+    Lie algebra equivalence phi of so(B), and phi H phi^{-1} = det g . H
+    for every bracket-commuting H, not of the form a . id, whose square
+    is a scalar; a map preserving B with determinant -1 exists. Other
+    dimensions: (5) in every finite dimension other than four every
+    bracket-commuting map of so(B) is c . id; (6) an example of the same
+    fact on Mathlib's matrix Lie algebras so' p q R with
+    card p + card q != 4. Corollaries and examples: (7) over R, for a
+    diagonal form with entries +1 or -1 in dimension four, the
+    bracket-commuting maps are a . id + b . J with J(J X) = -X (a copy of
+    C) when the product of the entries is -1, and a . P + c . (id - P)
+    for an idempotent P other than 0 and id (a copy of R x R) when the
+    product is 1; (8) for a number field K of degree four with its trace
+    form (x, y) -> Tr_{K/Q}(x y): over Q, H(H X) = d_K . X with d_K the
+    discriminant of K, and a rational bracket-commuting map of square -1
+    exists if and only if -d_K is a rational square; over R, on the trace
+    matrix of an integral basis, H(H X) = (-1)^{r_2} . X with r_2 the
+    number of complex places; (9) the example x^4 - x - 1: for a number
+    field K of degree four containing theta with theta^4 = theta + 1,
+    H(H X) = (-283) . X, no rational bracket-commuting map has square -1,
+    and over R one exists; (10) for the same K, the Lie algebra over Q of
+    the trace form of K is not isomorphic to the Lie algebra over Q of
+    the diagonal form (1, 1, 1, -1), which does have a rational
+    bracket-commuting map of square -1 (the classes of the determinants
+    modulo rational squares are those of -283 and -1). (11) Controls: a
+    number field as in (9) and (10) exists; for the degenerate diagonal
+    form (1, 1, 1, 0) over Q every bracket-commuting map is c . id; the
+    clause "not of the form a . id" cannot be dropped from (2). The
+    Challenge imports Mathlib only and carries one definition
+    (IsBracketCommuting). This entry is a formalization; nothing in it is
+    claimed as original mathematics. The ingredients are classical: on
+    the side of the Clifford algebra, the quadratic algebra of (1) is the
+    centre of the even Clifford algebra, F[X]/(X^2 - delta) with delta a
+    representative of the discriminant (Knus, Merkurjev, Rost, Tignol,
+    The Book of Involutions, (8.10) and (15.7), in the numbering of a
+    pre-publication PDF), and (4) corresponds to (13.2) there; (5), in
+    dimension three and in dimensions at least five, is stated in
+    Leijnse, arXiv:2605.26398, Theorem 2.34, as a summary of results of
+    Jacobson (not read for this entry). The statements (1)-(4) and the
+    rational clauses of (8), for the Lie algebra itself, were not located
+    as stated in the sources read. Prior formalization, recorded under
+    related_formalizations: the Clifford-algebra side (the centre of the
+    even Clifford algebra as K[X]/(X^2 - d) with the square criterion,
+    and in dimension four the even Clifford algebra and the Spin group
+    over that centre) is formalized in TauCetiProject/TauCeti; the real
+    definite instance is formalized in coordinates in openai/math; the
+    discriminant -283 of the field of x^4 - x - 1 is taken from the
+    author's registered entry PALOMAR-2026-10-21-000012. In a dated
+    search no formalization was found of a centroid of a Lie algebra or
+    of a description of the bracket-commuting maps of an orthogonal Lie
+    algebra. Scope: fields with 2 = 0 are excluded; (4) treats only the
+    automorphisms of so(B) that are conjugation by a linear map
+    preserving B; no isomorphism of so(B) with another Lie algebra is
+    stated; (9) and (10) are about the trace form of the field and the
+    Lie algebra of the endomorphisms skew-adjoint for it, and nothing is
+    stated about any other algebra or group attached to the field.
+  authors:
+    - "Stephanie Alexander"
+  license: "MIT"
+  responsible_maintainers:
+    - "Stephanie Alexander"
+
+classification:
+  # MSC2020 codes, all in the registry's snapshot (PalomarSubmission,
+  # taxonomies/msc2020-codes.json, at 14aa8d6b): 17B05 (structure theory for
+  # Lie algebras), 17B40 (automorphisms, derivations, other operators for Lie
+  # algebras), 17B20 (simple, semisimple, reductive algebras), 11E04
+  # (quadratic forms over general fields), 11E88 (quadratic spaces; Clifford
+  # algebras), 16W10 (rings with involution; Lie, Jordan and other
+  # nonassociative structures), 11R16 (cubic and quartic extensions), 11R29
+  # (class numbers, class groups, discriminants). The field takes at most
+  # eight; 15A63 (quadratic and bilinear forms, inner products) was dropped as
+  # the least specific of nine candidates.
+  # TODO (author): the categories. math.RT is defensible alongside math.RA and
+  # math.NT; whether any other category is added is the author's call.
+  arxiv: ["math.RA", "math.NT"]
+  msc2020: ["17B05", "17B40", "17B20", "11E04", "11E88", "16W10", "11R16", "11R29"]
+
+sources:
+  - title: "The Book of Involutions"
+    authors:
+      - "M.-A. Knus"
+      - "A. Merkurjev"
+      - "M. Rost"
+      - "J.-P. Tignol"
+    id: "American Mathematical Society Colloquium Publications 44, 1998"
+    # READ 2026-11-13 in the 588-page PDF at
+    # https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf, a
+    # pre-publication typesetting (internal cross-references print as "(??)").
+    # The numbers and pages quoted are that file's. The numbering and pages of
+    # the printed book are UNCONFIRMED: they were corroborated at five points
+    # only ((2.1), (2.6), (2.14), (20.6) and (15.12) of the file carry the
+    # content that two later papers cite under those numbers from the 1998
+    # book), not at the items cited here. The printed book was not opened.
+    # TODO: a stable location for the printed book (publisher's record); the
+    # location below is the file that was read.
+    type: "book"
+    location: "https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf"
+    # TODO (author): "adapts" or "independently-proves". "adapts" is used here
+    # because the statements of the source are about the Clifford algebra and
+    # algebras with involution, and the compared statements are the
+    # corresponding statements for the Lie algebra, proved by another route.
+    relationship: "adapts"
+    note: >-
+      Scoped to statements 1, 2(c), 3 and 4. In the numbering of the file
+      read: section 7, p. 80, the discriminant of a symmetric bilinear form
+      b is the signed determinant disc b = (-1)^{n(n-1)/2} det b in
+      F^x/F^{x2}, and it is an invariant of the equivalence class of b
+      modulo scalar factors if and only if the dimension is even; (7.3)(3),
+      p. 81, for the adjoint involution sigma_b of a nonsingular symmetric
+      bilinear form, disc sigma_b = disc b; (8.10) Theorem, p. 94, the
+      centre of the Clifford algebra C(A, sigma, f) is an etale quadratic
+      F-algebra Z, and if char F != 2 then Z = F[X]/(X^2 - delta) with
+      delta a representative of the discriminant; (8.18) Proposition,
+      p. 97, for char F != 2 there is a direct sum decomposition
+      c(A) = F + c(A)_0 and an isomorphism of Lie algebras from c(A)_0
+      onto Alt(A, sigma) = Skew(A, sigma); (13.2) Proposition, p. 173, a
+      similitude is proper if and only if it restricts to the identity on
+      the centre Z; (15.6) Proposition and (15.7) Theorem, p. 211, the
+      equivalence of groupoids A_1^2 = D_2 and Z(Q) =
+      F(sqrt(disc(A, sigma, f))) for char F != 2. Statement 1 is the
+      corresponding statement for the Lie algebra so(B) = Skew(End V,
+      sigma_b) itself: its bracket-commuting maps are a copy of
+      F[X]/(X^2 - det B), in dimension four, where the signed determinant
+      is the determinant. Statement 4 corresponds to (13.2). The compared
+      statements were not located as stated in this source: the word
+      "centroid" occurs once in the file (section 32, p. 449, for a
+      general algebra) and is not applied to Skew(A, sigma). A derivation
+      of statement 1 from these results would also need that the centroid
+      is no larger than Z; the results found for that are in the entries
+      for Benkart and Neher and for Leijnse, and one step (the centroid of
+      a product, for the split case) was not found stated. The proofs here
+      do not use this route. Another object of the book is called the
+      discriminant algebra ((10.28) Definition, p. 128, for involutions of
+      the second kind); the quadratic algebra F[X]/(X^2 - det B) of this
+      entry is not given that name here.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "Varieties admitting a holomorphic symplectic form: LLV algebras and derived equivalences"
+    authors:
+      - "D. Leijnse"
+    id: "arXiv:2605.26398v1"
+    # READ 2026-11-13 as arXiv:2605.26398v1 [math.AG], 26 May 2026 (a
+    # thesis): Definition 2.4 (p. 11), Lemmas 2.6 and 2.7 (p. 12), Lemma 2.33
+    # (p. 20), Theorem 2.34 (pp. 20-21), Theorem 2.36 (pp. 22-23), Remark 2.37
+    # (pp. 23-24), Lemma 3.72 (pp. 64-65).
+    type: "paper"
+    location: "https://arxiv.org/abs/2605.26398"
+    relationship: "formalizes"
+    note: >-
+      Scoped to statement 5, with the context of statement 3. Theorem 2.34
+      (pp. 20-21) is given there as "a summary of some results that can be
+      found in [Jac62, Chapter X]", for fields of characteristic not 2: the
+      derived algebra s(A, sigma) of Skew(A, sigma) (equal to so(B) for
+      n >= 3) of type B_l (l >= 1) or D_l (l >= 3) is simple, and "In all
+      cases above where s(A (x) l-bar, sigma) is simple, the centroid of
+      s(A, sigma) is equal to l". This covers statement 5 in dimension
+      three and in dimensions at least five (the types B_l and D_l
+      named); in dimensions 0, 1 and 2 the statement is immediate. The
+      simplicity claims of that theorem in positive
+      characteristic were not checked against a primary source, and the
+      proof here does not use them. Theorem 2.36 (pp. 22-23, given there as
+      Jacobson, Chapter X, Theorems 11 and 12), for fields of
+      characteristic zero, extends an isomorphism of the Lie algebras
+      s(A, sigma) and s(B, tau) of two simple algebras with orthogonal
+      involution to an isomorphism of the algebras that respects the
+      involutions, for types B_l (l >= 2)
+      and D_l (l = 3 or l >= 5); with (7.3)(3) of The Book of Involutions
+      this gives the conclusion of statement 3 in even dimension 6 and at
+      least 10 over a field of characteristic zero (a two-step deduction
+      made for this entry, not formalized). That theorem as stated does
+      not include type D_2, which is the case of statement 3, proved here
+      over every field with 2 != 0 through the bracket-commuting maps.
+      Lemma 2.7 (p. 12, given there as "a variant of [Jac62, Chapter X,
+      Theorem 3]") is the result found for one step of a derivation of
+      statement 1 from the Clifford-side results, in the case where the
+      centre is a field (see the entry for The Book of Involutions). Page
+      65: over an algebraically closed field, "so_4 = sl_2 x sl_2" (type
+      D_2).
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "The centroid of extended affine and root graded Lie algebras"
+    authors:
+      - "G. Benkart"
+      - "E. Neher"
+    id: "arXiv:math/0502561v1"
+    # READ 2026-11-13 as arXiv:math/0502561v1 [math.RT], 26 Feb 2005
+    # (sections 1, 2.1, Lemma 2.1, Corollary 2.23, section 3.3). The journal
+    # reference is UNCONFIRMED (the arXiv record has none) and is not given.
+    type: "paper"
+    location: "https://arxiv.org/abs/math/0502561"
+    relationship: "background"
+    note: >-
+      The standard notion. Section 1, p. 1: the centroid of a Lie algebra
+      is the space of its module endomorphisms, that is, of the linear
+      maps commuting with the adjoint action; this is the set of
+      bracket-commuting maps of the definition IsBracketCommuting.
+      Section 2.1, pp. 2-3: the centroid of a perfect algebra is
+      commutative, and the centroid of a simple algebra is a field (by
+      Schur's Lemma). Lemma 2.1(d), p. 4: an algebra is indecomposable if
+      and only if its centroid has no idempotents other than 0 and id,
+      which is the context of statement 2(c)-(d). Section 3.3, p. 18,
+      names type D_2 = A_1 x A_1, the direct sum of two copies of sl_2, as
+      an exception. A statement that the centroid of a direct product is
+      the product of the centroids was looked for in the file and not
+      found. Not used in any proof here.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "Planes in quadratic 4-space and associated shapes of lattices"
+    authors:
+      - "M. Aka"
+      - "K. Andritsch"
+      - "A. Wieser"
+    id: "arXiv:2606.03472v2"
+    # READ 2026-11-13 as arXiv:2606.03472v2 [math.NT], 17 Aug 2026 (v1 June
+    # 2026): sections 2.1-2.2, pp. 8-9, Proposition 2.6.
+    type: "paper"
+    location: "https://arxiv.org/abs/2606.03472"
+    relationship: "background"
+    note: >-
+      Recorded for what it states about the centre of the even Clifford
+      algebra only. Section 2.2, pp. 8-9, for a non-degenerate quaternary
+      quadratic space over a field K of characteristic zero: the centre Z
+      of the even Clifford algebra has K-basis {1, e_1 e_2 e_3 e_4} for an
+      orthogonal basis; (e_1 e_2 e_3 e_4)^2 is equal to disc(Q); if disc(Q)
+      is not a square then Z is the quadratic extension K[x]/(x^2 -
+      disc(Q)), and if it is a square then Z = K x K, with idempotents
+      (1/2)(1 +- e_1 e_2 e_3 e_4 / x). The text calls this "completely
+      standard". These are the Clifford-side counterparts of statements 1
+      and 2(c). A current paper in which the quadratic algebra of a
+      quaternary form is in use. Not used in any proof here.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "Algebraic Number Theory"
+    authors:
+      - "J. S. Milne"
+    id: "Course notes, version 3.08 (19 July 2020)"
+    # READ 2026-11-13 in https://www.jmilne.org/math/CourseNotes/ANT.pdf
+    # (v3.08): "Discriminants", p. 33; Proposition 2.40(a), p. 39.
+    type: "other"
+    location: "https://www.jmilne.org/math/CourseNotes/ANT.pdf"
+    relationship: "background"
+    note: >-
+      Course notes on the author's web page. Scoped to statement 8. P. 33:
+      the discriminant of a finite extension is the discriminant of the
+      trace form (x, y) -> Tr(x y), and "strictly speaking, disc(K/Q) is
+      the element of Q^x/Q^{x2} represented by the integer disc(O_K/Z)";
+      Proposition 2.40(a), p. 39: the sign of the discriminant is (-1)^s
+      in the notation of the notes. In the Lean proof the
+      first fact holds by Mathlib's definition of the discriminant of a
+      number field through an integral basis, and the second is Mathlib's
+      NumberField.sign_discr.
+    license: "unknown"
+    author_endorsement: "not-contacted"
+  - title: "Number field 4.2.283.1"
+    authors:
+      - "The LMFDB Collaboration"
+    id: "LMFDB, number field 4.2.283.1"
+    # READ 2026-11-13: the page https://www.lmfdb.org/NumberField/4.2.283.1.
+    type: "other"
+    location: "https://www.lmfdb.org/NumberField/4.2.283.1"
+    relationship: "background"
+    note: >-
+      A database page. The number field with defining polynomial
+      x^4 - x - 1: degree 4, signature (2, 1), discriminant -283, Galois
+      group S_4. The value -283 of statements 9 and 10 is proved in the
+      kernel in the author's registered entry PALOMAR-2026-10-21-000012,
+      whose library is used here; the page is cited for the reader.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Lie Algebras"
+    authors:
+      - "N. Jacobson"
+    id: "Interscience, New York, 1962, Chapter X"
+    # NOT READ. Named because Leijnse gives Theorem 2.34 as a summary of
+    # results of its Chapter X, Theorem 2.36 as its Chapter X, Theorems 11 and
+    # 12, and Lemma 2.7 as a variant of its Chapter X, Theorem 3, and because
+    # Benkart and Neher cite it for the centroid. Whether Chapter X treats type
+    # D_2 is not known to this entry.
+    # TODO: the bibliographic id above (publisher, city) is not in the checked
+    # inventory, which has "Jacobson, Lie Algebras (1962), Chapter X"; confirm
+    # or cut to that.
+    type: "book"
+    relationship: "background"
+    note: >-
+      Not read for this entry. No statement about its content is made here
+      beyond what Leijnse and Benkart and Neher report of it (see their
+      entries). If its Chapter X states the description of statement 1 or
+      treats type D_2, the account of statements 1 and 3 given here as
+      "not located as stated in the sources read" would have to be
+      corrected.
+    license: "unknown"
+    author_endorsement: "n/a"
+
+related_formalizations:
+  - id: "https://github.com/TauCetiProject/TauCeti/tree/3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9"
+    # TODO (author): "other" or "independent". "other" follows the entry
+    # PALOMAR-2026-11-12-000002, which recorded libraries found by a dated
+    # search as "other" because the search report was in hand when the
+    # Challenge was assembled; the same is true here.
+    relationship: "other"
+    note: >-
+      THE CLIFFORD-ALGEBRA SIDE OF THIS MATERIAL IS FORMALIZED THERE; THE
+      STATEMENTS FOR THE LIE ALGEBRA ARE NOT. Read on 2026-11-13 at commit
+      3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9 (2026-11-12); every file
+      named here is also present at 1e668f5e55bc20f2eb87f4ba49b48833470290d1
+      and, by name, at 8b9f13d9936343c962096355455995c9a128af39
+      (2026-11-13), whose contents were not read; line numbers are those of
+      3602eb5f. Paths are under TauCeti/.
+      LinearAlgebra/CliffordAlgebra/Even/Center.lean, for an anisotropic
+      orthogonal spanning list of even length over a field with 2 != 0:
+      mem_center_even_iff_exists_eq_add_smul_volume (:192), an element of
+      the even Clifford algebra is central if and only if it is a + b
+      times the product of the list; adjoinRootEquivCenterEven (:347), the
+      centre of the even Clifford algebra is K[X]/(X^2 - d), d the signed
+      discriminant; isField_center_even_iff_not_isSquare_discriminant
+      (:365) and
+      nonempty_center_even_algEquiv_prod_iff_isSquare_discriminant (:378),
+      the centre is a field exactly when d is not a square and is K x K
+      exactly when it is; finrank_center_even (:443), the centre has
+      dimension 2 for a nondegenerate form in every positive even
+      dimension. These are the Clifford-side counterparts of statement 1
+      and of statement 2(c); they are not the same statements (elements of
+      an associative algebra commuting with it, against linear maps of a
+      Lie algebra commuting with its bracket), and the Lie centroid is
+      two-dimensional in dimension four only (statement 5).
+      LinearAlgebra/CliffordAlgebra/Even/NonsplitCenter.lean (:164): in
+      dimension four, when the centre is a field, the even Clifford algebra
+      is a quaternion algebra over it. Spin/LowRank/Four.lean (:88),
+      NonsplitCenter.lean (:114), SplitCenter.lean (:321),
+      QuaternionProduct.lean (:64, :184), HyperbolicFour.lean (:94, :112),
+      under LinearAlgebra/CliffordAlgebra/: the quaternary Spin group as
+      the norm-one group of that quaternion algebra when the centre is a
+      field, and as a product when it splits; RationalFour.lean (:51-:151):
+      the rational form x^2 + y^2 + z^2 + 2w^2, whose centre is
+      Q[X]/(X^2 - 2), a rational instance with nonsquare discriminant
+      (another form and another statement than statement 9).
+      LinearAlgebra/CliffordAlgebra/Quadratic/Realization.lean:
+      soEquivQuadratic (:164), the Lie algebra of the skew-adjoint
+      endomorphisms of the polar form is Lie-equivalent to the quadratic
+      elements of the Clifford algebra; not used here.
+      LinearAlgebra/CliffordAlgebra/Chirality.lean, for an oriented real
+      inner product space of dimension four: bivectorExterior_hodgeStar
+      (:289), commute_chirality_bivectorExterior (:252),
+      chirality_mul_self (:198): the Hodge star on two-forms is
+      multiplication by the chirality element on Clifford bivectors; and
+      Analysis/InnerProductSpace/HodgeStar/Basic.lean:
+      hodgeStar_hodgeStar_of_even (:244). These are counterparts of the
+      existence clause of statement 1, and of the existence part of
+      statement 7(b), at the real definite instance, on two-forms and
+      Clifford bivectors; there is no statement there that the
+      bracket-commuting maps are exhausted, and no other field or form.
+      RealForm/Four.lean (:192) and Spin/Real/Four.lean (:100),
+      Spin/Real/ThreeOne.lean (:79), under LinearAlgebra/CliffordAlgebra/:
+      the centre of the real even Clifford algebra of the definite form is
+      R x R, and the real Spin groups in the two signatures; real
+      instances on the Clifford and Spin side of statement 7.
+      LinearAlgebra/QuadraticForm/RegularFormClass/Discriminant.lean
+      (:123, :260) and Witt/Discriminant.lean (:76): the discriminant as a
+      square class of an isometry class of forms, the form-level
+      counterpart of statement 3. Algebra/Lie/SkewAdjoint.lean:
+      skewAdjointLieEquivOfBasis (:150), the same equivalence as this
+      repository's helper LorentzLie.FormCentroid.skewAdjointEquivMatrices,
+      in the opposite direction, over a commutative ring.
+      Algebra/Lie/AEval.lean (:75): the bracket-commuting hypothesis in
+      use, with no description of the maps that satisfy it.
+      Algebra/Lie/Orthogonal/Killing.lean (:116, :171): irreducibility of
+      the standard module and trivial radical of the skew matrices for
+      index types with at least three elements.
+      NumberTheory/NumberField/InfinitePlace/Basic.lean (:230): the sign
+      of the discriminant in parity form; not used here (Mathlib's
+      NumberField.sign_discr is). Not found there by the searches of
+      2026-11-13: a centroid of a Lie algebra, a description of the
+      bracket-commuting maps of an orthogonal Lie algebra, a Lie
+      equivalence between an orthogonal Lie algebra of rank four and a
+      product, or a statement about the orthogonal Lie algebra of the
+      trace form of a number field. Nothing of TauCeti is imported or
+      reproduced; the library of this entry imports Mathlib only among
+      external projects. Contact: TODO (the author's account of when her
+      project first read these files; the report of the search that names
+      them was in hand when the compared statements were written).
+  - id: "https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Geometry/EinsteinFour"
+    # TODO (author): "other" or "independent", as for TauCeti.
+    relationship: "other"
+    note: >-
+      THE REAL DEFINITE INSTANCE, IN MATRIX COORDINATES. Read on 2026-11-13
+      at commit 4eaee87548250b2682affda7d05d947c05554bae.
+      CurvatureTensors02.lean: hodgeStarFour (:9810), the Hodge star as a
+      formula on real 4 x 4 matrices; twoFormHodge_involutive (:10283);
+      twoFormSkewAction_matrix (:10792); twoFormSkewAction_hodge (:10808),
+      the Hodge star commutes with the commutator action;
+      hodgeStarFour_quaternion (:9835) and hodgeStarFour_opposite (:9840),
+      it is +1 and -1 on two triples of matrices;
+      twoFormSkewAction_selfDual (:10819) and
+      twoFormSkewAction_antiSelfDual (:10823), each eigenspace is stable
+      under the commutator action; hodgeStarFour_oriented_frame_change
+      (:11011), it commutes with conjugation by a matrix P with
+      P^T P = 1 and det P = 1. AngularClifford.lean: the quaternion
+      relations for each triple (:19, :58) and oppositeMatrix_commute
+      (:66). These are counterparts, for the form (1, 1, 1, 1) over R and
+      in coordinates, of the existence clause of statement 1, of the
+      existence part of statement 7(b), and of the case det g = 1 of
+      statement 4. Not found there: a Lie algebra type, a statement that
+      the bracket-commuting maps are exhausted, a map of determinant -1,
+      any other form or field, the discriminant. A second folder of that
+      repository, Geometry/TamingCompatibility, has an involutive Hodge
+      star on two-forms of a real four-dimensional metric space
+      (DifferentialForms/StarTwoComp.lean: starTwo_square, :120;
+      starTwo_comp, :31); two files of that folder were read. Limit of the
+      search: 1,036 files of the repository were fetched and searched by
+      content and three more were fetched by name; the other files
+      (162,060) were searched by file name only. Nothing of it is imported
+      or reproduced. Contact: TODO (the author's account, as for TauCeti).
+  - id: "https://github.com/stalex444/pdt-hermite-signature-compositum/tree/5aa870e98236ba240561b798265c629df8c2d031"
+    relationship: "builds-on"
+    note: >-
+      BY THE SAME AUTHOR; ITS LIBRARY IS A SOLUTION-SIDE DEPENDENCY.
+      Registry record PALOMAR-2026-10-21-000012 (Hermite's signature
+      theorem and the coprime compositum). Its compared statement
+      integral_structure proves discr S_4 = -283 for the field S_4
+      generated by a root of x^4 - x - 1, and places_and_type proves that
+      this field has two real places and one complex place. Nine modules
+      of its library HermiteCompositum (Assembly, Defs, Extras, Hermite,
+      Instance, Places, Port014, TraceProjection, TraceSignature) are
+      copied here byte for byte from that commit (hashes in BUILD.txt);
+      the library's root module and its module Squarefree are not copied.
+      Used in the proofs of statements 9, 10 and 11(a) only, through
+      minpoly_gen_4, finrank_S_4 and discr_S_4: a number field of degree
+      four containing a root of x^4 - x - 1 is isomorphic to S_4 and so
+      has discriminant -283. The Challenge here does not import or repeat
+      any of it (statements 9 and 10 take the field and a root as
+      hypotheses). No compared statement of that entry is a compared
+      statement here, and the value -283 is not claimed again: in
+      statement 9 it appears as the square of H. Read against this entry's
+      compared set on 2026-11-13: its comparator.json (eighteen compared
+      statements) and, in its Challenge.lean, the statements
+      integral_structure and places_and_type.
+  - id: "https://github.com/stalex444/golden-family-trace-forms/tree/9528df064df58318213b541048e05ff4c0d9cb67"
+    relationship: "builds-on"
+    note: >-
+      BY THE SAME AUTHOR. Registry record PALOMAR-2026-09-02-000014 (trace
+      forms of tensor products, with two instances). Its compared
+      statement traceMatrix_quartic gives the trace matrix of
+      Q[x]/(x^4 - x - 1) in the power basis,
+      [[4,0,0,3],[0,0,3,4],[0,3,4,0],[3,4,0,3]], and discr_quartic gives
+      the discriminant -283 of that basis. That matrix is, entry for
+      entry, the matrix traceGram of this repository's module
+      LorentzLie/FormDefs.lean, and -283 is its determinant there. The
+      theorems of that entry that the proof of discr S_4 = -283 uses are
+      ported in HermiteCompositum/Port014.lean (part of the library copied
+      from PALOMAR-2026-10-21-000012); in this way the proofs of
+      statements 9-11(a) rest on it. No compared statement here states
+      the Gram matrix (statements 9 and 10 are stated for any number
+      field of degree four containing a root). Read against this entry's
+      compared set on 2026-11-13: the two statements named, in its
+      Challenge.lean, and its comparator.json, in a local clone at commit
+      9528df064df58318213b541048e05ff4c0d9cb67. TODO: confirm that this is
+      the registered commit of PALOMAR-2026-09-02-000014.
+  - id: "https://github.com/stalex444/pdt-em-source-selection/tree/7517011658ec52fc57669e8ce9daeb4150fdb3eb"
+    relationship: "builds-on"
+    note: >-
+      BY THE SAME AUTHOR; ONE MODULE IS SHARED. Registry record
+      PALOMAR-2026-10-14-000009. The module
+      GravityScreening/SignedLieGeneration.lean of this repository is
+      byte-identical to the file of the same path at that commit (git blob
+      299cf8db239823bc63a63103fc6c22b8741469fa). One definition of it is
+      used here: skew q i j = single i j (q j) - single j i (q i), the
+      generators of the skew matrices of a diagonal form
+      (LorentzLie/Defs.lean, gen). No compared statement of that entry is
+      related to the compared statements here. TODO (author): the name of
+      the module and of its namespace is that of the development it comes
+      from; whether to keep the file under this name or to restate the one
+      definition in LorentzLie/Defs.lean (which would change that module's
+      text) is the author's decision.
+  - id: "https://github.com/leanprover-community/mathlib4/tree/065356127b1dc0016f66b7283ce0ce2c4055aa55"
+    relationship: "builds-on"
+    note: >-
+      Mathlib declarations used by the compared statements include
+      skewAdjointLieSubalgebra, skewAdjointMatricesLieSubalgebra,
+      LieAlgebra.Orthogonal.so', LinearMap.BilinForm.toMatrix,
+      LinearMap.det, NumberField.discr, NumberField.integralBasis,
+      NumberField.InfinitePlace.nrComplexPlaces, Algebra.traceForm and
+      Algebra.traceMatrix; the proof of statement 8(c) uses
+      NumberField.sign_discr. Mathlib at the pin has no centroid of a Lie
+      algebra (CentroidHom is for non-associative rings and is not used),
+      no centre of the even Clifford algebra, and
+      exteriorPower.hodgeStar with its square identity as a TODO of that
+      file.
+  # TODO (author): four further items that the checked inventory lists as
+  # the author's own related work, with the relation word to be set by the
+  # author. (a) PALOMAR-2026-09-30-000024 (a Hodge operator on bivector
+  # coordinates in a 15 x 15 matrix setting; its one compared statement,
+  # geometricHodgeGeneration, is a Lie-generation theorem and shares no
+  # statement with this entry; read 2026-11-13 in a local copy of its
+  # Challenge.lean and comparator.json, which is not a git checkout, so the
+  # commit could not be confirmed). (b) The public repository
+  # stalex444/one-complex-place-lorentz-group-galois-boost at ec70bded (not
+  # registered; not read for this skeleton). (c) The sibling entry prepared
+  # with this one (the Lie algebra of the form (1, 1, 1, -1) over R: its
+  # statement on invariant bilinear forms is the dual form of statement 1
+  # here at that form, and its statements on the same real Lie algebras
+  # overlap statement 7); it has no public repository yet, so no id can be
+  # given. (d) Whether PALOMAR-2026-11-12-000002 or other registered entries
+  # of the author are to be listed.
+
+status:
+  scope: >-
+    Formalized: eleven compared theorems, in comparator order, namespace
+    QuaternaryCentroid (see the description for their content), on one
+    definition carried by the Challenge, IsBracketCommuting. Proved in the
+    repository, not compared: the matrix form of statement 1 for a
+    symmetric matrix of nonzero determinant on any index type with four
+    elements (LorentzLie.exists_hodge_matrix); the explicit operator on
+    the skew matrices of a diagonal form with nonzero entries,
+    X -> star0 (diagonal eta * X) * diagonal eta, with its square, the
+    product of the entries (LorentzLie.FormCentroid.hodge_description);
+    for the Lie algebra so' (Fin 4) (Fin 2) over R, that a
+    bracket-commuting map is c . id and has determinant c^15
+    (LorentzLie.centroid_scalar_so'_four_two); three checks on the
+    compared statements (Checks.lean): nondegeneracy cannot be dropped
+    from statement 2(c), neither hypothesis on H can be dropped from
+    statement 4(c), and the Gram determinant of the trace form of a field
+    as in statement 9 is t^2 (-283) in every basis. Further theorems of
+    the copied modules (for instance on the trace Gram matrix of
+    x^4 - x - 1 as a matrix) are in the repository and are not part of
+    this entry's account. Not formalized: the Clifford algebra and the
+    relation between H and its central element; automorphisms of so(B)
+    other than conjugations by maps preserving B; an isomorphism of so(B)
+    with another Lie algebra, over any field (statement 10 does not say
+    that the two real Lie algebras are isomorphic); fields with 2 = 0;
+    the integral trace form; any group.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      # TODO (author): confirm the model description and the account below.
+      models: ["Anthropic Claude (2026)"]
+      framework: "Claude Code"
+      tool_setup: >-
+        AI-assisted proof drafting and error-loop iteration against lake
+        build for the library modules, each followed by an AI-assisted
+        adversarial review with compiled probe files; an AI-assisted
+        search for prior formalizations and sources, followed by a second
+        AI-assisted pass that re-opened every cited file, line and
+        quotation; an AI-assisted statement stage that wrote the eleven
+        compared statements and their bridging proofs, followed by an
+        AI-assisted hypothesis-deleting review with an independent exact
+        computation; AI-assisted assembly of the Challenge, the Solution
+        and this metadata.
+      cost:
+        wall_time: "TODO"
+        spend_usd: "subscription-based"
+        hardware: "local machine, Apple silicon"
+      prompting_notes: >-
+        The library modules LorentzLie/Defs.lean, Centroid.lean,
+        FormDefs.lean, FormCentroid.lean and QuarticField.lean were written
+        for a larger unpublished development of the author's and are
+        copied from it; the first of them is copied without one section
+        (see BUILD.txt). The compared statements restate the library's
+        theorems in other forms; three of them (statement 4, statement 2(c)-(d)
+        and statement 7(b)) have proofs for a general form that were
+        written at the statement stage (QuaternaryCentroid/Bridge.lean).
+        The sources were read after the library was written.
+    - method: "manual"
+      models: []
+      framework: "n/a"
+      tool_setup: >-
+        Author-directed scope: which statements are compared in this
+        entry, which library is a dependency, and what is cited.
+      cost:
+        wall_time: "TODO"
+        spend_usd: "not tracked"
+        hardware: "local machine"
+      prompting_notes: "n/a"
+  spend_usd: "subscription-based"
+  notes: >-
+    Human-directed, machine-verified workflow: the author fixes scope and
+    decides what is submitted; AI assistance drafts and repairs proofs; the
+    Lean kernel is the acceptance criterion.
+
+fidelity:
+  divergences: >-
+    (a) Object. The sources state their results for the Clifford algebra
+    and its centre, or for algebras with involution; the compared
+    statements are about the Lie algebra so(B) and its linear
+    endomorphisms that commute with the bracket. Neither the Clifford
+    algebra nor an algebra with involution occurs in the Lean. (b) The
+    determinant. "det B" is the determinant of the Gram matrix of B in a
+    chosen basis b (LinearMap.BilinForm.toMatrix b B); it changes by a
+    nonzero square with the basis. Statement 1 gives, for each basis, an
+    operator H with H(H X) = det_b B . X; for t != 0 the operator t . H
+    has the other properties and square t^2 det_b B. What is determined
+    is the class of the determinant modulo nonzero squares (statements 2
+    and 3). In dimension four the signed determinant of the sources, the
+    discriminant (-1)^{n(n-1)/2} det b, is the determinant. (c) Dimension.
+    "Dimension four" is stated as: V has a basis indexed by a finite type
+    with exactly four elements. In statement 5 the basis is indexed by a
+    finite type whose number of elements is not four. (d) Nondegeneracy
+    is LinearMap.BilinForm.Nondegenerate; symmetry is
+    LinearMap.BilinForm.IsSymm. Control 11(b) shows on the form
+    (1, 1, 1, 0) that nondegeneracy cannot be dropped from statement 1;
+    for the zero form the bracket-commuting maps are not scalar (not
+    proved in the repository). (e) Statement 1(d) and statement 4(c)
+    carry the hypothesis that the map is not of the form a . id, and
+    statement 4(c) that its square is a scalar; both are needed (the
+    checks in Checks.lean). (f) Statement 2(b): the alternative "-1 is a
+    square" is the case R = a . id with a^2 = -1. (g) Statement 4 is
+    about conjugation by linear maps g with B(g x, g y) = B(x, y); the
+    source statement (13.2) is about similitudes of an algebra with
+    involution. Automorphisms of so(B) that are not such conjugations are
+    not treated. (h) Statement 5 is for so(B) in every finite dimension
+    other than four, including dimensions 0, 1 and 2; the source
+    statement (Leijnse, Theorem 2.34) is for the derived algebra and the
+    types B_l (l >= 1) and D_l (l >= 3). (i) Statement 6 is on Mathlib's
+    matrix Lie algebras so' p q R; it is not an instance of statement 5
+    as stated (matrices, not endomorphisms). (j) Statement 7 is stated
+    for diagonal forms with entries +1 or -1 and selects the two cases by
+    the product of the entries; the hypothesis on the entries is not
+    needed for the truth of the statement (the product hypothesis makes
+    every entry nonzero) and is kept; a form of the statement without it
+    was compiled as an option and is not used. It is stated on
+    skewAdjointMatricesLieSubalgebra (Matrix.diagonal eta), not on so' p q
+    R. (k) Statement 8: the discriminant is Mathlib's NumberField.discr K,
+    an integer, read in Q; clause (c) is on the real matrices skew for
+    the trace matrix of Mathlib's integral basis, read in R, not on the
+    real span of the field. (l) Statements 9 and 10 take a number field
+    of degree four and an element theta with theta^4 = theta + 1 as
+    hypotheses; nothing is carried for the polynomial. The degree
+    hypothesis is needed in statement 9: a field of larger degree
+    containing such an element has only the bracket-commuting maps
+    c . id. Control 11(a) shows that the hypotheses can be met. (m)
+    Statement 10 compares two Lie algebras over Q and says nothing about
+    any group; over R both Lie algebras have a bracket-commuting map of
+    square -1 (statements 9(c) and 7(a)), and the entry does not state
+    that they are isomorphic over R. (n) Sources. The Book of Involutions
+    was read in a pre-publication PDF, and its printed numbering was not
+    confirmed; Leijnse, Benkart and Neher, and Aka, Andritsch and Wieser
+    were read in their arXiv versions; Milne's notes in version 3.08;
+    Jacobson's Lie Algebras was not read.
+
+review:
+  # TODO (author): the status and the account are for the author to settle
+  # after her own review of the eleven statements; no such review is
+  # recorded here.
+  status: "agent-reviewed"
+  reviewers:
+    - "TODO"
+  notes: >-
+    The axioms of every compared declaration were printed, the Challenge
+    and Solution statements and the definition were checked identical by
+    script and by a structural hash of the elaborated terms, and the
+    registry Comparator was run locally (BUILD.txt). An AI-assisted
+    hypothesis-deleting review of the eleven statements (Anthropic Claude,
+    in Claude Code, under the author's direction), with compiled probe
+    files and an independent exact computation over the rational numbers,
+    quadratic fields and finite fields, found all eleven true, none
+    vacuous, and each matching its docstring; its prose corrections were
+    applied, and one deletable hypothesis of statement 7 was kept (see
+    fidelity, (j)). The reports of that review, of the search for prior
+    formalizations and sources and of the sessions that wrote the Lean
+    are working records of the author's project and are not part of this
+    repository. TODO: the author's review of the statements. Not
+    peer-reviewed.
+
+alignment:
+  namespace: "QuaternaryCentroid"
+  statements:
+    - source: "Not located as stated in the sources read. Clifford-side counterpart: Knus-Merkurjev-Rost-Tignol 1998, (8.10) and (15.7) (numbering of a pre-publication PDF), with (7.3)(3) and (8.18); Aka-Andritsch-Wieser, arXiv:2606.03472v2, section 2.2"
+      lean: "QuaternaryCentroid.centroid_of_dim_four"
+      module: "Solution"
+      status: "proved"
+      note: "For a field with 2 != 0 and a symmetric nondegenerate form B on a space with a basis of four elements: a bracket-commuting H on so(B) with H(H X) = det B . X, such that every bracket-commuting map is a . id + b . H for exactly one pair (a, b); a bracket-commuting map not of the form a . id with the same square is H or -H."
+    - source: "Not located as stated in the sources read; arithmetic in the quadratic algebra of statement 1. Clifford-side counterpart of clause (c): Knus-Merkurjev-Rost-Tignol 1998, (8.10); Aka-Andritsch-Wieser, section 2.2 (the idempotents). Context of clauses (c)-(d): Benkart-Neher, Lemma 2.1(d)"
+      lean: "QuaternaryCentroid.sq_and_idempotent_iff"
+      module: "Solution"
+      status: "proved"
+      note: "Same hypotheses: (a) a bracket-commuting map not of the form a . id with square c exists iff c = t^2 det B, t != 0; (b) one with square -1 exists iff -det B or -1 is a square; (c) a bracket-commuting idempotent other than 0 and id exists iff det B is a square; (d) two such idempotents P, Q satisfy Q = P or Q = id - P."
+    - source: "Not located as stated for dimension four in the sources read. Nearest stated result: Leijnse, arXiv:2605.26398v1, Theorem 2.36 (given there as Jacobson, Chapter X, Theorems 11 and 12; characteristic zero; type D_2 not included), with Knus-Merkurjev-Rost-Tignol 1998, (7.3)(3)"
+      lean: "QuaternaryCentroid.det_eq_sq_mul_of_lieEquiv"
+      module: "Solution"
+      status: "proved"
+      note: "Two forms as in statement 1 on spaces with bases of four elements: if so(B) and so(B') are Lie-equivalent over F, then det B' = t^2 det B for some t != 0."
+    - source: "Not located as stated for the Lie algebra in the sources read. Clifford-side counterpart: Knus-Merkurjev-Rost-Tignol 1998, (13.2) (numbering of a pre-publication PDF)"
+      lean: "QuaternaryCentroid.isometry_conj_eq_det_smul"
+      module: "Solution"
+      status: "proved"
+      note: "For every linear g preserving B: det g is 1 or -1; conjugation by g is a Lie algebra equivalence phi of so(B); for every bracket-commuting H, not of the form a . id, with scalar square, phi H phi^{-1} = det g . H. A map preserving B of determinant -1 exists."
+    - source: "Leijnse, arXiv:2605.26398v1, Theorem 2.34 (given there as a summary of results of Jacobson, Lie Algebras, Chapter X; characteristic not 2; the derived algebra, types B_l with l >= 1 and D_l with l >= 3). Dimensions 0, 1 and 2 are immediate"
+      lean: "QuaternaryCentroid.centroid_scalar_of_dim_ne_four"
+      module: "Solution"
+      status: "proved"
+      note: "For a field with 2 != 0 and a symmetric nondegenerate form on a space with a basis indexed by a finite type whose number of elements is not four: every bracket-commuting map of so(B) is c . id."
+    - source: "Example of statement 5 on Mathlib's matrix Lie algebras"
+      lean: "QuaternaryCentroid.centroid_scalar_so'"
+      module: "Solution"
+      status: "proved"
+      note: "For finite types p, q with card p + card q != 4, every bracket-commuting real-linear map of LieAlgebra.Orthogonal.so' p q R is c . id."
+    - source: "Statements 1 and 2 over the real numbers, where the class of the determinant modulo squares is its sign; not located as stated in the sources read"
+      lean: "QuaternaryCentroid.centroid_real_diagonal"
+      module: "Solution"
+      status: "proved"
+      note: "For a real diagonal form with entries 1 or -1 in dimension four: if the product of the entries is -1, the bracket-commuting maps are a . id + b . J with J(J X) = -X; if it is 1, they are a . P + c . (id - P) for a bracket-commuting idempotent P other than 0 and id."
+    - source: "Statements 1 and 2 on the trace form; that its discriminant is the discriminant of the field, and the sign (-1)^{r_2}: Milne, Algebraic Number Theory, v3.08, p. 33 and Proposition 2.40(a). The rational clauses were not located as stated in the sources read"
+      lean: "QuaternaryCentroid.centroid_traceForm"
+      module: "Solution"
+      status: "proved"
+      note: "For a number field K of degree four with its trace form: over Q, H(H X) = d_K . X with the unique decomposition; a rational bracket-commuting map of square -1 exists iff -d_K is a rational square; over R, on the trace matrix of an integral basis, H(H X) = (-1)^{r_2} . X with the unique decomposition."
+    - source: "Example of statement 8. The discriminant -283 of the field of x^4 - x - 1: LMFDB 4.2.283.1; proved in the registered entry PALOMAR-2026-10-21-000012"
+      lean: "QuaternaryCentroid.centroid_traceForm_of_root"
+      module: "Solution"
+      status: "proved"
+      note: "For a number field K of degree four containing theta with theta^4 = theta + 1: H(H X) = (-283) . X with the unique decomposition; no rational bracket-commuting map has square -1; over R one exists."
+    - source: "Example of statements 2(b) and 3; not located in the sources read"
+      lean: "QuaternaryCentroid.not_lieEquiv_diagonal_of_root"
+      module: "Solution"
+      status: "proved"
+      note: "For the same K: there is no Lie algebra equivalence over Q from the skew-adjoint endomorphisms of the trace form of K to the rational matrices skew for diag(1, 1, 1, -1); the latter has a rational bracket-commuting map of square -1."
+    - source: "Controls; not source statements"
+      lean: "QuaternaryCentroid.controls"
+      module: "Solution"
+      status: "proved"
+      note: "(a) A number field of degree four with an element theta, theta^4 = theta + 1, exists. (b) For diag(1, 1, 1, 0) over Q every bracket-commuting map is c . id. (c) On the rational matrices skew for diag(1, 1, 1, -1) the identity is bracket-commuting with square 1, and 1 is not t^2 (-1) for a rational t != 0."
+
+acknowledgements: >-
+  Built on Mathlib and the Lean 4 toolchain; thanks to the leanprover
+  community. Developed with AI assistance (Anthropic Claude, in Claude
+  Code) under the author's direction.

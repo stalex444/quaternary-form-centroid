@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "QuaternaryCentroid.centroid_of_dim_four",
+    "QuaternaryCentroid.sq_and_idempotent_iff",
+    "QuaternaryCentroid.det_eq_sq_mul_of_lieEquiv",
+    "QuaternaryCentroid.isometry_conj_eq_det_smul",
+    "QuaternaryCentroid.centroid_scalar_of_dim_ne_four",
+    "QuaternaryCentroid.centroid_scalar_so'",
+    "QuaternaryCentroid.centroid_real_diagonal",
+    "QuaternaryCentroid.centroid_traceForm",
+    "QuaternaryCentroid.centroid_traceForm_of_root",
+    "QuaternaryCentroid.not_lieEquiv_diagonal_of_root",
+    "QuaternaryCentroid.controls"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}

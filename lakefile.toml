@@ -1,0 +1,32 @@
+name = "quaternary_form_centroid"
+defaultTargets = ["GravityScreening", "HermiteCompositum", "LorentzLie", "QuaternaryCentroid", "Challenge", "Solution", "Checks"]
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "065356127b1dc0016f66b7283ce0ce2c4055aa55"
+
+[[lean_lib]]
+name = "GravityScreening"
+globs = ["GravityScreening.+"]
+
+[[lean_lib]]
+name = "HermiteCompositum"
+globs = ["HermiteCompositum.+"]
+
+[[lean_lib]]
+name = "LorentzLie"
+globs = ["LorentzLie.+"]
+
+[[lean_lib]]
+name = "QuaternaryCentroid"
+globs = ["QuaternaryCentroid.+"]
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
+
+[[lean_lib]]
+name = "Checks"
