@@ -411,7 +411,11 @@ Scan of the tracked files (2026-11-13, after the finishing pass)
       docstrings speak of that entry's compared statements by number, of its Challenge.lean and
       Solution.lean and of modules of that entry that are not copied here; they use that entry's letters
       ρ, Q, fρ, fQ and the name "ruler polynomial" (Defs.lean, Instance.lean, Port014.lean), and
-      Port014.lean:23-34 names modules of an earlier development of the author's.
+      Port014.lean:23-34 names modules of an earlier development of the author's. One docstring names a
+      file that does not exist in this repository: HermiteCompositum/Defs.lean, line 33, cites the theorem
+      ofReal_powerSum in the module Hermite.lean of that library, a module of the registered entry that
+      was removed here in step (iii). README.md ("Layout") says so. Every other path that a tracked file
+      cites inside this repository exists in it (236 citations checked).
 
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.

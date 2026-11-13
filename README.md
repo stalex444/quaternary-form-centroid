@@ -488,6 +488,12 @@ docstrings and section headings, and `QuarticField.lean` imports `HermiteComposi
 where the development imports a larger module of that library. No declaration changed: the type
 and the value of every remaining declaration have the same hash before and after.
 
+**The three `HermiteCompositum` modules** are not edited, so their docstrings are those of the
+registered entry and refer to that entry's own files: where they say `Challenge.lean` or
+`Solution.lean` they mean that entry's, they number that entry's compared statements, and line 33
+of `HermiteCompositum/Defs.lean` names a module `Hermite.lean` of that library which is not copied
+here (it is in the repository of PALOMAR-2026-10-21-000012).
+
 ## Build
 
 Lean `v4.35.0-rc2`, Mathlib `065356127b1dc0016f66b7283ce0ce2c4055aa55` (`lean-toolchain`,
