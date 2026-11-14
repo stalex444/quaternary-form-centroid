@@ -126,12 +126,12 @@ sources:
     # Society, 1998). READ 2026-11-13 in the 588-page PDF at
     # https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf, a
     # pre-publication typesetting (internal cross-references print as "(??)").
-    # The numbers and pages quoted are that file's. The numbering and pages of
-    # the printed book are UNCONFIRMED: they were corroborated at five points
+    # The numbers and pages quoted are that file's. On 2026-11-13 the numbering and pages of
+    # the printed book were UNCONFIRMED: they were corroborated at five points
     # only ((2.1), (2.6), (2.14), (20.6) and (15.12) of the file carry the
     # content that two later papers cite under those numbers from the 1998
     # book), not at the items cited here. The printed book was not opened.
-    # The section pages agree with the printed table of contents and the authors' error list places (7.3) on p. 81 (Rost's page for the book, read 2026-11-14); the item numbers cited remain unconfirmed.
+    # The section pages agree with the printed table of contents and the authors' error list places (7.3) on p. 81 (Rost's page for the book, read 2026-11-14); the other item numbers cited remain unconfirmed.
     type: "book"
     location: "https://doi.org/10.1090/coll/044"
     # Relationship "adapts": the compared statements are the Lie-algebra counterparts of the source's Clifford-side results and were not located in it as stated; the proofs here do not follow its route.
@@ -527,7 +527,10 @@ related_formalizations:
       chirality_mul_self (:198): the Hodge star on two-forms is
       multiplication by the chirality element on Clifford bivectors; and
       Analysis/InnerProductSpace/HodgeStar/Basic.lean:
-      hodgeStar_hodgeStar_of_even (:244). These are counterparts of the
+      hodgeStar_hodgeStar_of_even (:244); and, found by the search of
+      2026-11-14, Analysis/InnerProductSpace/HodgeStar/Isometry.lean:
+      hodgeStar_lieMap (:218), the derivation action of a skew-adjoint
+      endomorphism commutes with the Hodge star. These are counterparts of the
       existence clause of statement 1, and of the existence part of
       statement 7(b), at the real definite instance, on two-forms and
       Clifford bivectors; there is no statement there that the
@@ -569,9 +572,10 @@ related_formalizations:
       were read for this entry on 2026-11-13, and the report of the search
       that names them was in hand when the compared statements and the
       helper module were written. Recorded as "other", not "independent",
-      for that reason. The search has to be repeated at the commit current
-      on the day of submission (the head of 2026-11-13 was searched by file
-      name only).
+      for that reason. The head of 2026-11-13 was searched by file name
+      only; the search was repeated on 2026-11-14 at
+      ca32605ff53921fa0689dd312618b7cfaafa7e43, the head when searched, in
+      the text of all 32,093 Lean files: none of the four was found.
   - id: "https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Geometry/EinsteinFour"
     # "other", not "independent", for the same reason as for TauCeti.
     relationship: "other"
@@ -681,8 +685,8 @@ related_formalizations:
       rings and is not used); the bracket-commuting maps are the linear
       maps underlying its LieModuleHom from L to L, and no description of
       that space for an orthogonal Lie algebra was found there. It has no
-      centre of the even Clifford algebra, and exteriorPower.hodgeStar
-      with its square identity as a TODO of that file.
+      centre of the even Clifford algebra; it has exteriorPower.hodgeStar,
+      whose square identity that file lists as still to be proved.
   - id: "https://github.com/stalex444/pdt-hodge-lie-generation/tree/e2d8dde6f076b730b9a718c95ff1664c6aa88b51"
     relationship: "other"
     note: >-

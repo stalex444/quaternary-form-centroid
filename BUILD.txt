@@ -1,8 +1,8 @@
 quaternary-form-centroid -- kernel build record, 2026-11-13 (written as the package was assembled; brought
   to the state after the finishing pass and the review-fix pass of the same day, each described in its own
   section)
-STATUS: a local package. Nothing has been pushed, published, registered or submitted; there is no public
-  repository, and the registry's own workflow has not been run.
+STATUS (2026-11-13): a local package. Nothing had been pushed, published, registered or submitted; there
+  was no public repository, and the registry's own workflow had not been run.
 
 Toolchain: leanprover/lean4:v4.35.0-rc2
   lean --version: Lean (version 4.35.0-rc2, arm64-apple-darwin24.6.0, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)
@@ -226,7 +226,7 @@ Build
     (8946 jobs), exit 0, 40.6 s wall clock (163 s user) for this package's own modules, Mathlib being prebuilt.
   Finishing pass: lake build of all targets after step (i) -> Build completed successfully (8956 jobs),
     exit 0; after step (ii) -> the same; after step (iii) -> Build completed successfully (8950 jobs), exit 0.
-  Full build, after the review-fix pass (the last edit to any Lean file): lake build GravityScreening
+  Full build, after the review-fix pass (the last edit to any Lean file on 2026-11-13): lake build GravityScreening
     HermiteCompositum LorentzLie QuaternaryCentroid Challenge Solution Checks -> Build completed successfully
     (8950 jobs), exit 0, started 2026-11-13 17:29:36 UTC. Warnings: the 11 'declaration uses sorry' warnings
     of Challenge.lean (the compared placeholders, lines 174, 205, 232, 261, 287, 300, 322, 356, 398, 428,
@@ -357,7 +357,7 @@ Statement identity, Challenge vs Solution (11 theorems, 1 definition)
 
 Comparator
   lake comparator --inadvisably-no-sandbox (toolchain bin with nanoda_bin on PATH), from the package root,
-    started 2026-11-13 17:30:10 UTC, after the review-fix pass (the last edit to any Lean file). Inputs:
+    started 2026-11-13 17:30:10 UTC, after the review-fix pass (the last edit to any Lean file on 2026-11-13). Inputs:
       8b8fca7b39c2bdc8348d8b06c2476b8d6c6e5066f8bacd60af18872fdea1193b  Challenge.lean
       2a496efb985a3ad185fcd3d5e238a03ee43ef5d88bb789fefa00379b643faf7f  Solution.lean
       4c5d928dcee0401c06e7ecc6d6d538be80b96406dc6a3afd6b05d2f649b4df67  comparator.json
@@ -365,7 +365,7 @@ Comparator
     okay!", exit 0, 107 s. The run after the finishing pass (Challenge.lean 76e42c47..., Solution.lean
     c873bf03..., same comparator.json) and the run at assembly (Challenge.lean 766c1f6d..., before the opening
     docstring was shortened and before the six modules were removed) gave the same result; no change to a statement or a proof was needed for the
-    Comparator to accept. The full output of the final run is at the end of this file.
+    Comparator to accept. The full output of this run is at the end of this file.
   Negative control (at assembly): with `-283` changed to `-284` in statement 9 of Challenge.lean only, the same command
     gave "error: Challenge and solution theorem statement do not match: 'QuaternaryCentroid.centroid_traceForm_of_root'", exit 1; Challenge.lean was then restored (same sha256 as before the control) and rebuilt.
   Not run: the registry's own submission workflow (there is no public commit); the Comparator inside its
@@ -386,8 +386,8 @@ Metadata (after the review-fix pass)
   Bibliographic records were checked on 2026-11-13 against Crossref and the arXiv records (formalization.yaml
     says which, per source). The commits cited for the author's registered entries are those of the
     registry's public records and exist in the public repositories.
-  Lines marked "TODO (author)" in README.md and formalization.yaml are the author's alone to settle: the
-    title, the review status with her own review of the eleven statements.
+  The title and the review status, with the author's own review of the eleven statements, were the
+    author's alone to settle; she settled them on 2026-11-14 ("The author's decisions, 2026-11-14", below).
 
 Review history
   2026-11-12: the library modules were written with AI assistance in the author's unpublished development,
@@ -414,8 +414,9 @@ Review history
     docstrings of Challenge.lean, Solution.lean and QuaternaryCentroid/Bridge.lean; no statement or proof
     changed), and an AI-assisted second reader's pass on the resulting diff, whose minor corrections were
     applied; build, axioms, Comparator, count gate and hash checks run again (review-fix pass).
-  Not done: the author's review of the eleven statements; a review of the assembled package on the
-    registry's published review prompts.
+  2026-11-14: the author reviewed the eleven statements against their informal descriptions (see "The
+    author's decisions, 2026-11-14" below).
+  Not done: a review of the assembled package on the registry's published review prompts.
 
 Scan of the tracked files (2026-11-13, after the finishing pass)
   Files written for this entry: no machine path, no reference to a private record, no priority wording, no
@@ -494,7 +495,7 @@ Pre-submission corrections, 2026-11-14 (prose and metadata only)
 
 Pre-submission corrections, second round, 2026-11-14 (README.md, formalization.yaml, this file)
   What changed. The second-round rows of the gate on the first round, applied as the gate gave them: a
-    comma in README.md ("Build"); the arXiv-category comment and the TODO preamble of formalization.yaml
+    comma in README.md ("Build"); the arXiv-category comment and the preamble comment of formalization.yaml
     brought in line with the first round; the size sentence under "Build" above (the file is over 32 KiB);
     and the account of the sources read from archive copies: Ponomarev's Lemma 1 (Russian original,
     p. 655), the journal version of Chaktoura-Szechtman (p. 1101), the printed section pages of The Book of
@@ -547,11 +548,15 @@ The author's decisions, 2026-11-14 (title, review, draft markers)
       "self-assessed" (the contract requires a nonempty status); 13 sources, 9 related formalizations.
   Not run in this round: the structural hash and dependency tools (the comment-stripped text is unchanged);
     the v0.4 jsonschema validation; the registry's own workflow (there is no public commit).
+  Afterwards the same day: text corrections to README.md, formalization.yaml and this file (stale or inaccurate lines;
+    four lines reworded so that the marker word used in the drafts no longer occurs in any tracked file;
+    the TauCeti search repeated on 2026-11-14 and one TauCeti declaration added); no .lean file,
+    comparator.json or file listed in SHA256SUMS changed.
 
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.
 
-Full output of the final Comparator run (lake comparator --inadvisably-no-sandbox, started 2026-11-13
+Full output of the Comparator run (lake comparator --inadvisably-no-sandbox, started 2026-11-13
   17:30:10 UTC, after the review-fix pass)
   WARNING: Sandbox disabled, this run is not trustworthy.
   Resolving dependencies

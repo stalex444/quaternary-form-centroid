@@ -235,7 +235,7 @@ clauses (statements 4, 8, 10, 11).
 The sources were read on 2026-11-13 and 2026-11-14; `formalization.yaml` records how each was read. The numbers
 and pages quoted from *The Book of Involutions* are those of a pre-publication PDF of the book
 (`https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf`, 588 pages, cross-references
-printed as "(??)"). The section pages agree with the printed book's table of contents (from M. Rost's page for the book), and the authors' error list places (7.3) on p. 81; the item numbers cited were not confirmed against the printed book.
+printed as "(??)"). The section pages agree with the printed book's table of contents (from M. Rost's page for the book), and the authors' error list places (7.3) on p. 81; the other item numbers cited were not confirmed against the printed book.
 
 - **Statement 1** was not located as a stated theorem in the sources read, but it follows in two
   steps from stated results about the Lie algebra: `so(B) ≅ so(B|W) ⊗ F[X]/(X² - det B)` for a
@@ -268,7 +268,7 @@ printed as "(??)"). The section pages agree with the printed book's table of con
   The idempotents are written on the Clifford side by Aka, Andritsch and Wieser (§2.2, p. 9), and
   Benkart and Neher, Lemma 2.1(d), relate idempotents of the centroid to decompositions.
   Chaktoura and Szechtman report (p. 1101, from Bourbaki, *Lie Groups and Lie Algebras*, Ch. I, §6,
-  Exercise 26; the exercise, 26(b), p. 109 of the 1975 English edition, was seen only in the Internet Archive's search-inside snippets, which were not saved and agree) that `so(B)` is the sum of two three-dimensional simple ideals when `det B`
+  Exercise 26; the exercise, 26(b), p. 109 of the 1975 English edition, was seen only in the Internet Archive's search-inside snippets, which were not saved and agree with that report) that `so(B)` is the sum of two three-dimensional simple ideals when `det B`
   is a square and simple otherwise; with Benkart and Neher's Lemma 2.1(d) this is clause (c).
 - **Statement 3** was not located as stated for dimension four. The nearest stated result at the
   level of Lie algebras is Leijnse, Theorem 2.36 (given there as Jacobson, Chapter X, Theorems 11
@@ -385,6 +385,7 @@ on Mathlib's `skewAdjointLieSubalgebra` and imports nothing from TauCeti.
 | `LinearAlgebra/CliffordAlgebra/Quadratic/Realization.lean` | `soEquivQuadratic`, 164 | The bridge between `skewAdjointLieSubalgebra` and the Clifford files; not used here. |
 | `LinearAlgebra/CliffordAlgebra/Chirality.lean` | `bivectorExterior_hodgeStar`, 289; `commute_chirality_bivectorExterior`, 252; `chirality_mul_self`, 198; `chirality_eq_neg_volumeElement`, 165 | Counterpart of the existence clause of statement 1, and of the existence part of statement 7(b), at the real definite instance, on two-forms and Clifford bivectors. No exhaustion; no other field or form. |
 | `Analysis/InnerProductSpace/HodgeStar/Basic.lean` | `hodgeStar_hodgeStar_of_even`, 244 | The square clause for the real definite form, on the exterior power; no bracket. |
+| `Analysis/InnerProductSpace/HodgeStar/Isometry.lean` | `hodgeStar_lieMap`, 218 | Found by the search of 2026-11-14. The derivation action of a skew-adjoint endomorphism commutes with the Hodge star in every degree: in dimension four, on two-forms, a counterpart of the existence clause of statement 1 at the real definite form. No exhaustion; no other field or form. |
 | `LinearAlgebra/CliffordAlgebra/RealForm/Four.lean`, `Spin/Real/Four.lean`, `Spin/Real/ThreeOne.lean` | 192; 100; 79 | Real instances on the Clifford and Spin side of statement 7. |
 | `LinearAlgebra/QuadraticForm/RegularFormClass/Discriminant.lean`, `Witt/Discriminant.lean` | 123, 260; 76 | The discriminant as a square class of an isometry class of forms: the form-level counterpart of statement 3. |
 | `Algebra/Lie/SkewAdjoint.lean` | `skewAdjointLieEquivOfBasis`, 150 | The same equivalence as this repository's helper `LorentzLie.FormCentroid.skewAdjointEquivMatrices`, in the opposite direction, over a commutative ring. |
@@ -397,8 +398,10 @@ Not found in TauCeti by these searches: a declaration named for the centroid of 
 bracket-commuting maps of an orthogonal Lie algebra; a Lie equivalence between an orthogonal Lie
 algebra of rank four and a product; a statement about `so` of the trace form of a number field.
 TauCeti's head on 2026-11-13 (`8b9f13d9936343c962096355455995c9a128af39`) was searched by file
-name only: 1,219 files were added between the commit read and that head. The search has to be
-repeated at the commit current on the day of submission.
+name only: 1,219 files were added between the commit read and that head. The search was
+repeated on 2026-11-14 at `ca32605ff53921fa0689dd312618b7cfaafa7e43`, TauCeti's head when searched, in
+the text of all 32,093 Lean files (1,805 added and 137 removed since the commit read; every file in
+the table is present there): none of these four was found.
 
 **openai/math** ([`lean/OAI/Geometry/EinsteinFour`](https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Geometry/EinsteinFour),
 commit `4eaee87548250b2682affda7d05d947c05554bae`). The existence clauses at the real definite form,
@@ -426,8 +429,8 @@ centroid of a Lie algebra (`centroid` does not occur under `Mathlib/Algebra/Lie`
 for non-associative rings and is not used here); the bracket-commuting maps of `L` are the linear
 maps underlying its Lie module morphisms `L →ₗ⁅F,L⁆ L` (`LieModuleHom`, whose field `map_lie'` is
 the equation of `IsBracketCommuting`), and no description of that space for an orthogonal Lie
-algebra was found there. It has no centre of the even Clifford algebra, and
-`exteriorPower.hodgeStar` with its square identity as a TODO of that file.
+algebra was found there. It has no centre of the even Clifford algebra; it has
+`exteriorPower.hodgeStar`, whose square identity that file lists as still to be proved.
 
 **Other Lean libraries searched:** `leanprover-community/physlib`
 (`76e1b4f0171d27a0d35334a633263a40ecf24fd5`), `facebookresearch/atlas-lean`
