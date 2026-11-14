@@ -1,10 +1,6 @@
-# Bracket-commuting maps of the orthogonal Lie algebra of a quaternary form
+# Bracket-commuting maps (the centroid) of the orthogonal Lie algebra of a quaternary form: the quadratic algebra F[X]/(X^2 - det B) and the square class of the determinant
 
 Author: Stephanie Alexander (ORCID [0009-0003-7727-2565](https://orcid.org/0009-0003-7727-2565)).
-
-> Draft of 2026-11-13, not submitted. Two things are the author's to settle and are marked
-> `TODO (author)`: the title (the heading above is a working title; `formalization.yaml` carries a
-> PROPOSED one) and her own review of the eleven statements.
 
 Kernel-checked, in Lean 4 + Mathlib. Let `F` be a field with `2 ≠ 0`, `B` a nondegenerate
 symmetric bilinear form on a four-dimensional `F`-vector space, and `so(B)` the Lie algebra of the
@@ -576,8 +572,7 @@ registry's Comparator were made on the author's machine. `formalization.yaml` (`
 `review`) gives the account. The library modules (`LorentzLie/`) were written on 2026-11-12,
 before the sources were read. The proofs in `QuaternaryCentroid/Bridge.lean` (statement 4,
 statement 2(c)–(d), statement 7(b)) were written on 2026-11-13, when the report of the search for
-sources and prior formalizations was in hand. TODO (author): her own review of the eleven statements is not yet
-recorded.
+sources and prior formalizations was in hand. The author reviewed the eleven statements against their descriptions on 2026-11-14.
 
 Licence: MIT (`LICENSE`). The repository contains no text of another project: the Challenge
 imports Mathlib only and carries one definition, written for this entry; the copied modules are

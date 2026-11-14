@@ -4,7 +4,7 @@ public import QuaternaryCentroid.Bridge
 
 @[expose] public section
 /-!
-# Bracket-commuting maps of the orthogonal Lie algebra of a quaternary form: proofs
+# Bracket-commuting maps (the centroid) of the orthogonal Lie algebra of a quaternary form: the quadratic algebra F[X]/(X^2 - det B) and the square class of the determinant: proofs
 
 Each of the eleven statements of `Challenge.lean` is proved here, with the identical statement and
 the identical definition `IsBracketCommuting`, which is repeated verbatim. Each proof is one

@@ -3,7 +3,7 @@ public import Mathlib
 
 @[expose] public section
 /-!
-# Bracket-commuting maps of the orthogonal Lie algebra of a quaternary form
+# Bracket-commuting maps (the centroid) of the orthogonal Lie algebra of a quaternary form: the quadratic algebra F[X]/(X^2 - det B) and the square class of the determinant
 
 Let `F` be a field with `2 ≠ 0`, `B` a nondegenerate symmetric bilinear form on a four-dimensional
 `F`-vector space, and `so(B)` the Lie algebra of the `B`-skew-adjoint endomorphisms. A linear map

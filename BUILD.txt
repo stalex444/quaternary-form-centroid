@@ -251,7 +251,7 @@ Build
   Every module uses the module system (module / public import / @[expose] public section). Challenge.lean
     imports Mathlib only; Solution.lean imports Mathlib and QuaternaryCentroid.Bridge; Checks.lean imports
     Mathlib and Solution.
-  Challenge.lean is 472 lines and 32,885 bytes after the pre-submission corrections of 2026-11-14 (469 lines and 32,535 bytes after the review-fix pass; 472 lines and 32,715 bytes after the
+  Challenge.lean is 472 lines and 32,982 bytes after the title was set on 2026-11-14 (472 lines and 32,885 bytes after the pre-submission corrections of 2026-11-14; 469 lines and 32,535 bytes after the review-fix pass; 472 lines and 32,715 bytes after the
     finishing pass; 498 lines and 35,015 bytes as assembled). The registry's
     verifier (PalomarSubmission 14aa8d6b, scripts/verify_submission.py) raises an error above 1,000 lines or
     100 KiB, and appends one warning when the file is over 32 KiB or over 300 lines. The file is under the hard
@@ -459,7 +459,7 @@ Pre-submission corrections, 2026-11-14 (prose and metadata only)
     minkowski-lorentz-algebra at 91aee70f with only request_id changed (qfcentroid01). No statement,
     definition or proof changed.
   Lean untouched. For every .lean file, the text with every /- ... -/ block (docstrings included) and every
-    -- comment removed has the same sha256 at d4f902fc83116b41e204565727c71616211bb5e4 and after the edits
+    -- comment removed has the same sha256 at 1468506806817cc5c5ded48e1b932ab5f7721f9e and after the edits
     (14 files, all identical). Solution.lean, regenerated in memory from Challenge.lean as the generator does
     it, equals the file byte for byte; its twelve statement docstrings equal the Challenge's.
   Challenge.lean is now 472 lines and 32,885 bytes (469 lines and 32,535 bytes before). It is now over
@@ -503,6 +503,50 @@ Pre-submission corrections, second round, 2026-11-14 (README.md, formalization.y
     added to the alignment of statement 2. No .lean file, comparator.json or other file listed in
     SHA256SUMS changed, so no build, Comparator run or SHA256SUMS regeneration was needed; formalization.yaml
     parses as YAML (13 sources).
+
+The author's decisions, 2026-11-14 (title, review, draft markers)
+  What changed. The title set in four places: README.md line 1, the heading of the opening docstring of
+    Challenge.lean (line 6) and of Solution.lean (line 7, with ": proofs"), and project.name in
+    formalization.yaml (unchanged there; the comment line above it removed). The author's review of the
+    eleven statements against their informal descriptions, made on 2026-11-14, recorded: review.status
+    "self-assessed", the author's name added first to review.reviewers (the AI-assisted reviewers line
+    kept), the sentence in review.notes and the sentence in README.md ("Authorship, production and licence") stating it.
+    The draft banner under the README heading, the preamble comment of formalization.yaml and the comment
+    lines above review.status removed. The size sentence under "Build" updated. No
+    statement, definition or proof changed.
+  Lean untouched. For every .lean file, the text with every /- ... -/ block (docstrings included) and every
+    -- comment removed has the same sha256 before and after the edits (14 files, all identical); the raw
+    hash changed for Challenge.lean and Solution.lean only. Solution.lean, regenerated in memory from
+    Challenge.lean as the generator does it (with the generator's header carrying the same title), equals
+    the file byte for byte; its twelve statement docstrings equal the Challenge's.
+  Challenge.lean is now 472 lines and 32,982 bytes (472 lines and 32,885 bytes before). The warning of the
+    registry's verifier for a file over 32 KiB or over 300 lines applies as before; the hard limits are not
+    reached.
+  Commands re-run after the edits (toolchain bin, with nanoda_bin, first on PATH):
+    lake build GravityScreening HermiteCompositum LorentzLie QuaternaryCentroid Challenge Solution Checks ->
+      Build completed successfully (8950 jobs), exit 0, 39 s, started 2026-11-14 22:33:46 UTC. Warnings: the
+      11 'declaration uses sorry' warnings of Challenge.lean (lines 176, 207, 234, 263, 289, 302, 324, 358,
+      400, 431, 456); one deprecation warning in GravityScreening/SignedLieGeneration.lean; 13 linter
+      warnings in HermiteCompositum/Port014.lean. Nothing else.
+    lake env lean Challenge.lean -> exactly the 11 'declaration uses sorry' warnings, nothing else, exit 0,
+      11 s.
+    lake env lean Axioms.lean -> 44 declarations, each depending on [propext, Classical.choice, Quot.sound],
+      exit 0, 4 s.
+    lake comparator --inadvisably-no-sandbox, started 2026-11-14 22:34:50 UTC. Inputs:
+      d9bb21bbf2cf9dd3e781579a04480bf99197e24a9157e00e3abcb9a320df0f69  Challenge.lean
+      e2f481c8faca2b849d2be4d386f25648961ef69aec58608ddc9e69b44fedfaf3  Solution.lean
+      4c5d928dcee0401c06e7ecc6d6d538be80b96406dc6a3afd6b05d2f649b4df67  comparator.json
+      Result: "nanoda kernel accepts the solution / Lean default kernel accepts the solution / Your solution
+      is okay!", exit 0, 115 s. (The output reproduced at the end of this file is that of the run of
+      2026-11-13.)
+    Count gate (the script described above), exit 0: all 17 checks PASS, COUNT GATE: PASS.
+    SHA256SUMS regenerated over the same files in the same order (shasum -a 256); Challenge.lean and
+      Solution.lean changed; shasum -a 256 -c: every file OK.
+    formalization.yaml loads under the registry contract (scripts.submission_contract at PalomarSubmission
+      14aa8d6b, load_formalization_metadata): project.name 170 characters (maximum 300); review.status
+      "self-assessed" (the contract requires a nonempty status); 13 sources, 9 related formalizations.
+  Not run in this round: the structural hash and dependency tools (the comment-stripped text is unchanged);
+    the v0.4 jsonschema validation; the registry's own workflow (there is no public commit).
 
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.
