@@ -2,8 +2,8 @@
 version: "v0.4"
 
 # Not submitted. The lines marked "TODO (author)" are the author's alone to
-# settle (the title, the review status and her own review of the statements,
-# the acknowledgements); none may remain at submission.
+# settle (the title, the review status and her own review of the statements);
+# none may remain at submission.
 
 project:
   # TODO (author): the title. PROPOSED title below; the author decides.
@@ -111,8 +111,10 @@ classification:
   # eight; 15A63 (quadratic and bilinear forms, inner products) was dropped as
   # the least specific of nine candidates. arXiv: math.RA (Lie algebras as
   # nonassociative algebras; quadratic forms and algebras with involution) and
-  # math.NT (the trace form and the discriminant of a number field). Both are
-  # in the registry's arXiv snapshot at the same commit.
+  # math.NT (the trace form and the discriminant of a number field), and
+  # math.RT (the maps are the endomorphisms of the adjoint module; Benkart and
+  # Neher is in math.RT). All three are in the registry's arXiv snapshot at the
+  # same commit.
   arxiv: ["math.RA", "math.NT", "math.RT"]
   msc2020: ["17B05", "17B40", "17B20", "11E04", "11E88", "16W10", "11R16", "11R29"]
 
@@ -134,6 +136,7 @@ sources:
     # only ((2.1), (2.6), (2.14), (20.6) and (15.12) of the file carry the
     # content that two later papers cite under those numbers from the 1998
     # book), not at the items cited here. The printed book was not opened.
+    # The section pages agree with the printed table of contents and the authors' error list places (7.3) on p. 81 (Rost's page for the book, read 2026-11-14); the item numbers cited remain unconfirmed.
     type: "book"
     location: "https://doi.org/10.1090/coll/044"
     # Relationship "adapts": the compared statements are the Lie-algebra counterparts of the source's Clifford-side results and were not located in it as stated; the proofs here do not follow its route.
@@ -255,7 +258,11 @@ sources:
       under the centroid, from which the centroid of a product of two
       perfect algebras is the product of the centroids; the proof of Lemma
       2.1 refers to Ponomarev (Algebra Logic 40 (2001), Lemma 1) for the
-      centroid of a decomposable algebra (not read). Corollary 2.23(b),
+      centroid of a decomposable algebra (read in the Russian original,
+      Algebra i Logika 40:6 (2001) 651-674, p. 655: Lemma 1, attributed to
+      Melville, Gamma(R1 + R2) = Gamma(R1) + Gamma(R2) + C(R1, R2), C(R1, R2)
+      mapping each factor into the other's annihilator; English translation
+      not opened). Corollary 2.23(b),
       pp. 11-12: for a perfect A with Cent(A) = F id and a unital B,
       Cent(A (x) B) = id (x) Cent(B); with the theorem of Chaktoura and
       Szechtman this gives statement 1. Not used in any proof here.
@@ -267,19 +274,19 @@ sources:
       - "Fernando Szechtman"
     id: "arXiv:1306.4006v1"
     # Journal: J. Lie Theory 23 (2013), no. 4, 1101-1103, doi:10.5802/jolt.767
-    # (Crossref, checked 2026-11-14). READ 2026-11-14 in the arXiv version.
+    # (Crossref, checked 2026-11-14). READ 2026-11-14 in the arXiv version and in the journal version (open access, Centre Mersenne); same text.
     type: "paper"
     location: "https://arxiv.org/abs/1306.4006"
     relationship: "adapts"
     note: >-
-      Scoped to statement 1. Theorem (p. 1): for a non-degenerate symmetric
+      Scoped to statements 1 and 2(c). Theorem (p. 1; journal p. 1101, unnumbered): for a non-degenerate symmetric
       bilinear form f on a four-dimensional space with Gram determinant D,
       M = [L(f), L(f)] (= L(f) = so(f) when char F != 2) is isomorphic to
       [L(f|W), L(f|W)] (x) F[X]/(X^2 - D) for a three-dimensional W on
       which f is non-degenerate. With Benkart and Neher, Corollary 2.23(b),
       this gives the description of statement 1. The note also reports
       (Bourbaki, Lie Groups and Lie Algebras, Ch. I, section 6, Exercise
-      26; not read) that for char F != 2, M is the sum of two
+      26; seen only in search-inside snippets of the 1975 English edition, p. 109, not saved) that for char F != 2, M is the sum of two
       three-dimensional simple ideals or simple according as D is or is not
       a square (context of statement 2(c)). The proof here is a computation
       with matrices and was not written from this text.
@@ -356,13 +363,13 @@ sources:
     authors:
       - "Nathan Jacobson"
     id: "1962, Chapter X"
-    # NOT READ. Named because Leijnse gives Theorem 2.34 as a summary of
+    # NOT READ PAGE BY PAGE; Chapter X searched only through the Internet Archive's search-inside snippets of the 1962 edition (not saved; not re-checked). Named because Leijnse gives Theorem 2.34 as a summary of
     # results of its Chapter X, Theorem 2.36 as its Chapter X, Theorems 11 and
     # 12, and Lemma 2.7 as a variant of its Chapter X, Theorem 3, and because
     # Benkart and Neher cite it for the centroid. The Book of Involutions, Notes to
-    # Chapter IV (pp. 274-275), cites its Chapter X, section 4, for extending
+    # Chapter IV (pp. 274-275 of the pre-publication PDF; printed p. 274), cites its Chapter X, section 4, for extending
     # Lie algebra isomorphisms to algebras with involution in characteristic
-    # 0; whether that covers type D_2 was not checked. Bibliographic record: the year and the
+    # 0; whether that covers type D_2 was not checked. In section 2.D (p. 29) the same book says that this property "does not hold for algebras of low degrees". Bibliographic record: the year and the
     # chapter are as Leijnse cites the book ("[Jac62, Chapter X]"). The
     # publisher and place were not confirmed from a bibliographic record and
     # are not given: Crossref has no record of the 1962 book itself, only one
@@ -371,7 +378,7 @@ sources:
     type: "book"
     relationship: "background"
     note: >-
-      Not read for this entry. No statement about its content is made here
+      Not read page by page for this entry (search-inside snippets only; in them no statement about type D_2 or a discriminant was found). No statement about its content is made here
       beyond what Leijnse and Benkart and Neher report of it (see their
       entries). If its Chapter X states the description of statement 1 or
       treats type D_2, that chapter becomes the source of statements 1 and
@@ -883,7 +890,7 @@ fidelity:
     here; both have a bracket-commuting map of square -1 (statements 9(c)
     and 7(a)). (n) Sources. Leijnse, Benkart and Neher, and Aka, Andritsch and Wieser
     were read in their arXiv versions; Milne's notes in version 3.08;
-    Jacobson's Lie Algebras was not read. (o) Carriers. Statements 1-5,
+    Jacobson's Lie Algebras was not read page by page (search-inside snippets only); Chaktoura and Szechtman were read in both versions; Ponomarev's Lemma 1 in the Russian original. (o) Carriers. Statements 1-5,
     8(a)-(b), 9(a)-(b) and the first Lie algebra of 10(a) are on Mathlib's
     skewAdjointLieSubalgebra B (endomorphisms); statements 6, 7, 8(c),
     9(c), 10(b), the second Lie algebra of 10(a), and 11(b)-(c) are on
@@ -938,7 +945,7 @@ alignment:
       module: "Solution"
       status: "proved"
       note: "For a field with 2 != 0 and a symmetric nondegenerate form B on a space with a basis of four elements: a bracket-commuting H on so(B) with H(H X) = det B . X, such that every bracket-commuting map is a . id + c . H for exactly one pair (a, c); a bracket-commuting map not of the form a . id with the same square is H or -H."
-    - source: "Not located as stated in the sources read; arithmetic in the quadratic algebra of statement 1. Clifford-side counterpart of clause (c): Knus-Merkurjev-Rost-Tignol 1998, (8.10) (numbering of a pre-publication PDF); Aka-Andritsch-Wieser, section 2.2 (the idempotents). Context of clauses (c)-(d): Benkart-Neher, Lemma 2.1(d)"
+    - source: "Not located as stated in the sources read; arithmetic in the quadratic algebra of statement 1. Clifford-side counterpart of clause (c): Knus-Merkurjev-Rost-Tignol 1998, (8.10) (numbering of a pre-publication PDF); Aka-Andritsch-Wieser, section 2.2 (the idempotents). Context of clauses (c)-(d): Benkart-Neher, Lemma 2.1(d). The decomposition behind clause (c) (so(B) is the sum of two three-dimensional simple ideals or simple according as det B is or is not a square): Bourbaki, Lie Groups and Lie Algebras, Ch. I, section 6, Exercise 26(b), as reported by Chaktoura-Szechtman, J. Lie Theory 23 (2013), p. 1101"
       lean: "QuaternaryCentroid.sq_and_idempotent_iff"
       module: "Solution"
       status: "proved"

@@ -251,11 +251,11 @@ Build
   Every module uses the module system (module / public import / @[expose] public section). Challenge.lean
     imports Mathlib only; Solution.lean imports Mathlib and QuaternaryCentroid.Bridge; Checks.lean imports
     Mathlib and Solution.
-  Challenge.lean is 469 lines and 32,535 bytes after the review-fix pass (472 lines and 32,715 bytes after the
+  Challenge.lean is 472 lines and 32,885 bytes after the pre-submission corrections of 2026-11-14 (469 lines and 32,535 bytes after the review-fix pass; 472 lines and 32,715 bytes after the
     finishing pass; 498 lines and 35,015 bytes as assembled). The registry's
     verifier (PalomarSubmission 14aa8d6b, scripts/verify_submission.py) raises an error above 1,000 lines or
     100 KiB, and appends one warning when the file is over 32 KiB or over 300 lines. The file is under the hard
-    limits and under 32 KiB; it is over 300 lines, so the warning still applies (the statements and their
+    limits; it is over 32 KiB and over 300 lines, so the one warning applies (the statements and their
     docstrings, from `set_option` on, are 324 lines).
 
 #print axioms (lake env lean Axioms.lean; Axioms.lean imports Checks), after the review-fix pass, exit 0,
@@ -491,6 +491,18 @@ Pre-submission corrections, 2026-11-14 (prose and metadata only)
       14aa8d6b, load_formalization_metadata); math.RT is in that commit's arXiv snapshot.
   Not run in this round: the structural hash and dependency tools (the comment-stripped text is unchanged);
     the v0.4 jsonschema validation; the registry's own workflow (there is no public commit).
+
+Pre-submission corrections, second round, 2026-11-14 (README.md, formalization.yaml, this file)
+  What changed. The second-round rows of the gate on the first round, applied as the gate gave them: a
+    comma in README.md ("Build"); the arXiv-category comment and the TODO preamble of formalization.yaml
+    brought in line with the first round; the size sentence under "Build" above (the file is over 32 KiB);
+    and the account of the sources read from archive copies: Ponomarev's Lemma 1 (Russian original,
+    p. 655), the journal version of Chaktoura-Szechtman (p. 1101), the printed section pages of The Book of
+    Involutions and its error list, its section 2.D (p. 29), and Jacobson, Chapter X, and Bourbaki,
+    Exercise 26(b), seen only in search-inside snippets that were not saved; the Bourbaki decomposition
+    added to the alignment of statement 2. No .lean file, comparator.json or other file listed in
+    SHA256SUMS changed, so no build, Comparator run or SHA256SUMS regeneration was needed; formalization.yaml
+    parses as YAML (13 sources).
 
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.

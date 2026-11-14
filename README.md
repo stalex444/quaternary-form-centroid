@@ -236,10 +236,10 @@ clauses (statements 4, 8, 10, 11).
 
 ## Relation to the literature
 
-The sources were read on 2026-11-13; `formalization.yaml` records how each was read. The numbers
+The sources were read on 2026-11-13 and 2026-11-14; `formalization.yaml` records how each was read. The numbers
 and pages quoted from *The Book of Involutions* are those of a pre-publication PDF of the book
 (`https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf`, 588 pages, cross-references
-printed as "(??)"); the numbering of the printed book was not confirmed.
+printed as "(??)"). The section pages agree with the printed book's table of contents (from M. Rost's page for the book), and the authors' error list places (7.3) on p. 81; the item numbers cited were not confirmed against the printed book.
 
 - **Statement 1** was not located as a stated theorem in the sources read, but it follows in two
   steps from stated results about the Lie algebra: `so(B) ≅ so(B|W) ⊗ F[X]/(X² - det B)` for a
@@ -260,15 +260,19 @@ printed as "(??)"); the numbering of the printed book was not confirmed.
   Neher's paper, but its key point is their Lemma 2.1(a), p. 3: any perfect ideal is invariant
   under the centroid (so a bracket-commuting `R` sends `A₁ = ⁅A₁, A₁⁆` into itself). Their proof
   of Lemma 2.1 refers to K. Ponomarëv (Algebra Logic 40 (2001) 365–377, Lemma 1) for a
-  description of the centroid of a decomposable algebra; that paper was not read. The
+  description of the centroid of a decomposable algebra. That lemma, attributed there to Melville, gives
+  `Γ(R₁ ⊕ R₂) = Γ(R₁) ⊕ Γ(R₂) ⊕ C(R₁, R₂)`, where `C(R₁, R₂)` consists of the maps sending each
+  factor into the annihilator of the other, so `C(R₁, R₂) = 0` when both factors have zero
+  annihilator, as the two simple ideals of the split case do (read in the Russian original, Algebra
+  i Logika 40:6 (2001) 651–674, p. 655; the English translation was not opened). The
   proofs here do not use this route. The Clifford-side statement itself is (8.10) and, for a
   quaternary quadratic space over a field of characteristic zero, Aka, Andritsch and Wieser,
   §2.2.
 - **Statement 2** is arithmetic in `F[X]/(X² - det B)` from statement 1.
   The idempotents are written on the Clifford side by Aka, Andritsch and Wieser (§2.2, p. 9), and
   Benkart and Neher, Lemma 2.1(d), relate idempotents of the centroid to decompositions.
-  Chaktoura and Szechtman report (from Bourbaki, *Lie Groups and Lie Algebras*, Ch. I, §6,
-  Exercise 26; not read) that `so(B)` is the sum of two three-dimensional simple ideals when `det B`
+  Chaktoura and Szechtman report (p. 1101, from Bourbaki, *Lie Groups and Lie Algebras*, Ch. I, §6,
+  Exercise 26; the exercise, 26(b), p. 109 of the 1975 English edition, was seen only in the Internet Archive's search-inside snippets, which were not saved and agree) that `so(B)` is the sum of two three-dimensional simple ideals when `det B`
   is a square and simple otherwise; with Benkart and Neher's Lemma 2.1(d) this is clause (c).
 - **Statement 3** was not located as stated for dimension four. The nearest stated result at the
   level of Lie algebras is Leijnse, Theorem 2.36 (given there as Jacobson, Chapter X, Theorems 11
@@ -280,10 +284,16 @@ printed as "(??)"); the numbering of the printed book was not confirmed.
   Involutions*, §7, p. 80). Statement 3 gives the same conclusion in dimension
   four (type `D₂`, which that theorem as stated does not include), over every field with `2 ≠ 0`,
   by a route (the bracket-commuting maps) that exists in dimension four only. Jacobson's
-  Chapter X was not read. *The Book of Involutions*, Notes to Chapter IV (pp. 274–275), says that
-  in characteristic 0 results of Jacobson, Chapter X, §4, on the extension of Lie algebra
-  isomorphisms show directly that certain canonical Lie algebra isomorphisms of that chapter extend
-  to isomorphisms of algebras with involution; whether those results cover `D₂` was not checked.
+  Chapter X was not read page by page; in the Internet Archive's search-inside snippets of the
+  1962 edition (not saved; not re-checked by a second reader), no statement about type `D₂` or a
+  discriminant was found, and the type-`D` results seen assume `l ≥ 4` or more. *The Book of
+  Involutions*, Notes to Chapter IV (pp. 274–275 of the pre-publication PDF; p. 274 of the printed
+  book), says that in characteristic 0 results of Jacobson, Chapter X, §4, on the extension of Lie
+  algebra isomorphisms show directly that certain canonical Lie algebra isomorphisms of that chapter
+  extend to isomorphisms of algebras with involution; and in §2.D (p. 29) it says that this property
+  of Jacobson, Chapter X, §4, "does not hold for algebras of low degrees", the exceptional
+  isomorphisms of its Chapter IV giving nonisomorphic algebras with involution with isomorphic Lie
+  algebras of skew-symmetric elements.
 - **Statement 4**: the Clifford-side statement is (13.2), a similitude is proper if and only if the
   automorphism it induces on the Clifford algebra is the identity on the centre.
 - **Statement 5** is stated, for fields of characteristic not 2 and for the derived algebra
@@ -302,7 +312,7 @@ printed as "(??)"); the numbering of the printed book was not confirmed.
 - Terminology. "Centroid" is the standard name (Benkart and Neher, §1). *The Book of Involutions*
   calls another object "the discriminant algebra" ((10.28), for involutions of the second kind);
   the quadratic algebra `F[X]/(X² - det B)` of this entry is not given that name here.
-- Not read: N. Jacobson, *Lie Algebras* (1962), Chapter X. Also not read, and not cited as sources
+- Not read page by page: N. Jacobson, *Lie Algebras* (1962), Chapter X (searched only through the Internet Archive's search-inside snippets; not saved). Also not read, and not cited as sources
   here: Knus (1991), Scharlau, Lam, Seligman.
 
 References, with the form in which each was read (bibliographic records checked on 2026-11-13
@@ -317,7 +327,7 @@ against Crossref, the arXiv records, or the page named):
   (2006) 117–145, doi:10.1016/j.jpaa.2005.06.007 (not opened).
 - M. Chaktoura, F. Szechtman, *A note on orthogonal Lie algebras in dimension 4 viewed as current
   Lie algebras*, J. Lie Theory 23 (2013), no. 4, 1101–1103, doi:10.5802/jolt.767;
-  arXiv:1306.4006v1 [math.RA] (the version read).
+  arXiv:1306.4006v1 [math.RA]. Both versions were read; the text is the same (the Theorem is unnumbered, p. 1101 of the journal).
 - M. Aka, K. Andritsch, A. Wieser, *Planes in quadratic 4-space and associated shapes of
   lattices*, arXiv:2606.03472v2 [math.NT], 17 August 2026.
 - J. S. Milne, *Algebraic Number Theory*, course notes, version 3.08, 19 July 2020,
@@ -334,7 +344,7 @@ against Crossref, the arXiv records, or the page named):
 - G. Mantilla-Soler, C. Rivera, *The integral trace form as a complete invariant for real `S_n`
   number fields*, arXiv:1812.03133; G. Mantilla-Soler, *On the Arithmetic determination of the
   trace*, arXiv:1308.2187.
-- Not read: N. Jacobson, *Lie Algebras*, 1962, Chapter X (the publisher and place were not
+- Not read page by page: N. Jacobson, *Lie Algebras*, 1962, Chapter X (searched only through search-inside snippets) (the publisher and place were not
   confirmed from a bibliographic record and are not given).
 
 ## Prior formalization
@@ -550,7 +560,7 @@ lake env lean Axioms.lean
 ```
 
 `lake build` builds the libraries, `Challenge`, `Solution` and `Checks`; the only warnings are the
-eleven placeholders of `Challenge.lean` a deprecation warning in one copied module (`GravityScreening/SignedLieGeneration.lean`) and
+eleven placeholders of `Challenge.lean`, a deprecation warning in one copied module (`GravityScreening/SignedLieGeneration.lean`) and
 linter warnings in another (`HermiteCompositum/Port014.lean`). Every compared
 statement depends on the axioms `propext`, `Classical.choice`, `Quot.sound` only. `BUILD.txt`
 records the build, the axioms, the comparison of the statements of `Challenge.lean` and
