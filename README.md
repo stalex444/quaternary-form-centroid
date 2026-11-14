@@ -23,16 +23,19 @@ It compares exactly eleven statements (those of `Challenge.lean`, which the regi
 
 Here `det B` is the determinant of the Gram matrix of `B` in a chosen basis; it changes by a
 nonzero square with the basis, and for `t ≠ 0` the operator `t • H` has square `t² · det B`. For a
-diagonal form, `H` is the Hodge star on skew matrices: it exchanges the entries at complementary
-pairs of indices, with signs and with weights from the form ("The proofs").
+diagonal form, `H` is the Hodge star of `B` on `Λ²V ≅ so(B)` taken with respect to the volume
+element `e₁ ∧ e₂ ∧ e₃ ∧ e₄` of the basis, not a normalized one; this is why `H ∘ H = det B` rather
+than `±1`. On skew matrices it exchanges the entries at complementary pairs of indices, with signs
+and with weights from the form ("The proofs").
 
 This entry is a formalization; nothing in it is claimed as original mathematics. The mathematics
 is the classical `D₂ = A₁ × A₁` in the form it takes for the Lie algebra: `F[X]/(X² - det B)` is
 the centre `Z` of the even Clifford algebra of `B`, and `so(B)` is the Lie algebra of pure
 quaternions of a quaternion algebra over `Z` (*The Book of Involutions*, (8.10), (8.18),
 (15.6)–(15.8)). The statements about the bracket-commuting maps themselves (1–4 and the rational
-clauses of 8) were not located as stated in the sources read; "Relation to the literature"
-derives statement 1 from the stated results. The Clifford-algebra side is formalized in the Lean
+clauses of 8) were not located as stated in the sources read; statement 1 follows in two steps
+from a theorem of Chaktoura and Szechtman and a corollary of Benkart and Neher ("Relation to the
+literature"). The Clifford-algebra side is formalized in the Lean
 library TauCeti, and the existence clauses of statements 1 and 7(b) and the case `det g = 1` of
 statement 4, for the real definite form, in coordinates, in `openai/math`; see "Prior
 formalization".
@@ -132,8 +135,10 @@ Corollaries and examples (statements 7–10):
     Lie algebra over `ℚ` of the trace form of `K` is not isomorphic to the Lie algebra over `ℚ`
     of the diagonal form `(1, 1, 1, -1)`, which does have a rational bracket-commuting map of
     square `-1`. The invariant is the class of the determinant modulo rational squares: `-283`
-    against `-1`. Over `ℝ` the Lie algebras of the two forms both have a bracket-commuting map of
-    square `-1` (statements 9(c) and 7(a)).
+    against `-1`. Over `ℝ` the two forms are isometric: the trace form has signature
+    `(r₁ + r₂, r₂) = (3, 1)` (PALOMAR-2026-10-21-000012, `traceForm_signature`), as does
+    `(1, 1, 1, -1)`. So the two real Lie algebras are isomorphic (not formalized here), and both have
+    a bracket-commuting map of square `-1` (statements 9(c) and 7(a)). The obstruction is over `ℚ`.
 
 Controls (statement 11):
 
@@ -236,8 +241,14 @@ and pages quoted from *The Book of Involutions* are those of a pre-publication P
 (`https://webhomes.maths.ed.ac.uk/~v1ranick/papers/involutions.pdf`, 588 pages, cross-references
 printed as "(??)"); the numbering of the printed book was not confirmed.
 
-- **Statement 1** was not located as a stated theorem in the sources read. It can be derived from
-  stated results as follows. `so(B)` is `Skew(End V, σ_b)` (Leijnse, Lemma 2.33).
+- **Statement 1** was not located as a stated theorem in the sources read, but it follows in two
+  steps from stated results about the Lie algebra: `so(B) ≅ so(B|W) ⊗ F[X]/(X² - det B)` for a
+  three-dimensional `W` on which `B` is nondegenerate (M. Chaktoura and F. Szechtman, Theorem;
+  their `L(f)` is `so(B)` when `2 ≠ 0`), and `Cent(A ⊗ B) = id ⊗ Cent(B)` for a perfect `A` with
+  `Cent(A) = F · id` and a unital `B` (Benkart and Neher, Corollary 2.23(b), pp. 11–12). Here
+  `so(B|W)` is perfect and central (Leijnse, Theorem 2.34, type `B₁`), and the centroid of the
+  commutative algebra `F[X]/(X² - det B)` is that algebra (Benkart and Neher, §2.1). It can also be
+  derived from the Clifford-side results, as follows. `so(B)` is `Skew(End V, σ_b)` (Leijnse, Lemma 2.33).
   `Skew(A, σ) ≅ c(A)₀` (Knus, Merkurjev, Rost, Tignol, (8.18)). In degree four, `c(A)₀` is the
   space of pure quaternions of a quaternion algebra over `Z ≃ F[X]/(X² - disc σ)` ((15.6)–(15.8),
   (15.7), (8.10)). `disc σ_b = disc b`, which is `det b` in dimension four ((7.3)(3), §7). So `Z`
@@ -245,15 +256,20 @@ printed as "(??)"); the numbering of the printed book was not confirmed.
   commutativity of the centroid of a perfect algebra (Benkart and Neher, §2.1); centrality when
   `Z` is a field (Leijnse, Lemma 2.7, given there as a variant of a theorem of Jacobson's book,
   which was not read); and, in the split case, that the centroid of a product of two perfect
-  algebras is the product of the centroids. This step was not found stated in Benkart and Neher's
-  paper; it is immediate (a bracket-commuting `R` sends the ideal `A₁ = ⁅A₁, A₁⁆` into itself,
-  because `R ⁅x, y⁆ = ⁅x, R y⁆` lies in `A₁` for `x` in `A₁`). The
+  algebras is the product of the centroids. This step is not stated in that form in Benkart and
+  Neher's paper, but its key point is their Lemma 2.1(a), p. 3: any perfect ideal is invariant
+  under the centroid (so a bracket-commuting `R` sends `A₁ = ⁅A₁, A₁⁆` into itself). Their proof
+  of Lemma 2.1 refers to K. Ponomarëv (Algebra Logic 40 (2001) 365–377, Lemma 1) for a
+  description of the centroid of a decomposable algebra; that paper was not read. The
   proofs here do not use this route. The Clifford-side statement itself is (8.10) and, for a
   quaternary quadratic space over a field of characteristic zero, Aka, Andritsch and Wieser,
   §2.2.
 - **Statement 2** is arithmetic in `F[X]/(X² - det B)` from statement 1.
   The idempotents are written on the Clifford side by Aka, Andritsch and Wieser (§2.2, p. 9), and
   Benkart and Neher, Lemma 2.1(d), relate idempotents of the centroid to decompositions.
+  Chaktoura and Szechtman report (from Bourbaki, *Lie Groups and Lie Algebras*, Ch. I, §6,
+  Exercise 26; not read) that `so(B)` is the sum of two three-dimensional simple ideals when `det B`
+  is a square and simple otherwise; with Benkart and Neher's Lemma 2.1(d) this is clause (c).
 - **Statement 3** was not located as stated for dimension four. The nearest stated result at the
   level of Lie algebras is Leijnse, Theorem 2.36 (given there as Jacobson, Chapter X, Theorems 11
   and 12; characteristic zero), which covers types `B_l` (`l ≥ 2`) and `D_l` (`l = 3`, `l ≥ 5`)
@@ -263,8 +279,11 @@ printed as "(??)"); the numbering of the printed book was not confirmed.
   rescaling the form changes the determinant class and not the Lie algebra (*The Book of
   Involutions*, §7, p. 80). Statement 3 gives the same conclusion in dimension
   four (type `D₂`, which that theorem as stated does not include), over every field with `2 ≠ 0`,
-  by a route (the bracket-commuting maps) that exists in dimension four only. Whether
-  Jacobson's Chapter X treats `D₂` elsewhere is not known to this entry.
+  by a route (the bracket-commuting maps) that exists in dimension four only. Jacobson's
+  Chapter X was not read. *The Book of Involutions*, Notes to Chapter IV (pp. 274–275), says that
+  in characteristic 0 results of Jacobson, Chapter X, §4, on the extension of Lie algebra
+  isomorphisms show directly that certain canonical Lie algebra isomorphisms of that chapter extend
+  to isomorphisms of algebras with involution; whether those results cover `D₂` was not checked.
 - **Statement 4**: the Clifford-side statement is (13.2), a similitude is proper if and only if the
   automorphism it induces on the Clifford algebra is the identity on the centre.
 - **Statement 5** is stated, for fields of characteristic not 2 and for the derived algebra
@@ -296,6 +315,9 @@ against Crossref, the arXiv records, or the page named):
 - G. Benkart, E. Neher, *The centroid of extended affine and root graded Lie algebras*,
   arXiv:math/0502561v1 [math.RT], 26 February 2005 (the version read); J. Pure Appl. Algebra 205
   (2006) 117–145, doi:10.1016/j.jpaa.2005.06.007 (not opened).
+- M. Chaktoura, F. Szechtman, *A note on orthogonal Lie algebras in dimension 4 viewed as current
+  Lie algebras*, J. Lie Theory 23 (2013), no. 4, 1101–1103, doi:10.5802/jolt.767;
+  arXiv:1306.4006v1 [math.RA] (the version read).
 - M. Aka, K. Andritsch, A. Wieser, *Planes in quadratic 4-space and associated shapes of
   lattices*, arXiv:2606.03472v2 [math.NT], 17 August 2026.
 - J. S. Milne, *Algebraic Number Theory*, course notes, version 3.08, 19 July 2020,
@@ -321,7 +343,9 @@ Searches of 2026-11-13. What follows is the result of a dated search, not a stat
 nothing else exists.
 
 **Not found in any place searched:** a declaration named for the centroid of a Lie algebra, or a
-description of the bracket-commuting linear maps of an orthogonal Lie algebra. The maps themselves
+description of the bracket-commuting linear maps of an orthogonal Lie algebra, apart from the
+author's own: the library of PALOMAR-2026-11-14-000019, from the same development as this entry,
+proves that description and does not compare it ("Relation to the author's other entries"). The maps themselves
 are those underlying Mathlib's `L →ₗ⁅F,L⁆ L`, and TauCeti has Schur's lemma for irreducible Lie
 modules (table below).
 
@@ -418,7 +442,7 @@ quaternary form and no centre of the even Clifford algebra was found by these se
 ## Relation to the author's other entries
 
 For the registered entries, the commits below are those of the registry's public records; every
-commit below was checked against the public repository on 2026-11-13.
+commit below was checked against the public repository on 2026-11-13 and again on 2026-11-14.
 
 - **PALOMAR-2026-10-21-000012**
   ([`stalex444/pdt-hermite-signature-compositum`](https://github.com/stalex444/pdt-hermite-signature-compositum/tree/5aa870e98236ba240561b798265c629df8c2d031)).
@@ -452,18 +476,23 @@ commit below was checked against the public repository on 2026-11-13.
   that `hodgeOp` is the operator of this entry at that form; that theorem is not in this
   repository (`BUILD.txt`, "The cut in LorentzLie/Defs.lean"). No statement there is about
   bracket-commuting maps.
-- **A separate entry in preparation** (no identifier yet; described as it stood on 2026-11-13):
-  the Lorentz Lie algebra of Minkowski space, stated on copies carried from the public statement
-  of the Yang–Mills release. Its lead statements are the isomorphism of that Lie algebra with
-  `sl(2, ℂ)` as a real Lie algebra, the exponential criterion and the complexification; the
-  isomorphism is on the Lie algebra of statement 7(a) here at the form `(1, 1, 1, -1)`, and it
-  carries that entry's operator `H` to multiplication by `-i`. Its statement on invariant bilinear forms (every invariant bilinear
-  form is `a · tr(XY) + b · tr(H(X) Y)` for exactly one pair `(a, b)`) is proved from the
-  description of the bracket-commuting maps at the form `(1, 1, 1, -1)`, and it cites this entry
-  for that description. It also compares the existence of a bracket-commuting `H` with
-  `H ∘ H = -1` at that form, which is the existence part of statement 7(a) here at one form and
-  on endomorphisms instead of matrices, and Lie algebra equivalences for the definite and split
-  forms, which are on the Lie algebras of statement 7(b). The statement that every
+- **PALOMAR-2026-11-14-000019**
+  ([`stalex444/minkowski-lorentz-algebra`](https://github.com/stalex444/minkowski-lorentz-algebra/tree/91aee70f9daddadda2f97f4694b9b4352430ecba)).
+  Its main theorem (statement 6 there): every invariant bilinear form on `so(3, 1)` is
+  `a · tr(XY) + b · tr(H(X) Y)` for exactly one pair `(a, b)`. It is proved from the description
+  of the bracket-commuting maps at the Minkowski form, and that entry refers to this one, as an
+  entry in preparation, for the description. Its other compared statements include the
+  isomorphism with `sl(2, ℂ)` as a real Lie algebra (statements 1–2 there); a bracket-commuting
+  `H` with `H ∘ H = -1` that the isomorphism carries to multiplication by `-i` (statement 4 there:
+  the existence part of statement 7(a) here, at one form); the exponential criterion; the
+  complexification; and `so(4)`, `so(2, 2)` as products (statement 7 there, on the Lie algebras
+  of statement 7(b) here). Its library proves, without comparing them, versions of the library
+  theorems from which statements 1, 2(a)–(b), 3, 5, 6 and 7 here are proved
+  (`LorentzLie/FormCentroid.lean`: `exists_hodge_of_basis`, `hodge_of_basis_eq_or_eq_neg`,
+  `exists_nonscalar_sq_iff`, `exists_sq_neg_one_iff`, `det_toMatrix_eq_sq_mul_of_lieEquiv`,
+  `centroid_scalar_of_basis`; `LorentzLie/Centroid.lean`: `centroid_scalar_so'`,
+  `hodge_centroid_real`). Both libraries come from the same unpublished development; only
+  `GravityScreening/SignedLieGeneration.lean` is byte-identical. The statement that every
   bracket-commuting map is `a • id + c • H` with `H ∘ H = det B` is compared in this entry only.
 
 ## Layout
@@ -487,7 +516,8 @@ declarations that were reviewed. `LorentzLie` refers to the Lie algebra of a for
 the Lorentz Lie algebra: it is the case of statement 7(a) and of the diagonal form `(1, 1, 1, -1)`
 of statement 10. Every statement of the entry is a mathematical statement; no physical
 identification is stated. The operator `H` is called `hodge` in the library because for a diagonal form it is the
-Hodge star on skew matrices.
+Hodge star on skew matrices, taken with respect to the volume element `e₁ ∧ e₂ ∧ e₃ ∧ e₄` of the
+basis (not normalized; hence `H ∘ H = det B`).
 
 **Departures from the development's files** (`BUILD.txt` has the diffs and the checks).
 `LorentzLie/FormDefs.lean` is byte-identical to the development's file. `LorentzLie/Defs.lean` is
@@ -520,7 +550,8 @@ lake env lean Axioms.lean
 ```
 
 `lake build` builds the libraries, `Challenge`, `Solution` and `Checks`; the only warnings are the
-eleven placeholders of `Challenge.lean` and linter warnings in two copied modules. Every compared
+eleven placeholders of `Challenge.lean` a deprecation warning in one copied module (`GravityScreening/SignedLieGeneration.lean`) and
+linter warnings in another (`HermiteCompositum/Port014.lean`). Every compared
 statement depends on the axioms `propext`, `Classical.choice`, `Quot.sound` only. `BUILD.txt`
 records the build, the axioms, the comparison of the statements of `Challenge.lean` and
 `Solution.lean`, and a local run of the registry's Comparator.

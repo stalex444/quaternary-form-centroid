@@ -387,7 +387,7 @@ Metadata (after the review-fix pass)
     says which, per source). The commits cited for the author's registered entries are those of the
     registry's public records and exist in the public repositories.
   Lines marked "TODO (author)" in README.md and formalization.yaml are the author's alone to settle: the
-    title, the review status with her own review of the eleven statements, the acknowledgements.
+    title, the review status with her own review of the eleven statements.
 
 Review history
   2026-11-12: the library modules were written with AI assistance in the author's unpublished development,
@@ -439,6 +439,58 @@ Scan of the tracked files (2026-11-13, after the finishing pass)
       module of the registered entry that was not copied); Instance.lean, lines 363 and 370, also name the
       module Places of that library (removed here in step (iii)). README.md ("Layout") says so. Every other
       path that a tracked file cites inside this repository exists in it.
+
+Pre-submission corrections, 2026-11-14 (prose and metadata only)
+  What changed. The corrections of a five-check pre-submission re-check and its calibration gate, applied
+    as the gate gave them: in Challenge.lean, the opening docstring (statement 1 credited to M. Chaktoura and
+    F. Szechtman, J. Lie Theory 23 (2013), with G. Benkart and E. Neher, Corollary 2.23(b); the library of the
+    author's PALOMAR-2026-11-14-000019 named in the prior-formalization paragraph) and the docstring of
+    statement 10 (the two forms are isometric over R, so the real Lie algebras are isomorphic; not
+    formalized); the same statement-10 docstring in Solution.lean; the header and the docstring of
+    det_traceForm_of_root in Checks.lean (it uses statements 2(a) and 9(a), not statement 1); README.md and
+    formalization.yaml (prior work credited: Chaktoura-Szechtman, Benkart-Neher Lemma 2.1(a) and
+    Corollary 2.23(b), Ponomarev and Bourbaki as reported and not read, the Notes to Chapter IV of The Book of
+    Involutions on Jacobson, Chapter X, section 4; PALOMAR-2026-11-14-000019 in place of the entry in
+    preparation; the Hodge-star wording, with respect to the volume element of the basis; the
+    statement-10 remark; fidelity (e) and (m); the models line; the two wall_time lines removed; the
+    relationship "adapts" for The Book of Involutions and for Chaktoura-Szechtman; arXiv category math.RT
+    added; the comment above the acknowledgements removed, the text kept); and
+    .github/workflows/palomar-preflight.yml added: a copy of the workflow of the author's repository
+    minkowski-lorentz-algebra at 91aee70f with only request_id changed (qfcentroid01). No statement,
+    definition or proof changed.
+  Lean untouched. For every .lean file, the text with every /- ... -/ block (docstrings included) and every
+    -- comment removed has the same sha256 at d4f902fc83116b41e204565727c71616211bb5e4 and after the edits
+    (14 files, all identical). Solution.lean, regenerated in memory from Challenge.lean as the generator does
+    it, equals the file byte for byte; its twelve statement docstrings equal the Challenge's.
+  Challenge.lean is now 472 lines and 32,885 bytes (469 lines and 32,535 bytes before). It is now over
+    32 KiB (32,768 bytes), so the sentence under "Build" that the file is under 32 KiB no longer holds. Under
+    the registry's verifier (PalomarSubmission 14aa8d6b, scripts/verify_submission.py) this changes nothing:
+    the one warning it appends when the file is over 32 KiB or over 300 lines already applied (the file was
+    over 300 lines); the hard limits, 1,000 lines and 100 KiB, are not reached.
+  Commands re-run after the edits (toolchain bin, with nanoda_bin, first on PATH):
+    lake build GravityScreening HermiteCompositum LorentzLie QuaternaryCentroid Challenge Solution Checks ->
+      Build completed successfully (8950 jobs), exit 0, 32 s, started 2026-11-14 22:06:54 UTC. Warnings: the
+      11 'declaration uses sorry' warnings of Challenge.lean (lines 176, 207, 234, 263, 289, 302, 324, 358,
+      400, 431, 456); one deprecation warning in GravityScreening/SignedLieGeneration.lean; 13 linter
+      warnings in HermiteCompositum/Port014.lean. Nothing else.
+    lake env lean Challenge.lean -> exactly the 11 'declaration uses sorry' warnings, nothing else, exit 0,
+      15 s.
+    lake env lean Axioms.lean -> 44 declarations, each depending on [propext, Classical.choice, Quot.sound],
+      exit 0, 4 s.
+    lake comparator --inadvisably-no-sandbox, started 2026-11-14 22:07:56 UTC. Inputs:
+      58e0a6c20bbeb5470aa659bd1728fd1b413d0df2cabacba2a20664505d55fc2b  Challenge.lean
+      d8d1a49cc2617a98608f5c3d06ea2db54eddcd252b37048982abea44395bca3d  Solution.lean
+      4c5d928dcee0401c06e7ecc6d6d538be80b96406dc6a3afd6b05d2f649b4df67  comparator.json
+      Result: "nanoda kernel accepts the solution / Lean default kernel accepts the solution / Your solution
+      is okay!", exit 0, 119 s. (The output reproduced at the end of this file is that of the run of
+      2026-11-13.)
+    Count gate (the script described above), exit 0: all 17 checks PASS, COUNT GATE: PASS.
+    SHA256SUMS regenerated over the same files in the same order (shasum -a 256); Challenge.lean,
+      Solution.lean and Checks.lean changed; shasum -a 256 -c: every file OK.
+    formalization.yaml loads under the registry contract (scripts.submission_contract at PalomarSubmission
+      14aa8d6b, load_formalization_metadata); math.RT is in that commit's arXiv snapshot.
+  Not run in this round: the structural hash and dependency tools (the comment-stripped text is unchanged);
+    the v0.4 jsonschema validation; the registry's own workflow (there is no public commit).
 
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.

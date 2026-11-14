@@ -339,8 +339,9 @@ rational `4 × 4` matrices that are skew for the diagonal matrix with diagonal `
 Reason: a Lie algebra equivalence would carry the map of (b) to a bracket-commuting map of square
 `-1` on the first Lie algebra, which statement 9(b) excludes. In the terms of statements 2(b) and
 3: the determinants of the two forms are `-283` (up to a rational square) and `-1`, and `283` is
-not a rational square. Over `ℝ` the Lie algebras of the two forms both have a bracket-commuting
-map of square `-1` (statements 9(c) and 7(a)). -/
+not a rational square. Over `ℝ` the two forms are isometric (signature `(3, 1)`), so the real Lie algebras are
+isomorphic (not formalized); both have a bracket-commuting map of square `-1` (statements 9(c)
+and 7(a)). -/
 theorem not_lieEquiv_diagonal_of_root (K : Type*) [Field K] [NumberField K]
     (hK : Module.finrank ℚ K = 4) (θ : K) (hθ : θ ^ 4 = θ + 1) :
     IsEmpty (skewAdjointLieSubalgebra (Algebra.traceForm ℚ K) ≃ₗ⁅ℚ⁆

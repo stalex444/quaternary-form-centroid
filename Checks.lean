@@ -8,7 +8,7 @@ public import Solution
 
 Three theorems proved from the compared statements of `Solution.lean`. They are not part of the
 comparison. `degenerate_idempotent_control`: nondegeneracy cannot be dropped from statement 2(c).
-`det_traceForm_of_root`: from statements 1, 2(a) and 9(a), the Gram determinant of the trace form
+`det_traceForm_of_root`: from statements 2(a) and 9(a), the Gram determinant of the trace form
 of a number field of degree four containing a root of `x⁴ - x - 1` is `t ^ 2 * (-283)` in every
 basis. `isometry_hypotheses_control`: neither hypothesis on `H` can be dropped from statement
 4(c).
@@ -52,11 +52,12 @@ theorem degenerate_idempotent_control :
     · right; rw [sub_eq_zero.mp h6, one_smul]
   · exact absurd h4 hX
 
-/-- Statements 1 and 3 give statement 10(a) directly: the determinant classes `-283` and `-1`
-differ, because `283` is not a rational square. (The compared proof of 10(a) uses statement 2(b)
-instead.) Here: a consequence of statement 9(a) and statement 1 for a number field `K` with a
-root of `x⁴ - x - 1`: the determinant of the Gram matrix of the trace form in any basis indexed
-by a type with four elements is `t ^ 2 * (-283)` for some rational `t ≠ 0`. -/
+/-- A consequence of statements 9(a) and 2(a): for a number field `K` with a root of
+`x⁴ - x - 1`, the determinant of the Gram matrix of the trace form in any basis indexed by a type
+with four elements is `t ^ 2 * (-283)` for some rational `t ≠ 0`. With statement 3, after
+identifying the rational matrices skew for `diag(1, 1, 1, -1)` with that form's Lie algebra on
+`ℚ⁴`, this gives a second route to statement 10(a); the compared proof of 10(a) carries the map
+of 10(b) along the equivalence and uses the fact of 9(b). -/
 theorem det_traceForm_of_root (K : Type*) [Field K] [NumberField K]
     (hK : Module.finrank ℚ K = 4) (θ : K) (hθ : θ ^ 4 = θ + 1) {ι : Type*} [Fintype ι]
     [DecidableEq ι] (hι : Fintype.card ι = 4) (b : Module.Basis ι ℚ K) :

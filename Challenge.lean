@@ -103,8 +103,9 @@ this entry). In statement 8, the
 discriminant of the trace form is the discriminant of the field, and its sign is `(-1) ^ r₂`
 (J. S. Milne, *Algebraic Number Theory*, v3.08, p. 33 and Proposition 2.40(a)). Statements 1–4
 and 8(a)–(b), which are about the Lie algebra itself, were not located as stated in the sources
-read for this entry; `README.md`, section "Relation to the literature", derives statement 1 from
-the stated results. Statements 2 and 7 are arithmetic in the quadratic algebra of statement 1;
+read for this entry; statement 1 follows in two steps from M. Chaktoura and F. Szechtman, J. Lie
+Theory 23 (2013), Theorem (`so(B) ≅ so(B|W) ⊗ F[X]/(X² - det B)`), and G. Benkart and E. Neher,
+arXiv:math/0502561, Corollary 2.23(b) (`README.md`, "Relation to the literature"). Statements 2 and 7 are arithmetic in the quadratic algebra of statement 1;
 statements 6, 9 and 10 are examples and statement 11 is a set of controls.
 
 Scope.
@@ -129,8 +130,9 @@ bracket-commuting maps; it has no declaration named for the centroid of a Lie al
 centre of the even Clifford algebra. The author's entries PALOMAR-2026-10-21-000012 (the
 discriminant `-283` of the field of `x⁴ - x - 1`, used in the proofs of statements 9, 10 and 11(a)) and PALOMAR-2026-09-02-000014
 (the trace matrix of `ℚ[x]/(x⁴ - x - 1)`) prove facts that are not compared here. In the places
-searched, no description of the bracket-commuting maps of an orthogonal Lie algebra was found: a
-dated search result, not a statement that none exists.
+searched, no description of the bracket-commuting maps of an orthogonal Lie algebra was found
+apart from the library of the author's PALOMAR-2026-11-14-000019 (same development; proved there,
+not compared): a dated search result, not a statement that none exists.
 
 Not formalized here (see also "Scope"). The Clifford algebra and the relation between `H` and its
 central element; an isomorphism of `so(B)` with another Lie algebra, over any field; the
@@ -423,8 +425,9 @@ rational `4 × 4` matrices that are skew for the diagonal matrix with diagonal `
 Reason: a Lie algebra equivalence would carry the map of (b) to a bracket-commuting map of square
 `-1` on the first Lie algebra, which statement 9(b) excludes. In the terms of statements 2(b) and
 3: the determinants of the two forms are `-283` (up to a rational square) and `-1`, and `283` is
-not a rational square. Over `ℝ` the Lie algebras of the two forms both have a bracket-commuting
-map of square `-1` (statements 9(c) and 7(a)). -/
+not a rational square. Over `ℝ` the two forms are isometric (signature `(3, 1)`), so the real Lie algebras are
+isomorphic (not formalized); both have a bracket-commuting map of square `-1` (statements 9(c)
+and 7(a)). -/
 theorem not_lieEquiv_diagonal_of_root (K : Type*) [Field K] [NumberField K]
     (hK : Module.finrank ℚ K = 4) (θ : K) (hθ : θ ^ 4 = θ + 1) :
     IsEmpty (skewAdjointLieSubalgebra (Algebra.traceForm ℚ K) ≃ₗ⁅ℚ⁆
