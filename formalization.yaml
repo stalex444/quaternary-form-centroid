@@ -599,7 +599,9 @@ related_formalizations:
       that names them was in hand when the compared statements and the
       helper module were written. Recorded as "other", not "independent",
       for that reason. The head of 2026-11-13 was searched by file name
-      only; the search was repeated on 2026-11-15 at
+      only; the search was repeated on 2026-11-14 at
+      ca32605ff53921fa0689dd312618b7cfaafa7e43, the head then, in the text
+      of all 32,093 Lean files, and on 2026-11-15 at
       1f2f7d518c3e81587107d99655344ac1a45f0233, the head when searched, in
       the text of all 32,325 Lean files: none of the four was found.
   - id: "https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Geometry/EinsteinFour"

@@ -402,10 +402,12 @@ bracket-commuting maps of an orthogonal Lie algebra; a Lie equivalence between a
 algebra of rank four and a product; a statement about `so` of the trace form of a number field.
 TauCeti's head on 2026-11-13 (`8b9f13d9936343c962096355455995c9a128af39`) was searched by file
 name only: 1,219 files were added between the commit read and that head. The search was
-repeated on 2026-11-15 at `1f2f7d518c3e81587107d99655344ac1a45f0233`, TauCeti's head when searched, in
+repeated on 2026-11-14 at `ca32605ff53921fa0689dd312618b7cfaafa7e43`, TauCeti's head then, in the
+text of all 32,093 Lean files, and on 2026-11-15 at `1f2f7d518c3e81587107d99655344ac1a45f0233`,
+TauCeti's head when searched, in
 the text of all 32,325 Lean files (2,053 added and 153 removed since the commit read; every file in
 the table is present there): none of these four was found; the two rows dated 2026-11-15 above
-were found by that search.
+were found by the search of 2026-11-15.
 
 **openai/math** ([`lean/OAI/Geometry/EinsteinFour`](https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Geometry/EinsteinFour),
 commit `4eaee87548250b2682affda7d05d947c05554bae`). The existence clauses at the real definite form,

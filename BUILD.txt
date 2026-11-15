@@ -594,6 +594,17 @@ Search of TauCeti repeated, 2026-11-15 (README.md, formalization.yaml, this file
     the search of 2026-11-15.
   No .lean file, comparator.json or file listed in SHA256SUMS changed.
 
+Final check of the public commit, 2026-11-15 (one text correction)
+  The commit b0de8d1c7737e722680b4e321ba69b790bfe3e85 was pushed to the public repository on 2026-11-15 and
+    the registry's preflight workflow passed on it (GitHub Actions run 43705382028). A further check of
+    that commit led to one correction, in README.md and formalization.yaml: the sentence dating the searches
+    of TauCeti names again the search of 2026-11-14 (at ca32605ff53921fa0689dd312618b7cfaafa7e43, in the text
+    of all 32,093 Lean files) beside the search of 2026-11-15.
+  No .lean file, comparator.json or file listed in SHA256SUMS changed. The build, Challenge, Axioms and
+    Comparator commands were also re-run on a fresh clone of that public commit on 2026-11-15, with the
+    dependencies linked from a local build at the same revisions and without the sandbox: exit 0 each,
+    eleven sorry warnings in Challenge.lean only, the three standard axioms only, both kernels accepting.
+
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.
 
