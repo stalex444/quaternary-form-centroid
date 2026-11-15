@@ -572,6 +572,28 @@ Second check of the public commit, 2026-11-14 (text corrections)
     dependencies linked from a local build at the same revisions and without the sandbox: exit 0 each,
     eleven sorry warnings in Challenge.lean only, the three standard axioms only, both kernels accepting.
 
+Search of TauCeti repeated, 2026-11-15 (README.md, formalization.yaml, this file)
+  TauCeti's head when searched, 1f2f7d518c3e81587107d99655344ac1a45f0233 (committed 2026-11-15 07:34 UTC, fetched
+    10:13 UTC), was searched in two passes, through git objects only. (1) The changes since
+    ca32605ff53921fa0689dd312618b7cfaafa7e43, the head searched on 2026-11-14, were read: 238 Lean files added,
+    11 renamed, 989 modified and 6 deleted; the diffs of the modified files on Lie algebras, Clifford algebras,
+    quadratic forms, exterior powers, the Hodge star and number fields were read in full, and the other changes
+    were classified by the declarations added and removed and by a keyword search of every added line. (2) The
+    whole tree, 32,325 Lean files (2,053 added and 153 removed since the commit read, 3602eb5f), was searched by
+    content, each search also run at ca32605f.
+  Result: none of the four items stated as not found in TauCeti was found. Every file in the TauCeti table of
+    README.md is present at 1f2f7d51; of the files credited before this search, only
+    LinearAlgebra/CliffordAlgebra/Chirality.lean changed since ca32605f (one lemma added), and no credited
+    declaration changed.
+  Credits added, with lines at 1f2f7d51: Algebra/Lie/HighestWeight/Endomorphism.lean
+    (IsHighestWeightVector.exists_eq_smul_id; IsHighestWeightVector.finrank_lieModuleHom_self, not present at
+    ca32605f), scalar endomorphisms of highest-weight modules without an algebraically closed field; and
+    LinearAlgebra/CliffordAlgebra/CentralSimple/Even.lean (isCentral_even_of_odd_finrank), the even Clifford
+    algebra in odd dimension is central. The Schur row of README.md no longer calls Schur's lemma the general
+    tool nearest to statement 5. The sentence dating the search in README.md and formalization.yaml now gives
+    the search of 2026-11-15.
+  No .lean file, comparator.json or file listed in SHA256SUMS changed.
+
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.
 

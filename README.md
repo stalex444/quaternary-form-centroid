@@ -353,11 +353,12 @@ description of the bracket-commuting linear maps of an orthogonal Lie algebra, a
 author's own: the library of PALOMAR-2026-11-14-000019, from the same development as this entry,
 proves that description and does not compare it ("Relation to the author's other entries"). The maps themselves
 are those underlying Mathlib's `L →ₗ⁅F,L⁆ L`, and TauCeti has Schur's lemma for irreducible Lie
-modules (table below).
+modules and the scalar endomorphisms of highest-weight modules (table below).
 
 **TauCeti** ([`TauCetiProject/TauCeti`](https://github.com/TauCetiProject/TauCeti/tree/3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9),
-read at commit `3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9`; lines are those of that commit; every
-file below is also present at `1e668f5e55bc20f2eb87f4ba49b48833470290d1`). TauCeti formalizes the
+read at commit `3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9`; lines are those of that commit, and every
+file below is also present at `1e668f5e55bc20f2eb87f4ba49b48833470290d1`, except in the two rows
+found by the search of 2026-11-15, whose lines are those of the commit named there). TauCeti formalizes the
 Clifford-algebra side of this material: for a nondegenerate quadratic form in positive even
 dimension over a field with `2 ≠ 0`, the centre of the even Clifford algebra is `K[X]/(X² - d)`,
 `d` the signed discriminant, a field exactly when `d` is not a square (`Even/Center.lean`); in
@@ -379,6 +380,7 @@ on Mathlib's `skewAdjointLieSubalgebra` and imports nothing from TauCeti.
 | same | `adjoinRootEquivCenterEven`, 347 | Clifford-side counterpart of `H ∘ H = det B`. |
 | same | `isField_center_even_iff_not_isSquare_discriminant`, 365; `nonempty_center_even_algEquiv_prod_iff_isSquare_discriminant`, 378 | Clifford-side counterparts of statement 2(c). |
 | same | `finrank_center_even`, 443 | The centre has dimension 2 in every positive even dimension; the bracket-commuting maps of `so(B)` have dimension 2 in dimension four only (statement 5). |
+| `LinearAlgebra/CliffordAlgebra/CentralSimple/Even.lean` | `isCentral_even_of_odd_finrank`, 120 | Found by the search of 2026-11-15, at `1f2f7d518c3e81587107d99655344ac1a45f0233` (line of that commit; the same line at `ca32605ff53921fa0689dd312618b7cfaafa7e43`). For a nondegenerate quadratic form in odd dimension over a field with `2 ≠ 0`, the even Clifford algebra is central: its centre is the base field. Clifford-side counterpart of statement 5 in odd dimension. Not the same statement: the centre of an associative algebra, against the bracket-commuting maps of a Lie algebra. |
 | `LinearAlgebra/CliffordAlgebra/Even/NonsplitCenter.lean` | 164 | The even Clifford algebra of a quaternary form with field centre as a quaternion algebra over it. |
 | `LinearAlgebra/CliffordAlgebra/Spin/LowRank/Four.lean`, `NonsplitCenter.lean`, `SplitCenter.lean`, `QuaternionProduct.lean`, `HyperbolicFour.lean` | 88; 114; 321; 64, 184; 94, 112 | The quaternary Spin group over the centre, and as a product when the centre splits. Group level. |
 | `LinearAlgebra/CliffordAlgebra/Spin/LowRank/RationalFour.lean` | 51–151 | The rational form `x² + y² + z² + 2w²`, centre `ℚ[X]/(X² - 2)`: a rational instance with nonsquare discriminant. Another form and another statement than statement 9. |
@@ -391,7 +393,8 @@ on Mathlib's `skewAdjointLieSubalgebra` and imports nothing from TauCeti.
 | `Algebra/Lie/SkewAdjoint.lean` | `skewAdjointLieEquivOfBasis`, 150 | The same equivalence as this repository's helper `LorentzLie.FormCentroid.skewAdjointEquivMatrices`, in the opposite direction, over a commutative ring. |
 | `Algebra/Lie/AEval.lean` | 75 | The bracket-commuting hypothesis in use; no description of the maps that satisfy it. |
 | `Algebra/Lie/Orthogonal/Killing.lean` | 116, 171 | Irreducibility of the standard module and trivial radical for at least three indices; adjacent to statement 5. |
-| `Algebra/Lie/Weights/Central.lean`; `Algebra/Lie/Schur.lean` | `exists_forall_apply_eq_smul`, 137; `finrank_lieModuleHom_self`, 196 | Schur's lemma for Lie modules: over an algebraically closed field every morphism of a finite-dimensional irreducible Lie module to itself is a scalar. At the adjoint module these morphisms are the bracket-commuting maps, so this is the general tool nearest to statement 5; it was not found applied to an orthogonal Lie algebra, and statement 5 assumes neither an algebraically closed field nor irreducibility. |
+| `Algebra/Lie/Weights/Central.lean`; `Algebra/Lie/Schur.lean` | `exists_forall_apply_eq_smul`, 137; `finrank_lieModuleHom_self`, 196 | Schur's lemma for Lie modules: over an algebraically closed field every morphism of a finite-dimensional irreducible Lie module to itself is a scalar. At the adjoint module these morphisms are the bracket-commuting maps, so this is a general tool adjacent to statement 5; it was not found applied to an orthogonal Lie algebra, and statement 5 assumes neither an algebraically closed field nor irreducibility. |
+| `Algebra/Lie/HighestWeight/Endomorphism.lean` | `IsHighestWeightVector.exists_eq_smul_id`, 64; `IsHighestWeightVector.finrank_lieModuleHom_self`, 82 | Found by the search of 2026-11-15, at `1f2f7d518c3e81587107d99655344ac1a45f0233` (lines of that commit; `exists_eq_smul_id` is also present at `ca32605ff53921fa0689dd312618b7cfaafa7e43`, `finrank_lieModuleHom_self` is not). Over a field of characteristic zero, for a finite-dimensional Lie algebra with nondegenerate Killing form and a split Cartan subalgebra, every morphism to itself of a Lie module generated by a highest-weight vector is a scalar, and these morphisms span a line; the field need not be algebraically closed and the module need not be irreducible or finite-dimensional. At the adjoint module of a split simple Lie algebra these morphisms are the bracket-commuting maps, so, applied there, it would give the conclusion of statement 5 for a form over a field of characteristic zero whose `so(B)` is split and simple. It was not found applied to an orthogonal Lie algebra, and statement 5 assumes neither characteristic zero nor a split form. |
 | `NumberTheory/NumberField/InfinitePlace/Basic.lean` | 230 | The sign of the discriminant in parity form; not used here. |
 
 Not found in TauCeti by these searches: a declaration named for the centroid of a Lie algebra; a description of the
@@ -399,9 +402,10 @@ bracket-commuting maps of an orthogonal Lie algebra; a Lie equivalence between a
 algebra of rank four and a product; a statement about `so` of the trace form of a number field.
 TauCeti's head on 2026-11-13 (`8b9f13d9936343c962096355455995c9a128af39`) was searched by file
 name only: 1,219 files were added between the commit read and that head. The search was
-repeated on 2026-11-14 at `ca32605ff53921fa0689dd312618b7cfaafa7e43`, TauCeti's head when searched, in
-the text of all 32,093 Lean files (1,805 added and 137 removed since the commit read; every file in
-the table is present there): none of these four was found.
+repeated on 2026-11-15 at `1f2f7d518c3e81587107d99655344ac1a45f0233`, TauCeti's head when searched, in
+the text of all 32,325 Lean files (2,053 added and 153 removed since the commit read; every file in
+the table is present there): none of these four was found; the two rows dated 2026-11-15 above
+were found by that search.
 
 **openai/math** ([`lean/OAI/Geometry/EinsteinFour`](https://github.com/openai/math/tree/4eaee87548250b2682affda7d05d947c05554bae/lean/OAI/Geometry/EinsteinFour),
 commit `4eaee87548250b2682affda7d05d947c05554bae`). The existence clauses at the real definite form,
