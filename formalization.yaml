@@ -156,7 +156,7 @@ sources:
       c(A) = F + c(A)_0 and an isomorphism of Lie algebras from c(A)_0
       onto Alt(A, sigma) = Skew(A, sigma); (13.2) Proposition, p. 173, a
       similitude is proper if and only if the automorphism it induces on
-      the Clifford algebra is the identity on the centre Z; (15.6) Proposition and (15.7) Theorem, p. 211, the
+      the Clifford algebra is the identity on the centre Z; (15.6) Proposition, p. 211, an isomorphism of Lie algebras from c(N(Q)) onto Q^0, and (15.7) Theorem, p. 211, the
       equivalence of groupoids A_1^2 = D_2 and Z(Q) =
       F(sqrt(disc(A, sigma, f))) for char F != 2. Statement 1 is the
       corresponding statement for the Lie algebra so(B) = Skew(End V,
@@ -295,7 +295,7 @@ sources:
     id: "arXiv:2606.03472v2"
     # Title and authors as in the arXiv record (arXiv API, 2026-11-13). READ
     # 2026-11-13 as arXiv:2606.03472v2 [math.NT], 17 Aug 2026 (v1 June
-    # 2026): sections 2.1-2.2, pp. 8-9, Proposition 2.6.
+    # 2026): sections 2.1-2.2, pp. 6-9, Proposition 2.6.
     type: "paper"
     location: "https://arxiv.org/abs/2606.03472"
     relationship: "background"
@@ -483,7 +483,7 @@ related_formalizations:
     relationship: "other"
     note: >-
       THE CLIFFORD-ALGEBRA SIDE OF THIS MATERIAL IS FORMALIZED THERE; NO
-      STATEMENT FOR THE LIE ALGEBRA WAS FOUND THERE AT THE COMMIT READ. Read on 2026-11-13 at commit
+      DESCRIPTION OF THE BRACKET-COMMUTING MAPS OF AN ORTHOGONAL LIE ALGEBRA WAS FOUND THERE AT THE COMMIT READ. Read on 2026-11-13 at commit
       3602eb5f808b6a2cf7c25cf639ff8333c96f5fb9 (2026-11-12); every file
       named here is also present at 1e668f5e55bc20f2eb87f4ba49b48833470290d1
       and, by name, at 8b9f13d9936343c962096355455995c9a128af39
@@ -535,6 +535,11 @@ related_formalizations:
       statement 7(b), at the real definite instance, on two-forms and
       Clifford bivectors; there is no statement there that the
       bracket-commuting maps are exhausted, and no other field or form.
+      Found by the check of 2026-11-14, in the same file: hodgeStar_map
+      (:190) and hodgeStar_neg_orientation (:175), which with Mathlib's
+      Orientation.map_eq_iff_det_pos and map_eq_neg_iff_det_neg give a
+      counterpart of (4)(c) at the real definite form for both signs of
+      det g (not stated there as one theorem).
       RealForm/Four.lean (:192) and Spin/Real/Four.lean (:100),
       Spin/Real/ThreeOne.lean (:79), under LinearAlgebra/CliffordAlgebra/:
       the centre of the real even Clifford algebra of the definite form is
@@ -624,7 +629,7 @@ related_formalizations:
       copied here byte for byte from that commit (hashes in BUILD.txt);
       the other modules of that library are not copied.
       Used in the proofs of statements 9, 10 and 11(a) only, through
-      minpoly_gen_4, finrank_S_4 and discr_S_4: a number field of degree
+      minpoly_gen₄, finrank_S₄ and discr_S₄: a number field of degree
       four containing a root of x^4 - x - 1 is isomorphic to S_4 and so
       has discriminant -283. The Challenge here does not import or repeat
       any of it (statements 9 and 10 take the field and a root as

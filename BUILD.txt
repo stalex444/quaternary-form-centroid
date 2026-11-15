@@ -256,7 +256,7 @@ Build
     verifier (PalomarSubmission 14aa8d6b, scripts/verify_submission.py) raises an error above 1,000 lines or
     100 KiB, and appends one warning when the file is over 32 KiB or over 300 lines. The file is under the hard
     limits; it is over 32 KiB and over 300 lines, so the one warning applies (the statements and their
-    docstrings, from `set_option` on, are 324 lines).
+    docstrings, from `set_option` on, are 325 lines).
 
 #print axioms (lake env lean Axioms.lean; Axioms.lean imports Checks), after the review-fix pass, exit 0,
   44 declarations:
@@ -368,7 +368,7 @@ Comparator
     Comparator to accept. The full output of this run is at the end of this file.
   Negative control (at assembly): with `-283` changed to `-284` in statement 9 of Challenge.lean only, the same command
     gave "error: Challenge and solution theorem statement do not match: 'QuaternaryCentroid.centroid_traceForm_of_root'", exit 1; Challenge.lean was then restored (same sha256 as before the control) and rebuilt.
-  Not run: the registry's own submission workflow (there is no public commit); the Comparator inside its
+  Not run: the registry's own submission workflow (there was no public commit yet); the Comparator inside its
     bubblewrap sandbox (not available on macOS, hence --inadvisably-no-sandbox); a build from a fresh clone
     with lake exe cache get (the build above uses the shared prebuilt packages); the registry's licence
     detection and rendering steps.
@@ -491,7 +491,7 @@ Pre-submission corrections, 2026-11-14 (prose and metadata only)
     formalization.yaml loads under the registry contract (scripts.submission_contract at PalomarSubmission
       14aa8d6b, load_formalization_metadata); math.RT is in that commit's arXiv snapshot.
   Not run in this round: the structural hash and dependency tools (the comment-stripped text is unchanged);
-    the v0.4 jsonschema validation; the registry's own workflow (there is no public commit).
+    the v0.4 jsonschema validation; the registry's own workflow (there was no public commit yet).
 
 Pre-submission corrections, second round, 2026-11-14 (README.md, formalization.yaml, this file)
   What changed. The second-round rows of the gate on the first round, applied as the gate gave them: a
@@ -547,11 +547,30 @@ The author's decisions, 2026-11-14 (title, review, draft markers)
       14aa8d6b, load_formalization_metadata): project.name 170 characters (maximum 300); review.status
       "self-assessed" (the contract requires a nonempty status); 13 sources, 9 related formalizations.
   Not run in this round: the structural hash and dependency tools (the comment-stripped text is unchanged);
-    the v0.4 jsonschema validation; the registry's own workflow (there is no public commit).
+    the v0.4 jsonschema validation; the registry's own workflow (there was no public commit yet).
   Afterwards the same day: text corrections to README.md, formalization.yaml and this file (stale or inaccurate lines;
     four lines reworded so that the marker word used in the drafts no longer occurs in any tracked file;
     the TauCeti search repeated on 2026-11-14 and one TauCeti declaration added); no .lean file,
     comparator.json or file listed in SHA256SUMS changed.
+
+Second check of the public commit, 2026-11-14 (text corrections)
+  The commit 1642a1ea2691aa4ff631201720038a3ca67d6c02 was pushed to the public repository on 2026-11-14 and
+    the registry's preflight workflow passed on it (GitHub Actions run 43653159438). A further check of
+    that commit led to these corrections, in README.md, formalization.yaml and this file only.
+  Prior formalizations and credits: two more declarations of TauCeti's Hodge-star Isometry file credited
+    (hodgeStar_map, hodgeStar_neg_orientation), which with two Mathlib lemmas give a counterpart of
+    statement 4(c) at the real definite form for both signs of the determinant; the lead sentence of the
+    TauCeti note in formalization.yaml reworded to say what was not found there (a description of the
+    bracket-commuting maps of an orthogonal Lie algebra); Benkart and Neher's own credit for their
+    Corollary 2.23(b) (their Remark 2.24) passed on.
+  Records: the sentence dating the check of the author's other entries; a line count; a page range;
+    three declaration names; the items (15.6) and (15.7) of The Book of Involutions; the date of one
+    bibliographic check; the tense of three sentences in this file; one clause in the summary of
+    statement 8.
+  No .lean file, comparator.json or file listed in SHA256SUMS changed. The build, Challenge, Axioms and
+    Comparator commands were also re-run on a fresh clone of that public commit on 2026-11-14, with the
+    dependencies linked from a local build at the same revisions and without the sandbox: exit 0 each,
+    eleven sorry warnings in Challenge.lean only, the three standard axioms only, both kernels accepting.
 
 Files (sha256): see SHA256SUMS (the Lean sources, comparator.json, lakefile.toml, lean-toolchain,
   lake-manifest.json). README.md, formalization.yaml, LICENSE and this file are hashed at commit time; see git.

@@ -120,7 +120,7 @@ Corollaries and examples (statements 7–10):
    `(x, y) ↦ Tr_{K/ℚ}(x y)`: over `ℚ`, `H (H X) = d_K • X` with `d_K` the discriminant of `K`, and
    every bracket-commuting map is uniquely `a • id + c • H`; a rational bracket-commuting map of
    square `-1` exists if and only if `-d_K` is a rational square; over `ℝ`, on the trace matrix of
-   an integral basis, `H (H X) = (-1)^{r₂} • X` with `r₂` the number of complex places.
+   an integral basis, `H (H X) = (-1)^{r₂} • X` with `r₂` the number of complex places, with the unique decomposition.
 9. `centroid_traceForm_of_root` — an example of statement 8, the polynomial `x⁴ - x - 1`: for a
    number field `K` of degree four containing `θ` with `θ⁴ = θ + 1`: `H (H X) = (-283) • X`, with
    the unique decomposition; no rational bracket-commuting map has square `-1` (`283` is not a
@@ -241,7 +241,7 @@ printed as "(??)"). The section pages agree with the printed book's table of con
   steps from stated results about the Lie algebra: `so(B) ≅ so(B|W) ⊗ F[X]/(X² - det B)` for a
   three-dimensional `W` on which `B` is nondegenerate (M. Chaktoura and F. Szechtman, Theorem;
   their `L(f)` is `so(B)` when `2 ≠ 0`), and `Cent(A ⊗ B) = id ⊗ Cent(B)` for a perfect `A` with
-  `Cent(A) = F · id` and a unital `B` (Benkart and Neher, Corollary 2.23(b), pp. 11–12). Here
+  `Cent(A) = F · id` and a unital `B` (Benkart and Neher, Corollary 2.23(b), pp. 11–12; their Remark 2.24 credits part (b), for a unital commutative associative `B`, to Allison, Berman and Pianzola, Lemma 4.2, which was not read). Here
   `so(B|W)` is perfect and central (Leijnse, Theorem 2.34, type `B₁`), and the centroid of the
   commutative algebra `F[X]/(X² - det B)` is that algebra (Benkart and Neher, §2.1). It can also be
   derived from the Clifford-side results, as follows. `so(B)` is `Skew(End V, σ_b)` (Leijnse, Lemma 2.33).
@@ -311,7 +311,7 @@ printed as "(??)"). The section pages agree with the printed book's table of con
 - Not read page by page: N. Jacobson, *Lie Algebras* (1962), Chapter X (searched only through the Internet Archive's search-inside snippets; not saved). Also not read, and not cited as sources
   here: Knus (1991), Scharlau, Lam, Seligman.
 
-References, with the form in which each was read (bibliographic records checked on 2026-11-13
+References, with the form in which each was read (bibliographic records checked on 2026-11-13, and for Chaktoura and Szechtman on 2026-11-14,
 against Crossref, the arXiv records, or the page named):
 
 - M.-A. Knus, A. Merkurjev, M. Rost, J.-P. Tignol, *The Book of Involutions*, American
@@ -385,7 +385,7 @@ on Mathlib's `skewAdjointLieSubalgebra` and imports nothing from TauCeti.
 | `LinearAlgebra/CliffordAlgebra/Quadratic/Realization.lean` | `soEquivQuadratic`, 164 | The bridge between `skewAdjointLieSubalgebra` and the Clifford files; not used here. |
 | `LinearAlgebra/CliffordAlgebra/Chirality.lean` | `bivectorExterior_hodgeStar`, 289; `commute_chirality_bivectorExterior`, 252; `chirality_mul_self`, 198; `chirality_eq_neg_volumeElement`, 165 | Counterpart of the existence clause of statement 1, and of the existence part of statement 7(b), at the real definite instance, on two-forms and Clifford bivectors. No exhaustion; no other field or form. |
 | `Analysis/InnerProductSpace/HodgeStar/Basic.lean` | `hodgeStar_hodgeStar_of_even`, 244 | The square clause for the real definite form, on the exterior power; no bracket. |
-| `Analysis/InnerProductSpace/HodgeStar/Isometry.lean` | `hodgeStar_lieMap`, 218 | Found by the search of 2026-11-14. The derivation action of a skew-adjoint endomorphism commutes with the Hodge star in every degree: in dimension four, on two-forms, a counterpart of the existence clause of statement 1 at the real definite form. No exhaustion; no other field or form. |
+| `Analysis/InnerProductSpace/HodgeStar/Isometry.lean` | `hodgeStar_lieMap`, 218; `hodgeStar_map`, 190; `hodgeStar_neg_orientation`, 175 | Found by the search of 2026-11-14. The derivation action of a skew-adjoint endomorphism commutes with the Hodge star in every degree: in dimension four, on two-forms, a counterpart of the existence clause of statement 1 at the real definite form. Found by the check of 2026-11-14: a linear isometric equivalence commutes with the Hodge star for the transported orientation, and reversing the orientation negates the star; with Mathlib's `Orientation.map_eq_iff_det_pos` and `Orientation.map_eq_neg_iff_det_neg`, a counterpart of statement 4(c) at the real definite form, on two-forms, for both signs of the determinant (not stated there as one theorem). No exhaustion; no other field or form. |
 | `LinearAlgebra/CliffordAlgebra/RealForm/Four.lean`, `Spin/Real/Four.lean`, `Spin/Real/ThreeOne.lean` | 192; 100; 79 | Real instances on the Clifford and Spin side of statement 7. |
 | `LinearAlgebra/QuadraticForm/RegularFormClass/Discriminant.lean`, `Witt/Discriminant.lean` | 123, 260; 76 | The discriminant as a square class of an isometry class of forms: the form-level counterpart of statement 3. |
 | `Algebra/Lie/SkewAdjoint.lean` | `skewAdjointLieEquivOfBasis`, 150 | The same equivalence as this repository's helper `LorentzLie.FormCentroid.skewAdjointEquivMatrices`, in the opposite direction, over a commutative ring. |
@@ -451,7 +451,7 @@ quaternary form and no centre of the even Clifford algebra was found by these se
 ## Relation to the author's other entries
 
 For the registered entries, the commits below are those of the registry's public records; every
-commit below was checked against the public repository on 2026-11-13 and again on 2026-11-14.
+commit below was checked against the public repository on 2026-11-14, and all but that of PALOMAR-2026-11-14-000019 also on 2026-11-13.
 
 - **PALOMAR-2026-10-21-000012**
   ([`stalex444/pdt-hermite-signature-compositum`](https://github.com/stalex444/pdt-hermite-signature-compositum/tree/5aa870e98236ba240561b798265c629df8c2d031)).
